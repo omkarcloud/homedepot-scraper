@@ -29,6 +29,11 @@ Here's a sample response for a **product search results page**:
   }
 }
 ```
+## ▶️ Video Tutorial
+
+Watch the complete API walkthrough:
+
+[![HomeDepot Scraper API Walkthrough](https://raw.githubusercontent.com/omkarcloud/homedepot-scraper/master/homedepot-scraper-youtube-video-preview.png)](https://www.youtube.com/watch?v=AxgN35LwfW4)
 
 ## Get API Key
 
