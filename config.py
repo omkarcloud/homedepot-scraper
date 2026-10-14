@@ -2,13 +2,13 @@
 environment variable; the defaults work out of the box.
 
     PORT                       port the API listens on (default 8000)
-    HOMEDEPOT_PROXY            proxy URL for every request AND the cookie-mint
-                               browser, e.g. http://user:pass@host:port
-                               (default: none — direct). Home Depot's Akamai
-                               cookies are bound to the IP that minted them, so
-                               use a STICKY proxy, never a rotating one.
-    HOMEDEPOT_FALLBACK_PROXY   sticky proxy a mint retries through when your own
-                               IP is refused (default: none)
+    HOMEDEPOT_BROWSER_PAGES    Chrome pages serving requests at once (default 2)
+    HOMEDEPOT_PROXY            proxy URL for every Chrome page, e.g.
+                               http://user:pass@host:port (default: none —
+                               direct). Home Depot judges the IP a page runs
+                               on, so use a STICKY proxy, never a rotating one.
+    HOMEDEPOT_FALLBACK_PROXY   sticky proxy a page retries through when your
+                               own IP is refused (default: none)
     HOMEDEPOT_STORE_ID         store prices / stock default to (default 121,
                                Cumberland, Atlanta GA)
     HOMEDEPOT_ZIP              ZIP of that store (default 30339)
@@ -24,17 +24,15 @@ PORT = int(os.environ.get("PORT", "8000"))
 MAX_RETRIES = 3
 RETRY_BACKOFF = 2          # seconds, multiplied by the attempt number
 
-# The Akamai identity (cookies of one headed Chrome page-load) is re-minted
-# past this age, or as soon as Home Depot refuses it.
-HOMEDEPOT_IDENTITY_MAX_AGE = 25 * 60     # seconds
-HOMEDEPOT_MINT_ATTEMPTS = 3              # browsers tried per mint
-
-# Browser mode: when Home Depot refuses the plain-HTTP requests even on a
-# fresh identity (common from cloud / datacenter IPs), every call runs as an
-# in-page fetch inside one headed Chrome page for this long, then plain HTTP
-# is tried again. The page is recycled past HOMEDEPOT_BROWSER_MAX_AGE.
-HOMEDEPOT_BROWSER_MODE_TTL = 60 * 60     # seconds
+# Every request runs as an in-page fetch inside a headed Chrome page parked
+# on homedepot.com. Up to HOMEDEPOT_BROWSER_PAGES pages (one Chrome each)
+# open on demand, each serving one request at a time; a page is replaced
+# when Home Depot refuses it or past HOMEDEPOT_BROWSER_MAX_AGE.
+HOMEDEPOT_BROWSER_PAGES = int(os.environ.get("HOMEDEPOT_BROWSER_PAGES", "2"))
 HOMEDEPOT_BROWSER_MAX_AGE = 30 * 60      # seconds
+# When your own IP is refused and HOMEDEPOT_FALLBACK_PROXY is set, new pages
+# skip the direct connection for this long.
+HOMEDEPOT_DIRECT_SKIP = 60 * 60          # seconds
 
 HOMEDEPOT_DEFAULT_STORE_ID = os.environ.get("HOMEDEPOT_STORE_ID", "121")
 HOMEDEPOT_DEFAULT_ZIP = os.environ.get("HOMEDEPOT_ZIP", "30339")

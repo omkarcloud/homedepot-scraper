@@ -12,7 +12,6 @@ COPY . /app
 
 EXPOSE 8000
 
-# Google Chrome ships in the base image: it opens once (headed, on a virtual
-# display) to pass Home Depot's Akamai check; every request after that is
-# plain HTTP.
+# Google Chrome ships in the base image. It runs headed on a virtual display:
+# every request is a fetch inside a Chrome page parked on homedepot.com.
 CMD ["python", "run.py"]

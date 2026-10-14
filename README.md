@@ -54,7 +54,7 @@ python -m pip install -r requirements.txt
 python run.py
 ```
 
-The first request opens Google Chrome once, for a few seconds, to pass Home Depot's bot check. Every request after that is plain HTTP. You need Google Chrome installed, or use `docker compose up`.
+The first request opens Google Chrome for a few seconds to pass Home Depot's bot check. Every request then runs inside that Chrome page, so you need Google Chrome installed, or use `docker compose up`.
 
 3️⃣ Get your first data:
 ```bash

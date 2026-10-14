@@ -5,8 +5,9 @@
 
 Then:  curl "http://localhost:8000/products/details?product=204279858"
 
-The first request opens Google Chrome once (a few seconds) to pass Home
-Depot's Akamai bot check; every request after that is plain HTTP.
+The first request opens Google Chrome (a few seconds) to pass Home Depot's
+Akamai bot check. Every request then runs inside that Chrome page, so keep
+Chrome installed (or use docker compose up).
 """
 import bottle
 from cheroot import wsgi
