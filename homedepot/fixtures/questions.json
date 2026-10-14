@@ -1,0 +1,234 @@
+{
+ "TotalResults": 143,
+ "Limit": 10,
+ "Offset": 0,
+ "Results": [
+  {
+   "Id": "11475329",
+   "QuestionSummary": "I just bought the combo, the question is the warranty can I make it valid if I am out of the country, in a local distributor? Or is it only valid in the USA?",
+   "QuestionDetails": null,
+   "SubmissionTime": "2026-09-07T01:37:39.000+00:00",
+   "UserNickname": "Alex",
+   "AuthorId": "06323E8AD152CC3C0U",
+   "AnswerIds": [],
+   "TotalAnswerCount": 0,
+   "Photos": []
+  },
+  {
+   "Id": "11467855",
+   "QuestionSummary": "Buy one and get one? So two same combos kit ?",
+   "QuestionDetails": null,
+   "SubmissionTime": "2026-09-03T11:50:17.000+00:00",
+   "UserNickname": "Mark",
+   "AuthorId": "0525D8F798AE8B650U",
+   "AnswerIds": [],
+   "TotalAnswerCount": 0,
+   "Photos": []
+  },
+  {
+   "Id": "11459870",
+   "QuestionSummary": "Can you drill holes in corcrete for floor plate anchors?",
+   "QuestionDetails": null,
+   "SubmissionTime": "2026-08-30T18:17:49.000+00:00",
+   "UserNickname": "Tommy",
+   "AuthorId": "061F596E76B32E500U",
+   "AnswerIds": [
+    "15547630"
+   ],
+   "TotalAnswerCount": 1,
+   "Photos": []
+  },
+  {
+   "Id": "11438525",
+   "QuestionSummary": "how old is this model ?",
+   "QuestionDetails": null,
+   "SubmissionTime": "2026-08-20T14:12:21.000+00:00",
+   "UserNickname": "Henry",
+   "AuthorId": "042A144D83519E7E0U",
+   "AnswerIds": [],
+   "TotalAnswerCount": 0,
+   "Photos": []
+  },
+  {
+   "Id": "11180599",
+   "QuestionSummary": "What is the model number for the impact wrench?",
+   "QuestionDetails": null,
+   "SubmissionTime": "2026-04-22T21:25:55.000+00:00",
+   "UserNickname": "ImpactWrench",
+   "AuthorId": "0513E1771EDC0FBA0U",
+   "AnswerIds": [
+    "15315571"
+   ],
+   "TotalAnswerCount": 1,
+   "Photos": []
+  },
+  {
+   "Id": "11111812",
+   "QuestionSummary": "Why is the battery warranty three years in almost every other purchase but two years in this purchase",
+   "QuestionDetails": null,
+   "SubmissionTime": "2026-03-25T11:27:53.000+00:00",
+   "UserNickname": "Matt",
+   "AuthorId": "05196D83629318B00U",
+   "AnswerIds": [
+    "15292753",
+    "15257958"
+   ],
+   "TotalAnswerCount": 2,
+   "Photos": []
+  },
+  {
+   "Id": "11063629",
+   "QuestionSummary": "Can you provide me with more information on the case? Part number?",
+   "QuestionDetails": null,
+   "SubmissionTime": "2026-03-02T16:55:35.000+00:00",
+   "UserNickname": "Dawna",
+   "AuthorId": "71hf54t7ti2b7wbmxm5r01oj4",
+   "AnswerIds": [
+    "15227484"
+   ],
+   "TotalAnswerCount": 1,
+   "Photos": []
+  },
+  {
+   "Id": "11059425",
+   "QuestionSummary": "What is the end of sale date",
+   "QuestionDetails": null,
+   "SubmissionTime": "2026-02-28T06:42:14.000+00:00",
+   "UserNickname": "Curious",
+   "AuthorId": "p3nouz3cuhai1is4tkw9d3p2b",
+   "AnswerIds": [],
+   "TotalAnswerCount": 0,
+   "Photos": []
+  },
+  {
+   "Id": "11013133",
+   "QuestionSummary": "The description and photos don't match up, as many have indicated. I want the kit with both the mid-torque 1/2 inch impact AND the high-torque 1/2 inch impact. How to get both in the same kit?",
+   "QuestionDetails": null,
+   "SubmissionTime": "2026-02-03T19:43:43.000+00:00",
+   "UserNickname": "JamesT",
+   "AuthorId": "051E30CBBD40D8100U",
+   "AnswerIds": [],
+   "TotalAnswerCount": 0,
+   "Photos": []
+  },
+  {
+   "Id": "10950572",
+   "QuestionSummary": "Which generation is it this drills set?",
+   "QuestionDetails": null,
+   "SubmissionTime": "2026-01-02T19:47:21.000+00:00",
+   "UserNickname": "Antonio",
+   "AuthorId": "3ge2e7obpjkuq6gbjvsnz9zea",
+   "AnswerIds": [
+    "15336831"
+   ],
+   "TotalAnswerCount": 1,
+   "Photos": []
+  }
+ ],
+ "Includes": {
+  "Answers": [
+   {
+    "AnswerId": "15547630",
+    "Answer": {
+     "Id": "15547630",
+     "AnswerText": "Yes, generally speaking, an M18 FUEL™ Hammer Drill and Impact Driver Combo Kit can drill holes in concrete for floor plate anchors when the hammer drill is used with the appropriate masonry bit.",
+     "UserNickname": "Milwaukee Tool",
+     "AuthorId": "BRAND_ANSWERS_MilwaukeeTool",
+     "IsBrandAnswer": true,
+     "IsFeatured": false,
+     "ModerationStatus": "APPROVED",
+     "LastModificationTime": "2026-09-01T17:30:12.000+00:00",
+     "LastModeratedTime": "2026-09-01T17:30:12.000+00:00",
+     "TotalPositiveFeedbackCount": 0,
+     "BadgesOrder": [],
+     "Photos": []
+    }
+   },
+   {
+    "AnswerId": "15257958",
+    "Answer": {
+     "Id": "15257958",
+     "AnswerText": "Hi, Matt. The power tools come with the 5 Year Limited Warranty and the battery packs come with the 3-Year Limited Warranty. For more information, please message us at Social.Media@MilwaukeeTool.com.",
+     "UserNickname": "Milwaukee Tool",
+     "AuthorId": "BRAND_ANSWERS_MilwaukeeTool",
+     "IsBrandAnswer": true,
+     "IsFeatured": false,
+     "ModerationStatus": "APPROVED",
+     "LastModificationTime": "2026-03-27T16:15:10.000+00:00",
+     "LastModeratedTime": "2026-03-27T16:15:10.000+00:00",
+     "TotalPositiveFeedbackCount": 0,
+     "BadgesOrder": [],
+     "Photos": []
+    }
+   },
+   {
+    "AnswerId": "15336831",
+    "Answer": {
+     "Id": "15336831",
+     "AnswerText": "4th Generation",
+     "UserNickname": "Jackson",
+     "AuthorId": "b4wj7riwp7pu554ofbedsc054",
+     "IsBrandAnswer": false,
+     "IsFeatured": false,
+     "ModerationStatus": "APPROVED",
+     "LastModificationTime": "2026-05-07T03:30:08.000+00:00",
+     "LastModeratedTime": "2026-05-07T03:30:08.000+00:00",
+     "TotalPositiveFeedbackCount": 0,
+     "BadgesOrder": [],
+     "Photos": []
+    }
+   },
+   {
+    "AnswerId": "15315571",
+    "Answer": {
+     "Id": "15315571",
+     "AnswerText": "Model # 2666-20",
+     "UserNickname": "Milwaukee Tool",
+     "AuthorId": "BRAND_ANSWERS_MilwaukeeTool",
+     "IsBrandAnswer": true,
+     "IsFeatured": false,
+     "ModerationStatus": "APPROVED",
+     "LastModificationTime": "2026-08-17T16:43:09.000+00:00",
+     "LastModeratedTime": "2026-07-29T15:16:12.000+00:00",
+     "TotalPositiveFeedbackCount": 1,
+     "BadgesOrder": [],
+     "Photos": []
+    }
+   },
+   {
+    "AnswerId": "15227484",
+    "Answer": {
+     "Id": "15227484",
+     "AnswerText": "If you need a part, you can find our Service and Parts list for our tools on our website - https://www.milwaukeetool.com/support/Manuals-and-Downloads. Once you have located the part number, you can call 1-800-SAWDUST for assistance with processing and ordering.",
+     "UserNickname": "Milwaukee Tool",
+     "AuthorId": "BRAND_ANSWERS_MilwaukeeTool",
+     "IsBrandAnswer": true,
+     "IsFeatured": false,
+     "ModerationStatus": "APPROVED",
+     "LastModificationTime": "2026-03-10T22:30:10.000+00:00",
+     "LastModeratedTime": "2026-03-10T22:30:10.000+00:00",
+     "TotalPositiveFeedbackCount": 0,
+     "BadgesOrder": [],
+     "Photos": []
+    }
+   },
+   {
+    "AnswerId": "15292753",
+    "Answer": {
+     "Id": "15292753",
+     "AnswerText": "It shows the tree tools +2 batteries a charger in a case, did the batteries come and the charger come with it?, Cause it says it comes with three tools.",
+     "UserNickname": "Uruguay",
+     "AuthorId": "mkgm9u05qcq6g5z5msl5rd139",
+     "IsBrandAnswer": false,
+     "IsFeatured": false,
+     "ModerationStatus": "APPROVED",
+     "LastModificationTime": "2026-04-15T04:15:06.000+00:00",
+     "LastModeratedTime": "2026-04-15T04:15:06.000+00:00",
+     "TotalPositiveFeedbackCount": 0,
+     "BadgesOrder": [],
+     "Photos": []
+    }
+   }
+  ]
+ }
+}

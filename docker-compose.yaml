@@ -1,0 +1,12 @@
+services:
+  homedepot-scraper:
+    build: .
+    restart: unless-stopped
+    shm_size: 1gb
+    ports:
+      - "8000:8000"
+    environment:
+      - PORT=8000
+      # Optional — only if your IP gets refused. Must be a STICKY proxy:
+      # Home Depot's cookies are bound to the IP that minted them.
+      # - HOMEDEPOT_PROXY=http://user:pass@host:port

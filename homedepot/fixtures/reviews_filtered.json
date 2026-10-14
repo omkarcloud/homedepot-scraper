@@ -1,0 +1,526 @@
+{
+ "TotalResults": 1793,
+ "SortBy": {
+  "mosthelpfull": true,
+  "newest": null,
+  "oldest": null,
+  "highestrating": null,
+  "lowestrating": null,
+  "photoreview": null
+ },
+ "Includes": {
+  "Products": {
+   "store": {
+    "Id": "320326787",
+    "FilteredReviewStatistics": {
+     "AverageOverallRating": "5",
+     "TotalReviewCount": 1793,
+     "RecommendedCount": 868,
+     "NotRecommendedCount": 11,
+     "RatingDistribution": [
+      {
+       "RatingValue": 5,
+       "Count": 1793
+      },
+      {
+       "RatingValue": 4,
+       "Count": 0
+      },
+      {
+       "RatingValue": 3,
+       "Count": 0
+      },
+      {
+       "RatingValue": 2,
+       "Count": 0
+      },
+      {
+       "RatingValue": 1,
+       "Count": 0
+      }
+     ],
+     "SecondaryRatingsAveragesOrder": [
+      "Quality",
+      "Value"
+     ]
+    }
+   }
+  }
+ },
+ "Results": [
+  {
+   "Id": "269428183",
+   "Title": "It is a great tool, it has facilitated my work...",
+   "ReviewText": "It is a great tool, it has facilitated my work 100% compared to others",
+   "Rating": 5,
+   "RatingRange": 5,
+   "IsRecommended": null,
+   "IsSyndicated": false,
+   "SubmissionTime": "2023-05-11T00:13:33.000+00:00",
+   "UserNickname": "HomeDepotCustomer",
+   "UserLocation": null,
+   "AuthorId": "419894612",
+   "TotalPositiveFeedbackCount": 2,
+   "TotalNegativeFeedbackCount": 0,
+   "BadgesOrder": [
+    "verifiedPurchaser"
+   ],
+   "ContextDataValues": {
+    "Age": null,
+    "VerifiedPurchaser": null
+   },
+   "SecondaryRatings": {
+    "Quality": null,
+    "Value": null,
+    "EnergyEfficiency": null,
+    "Features": null,
+    "Appearance": null,
+    "EaseOfInstallation": null,
+    "EaseOfUse": null
+   },
+   "SecondaryRatingsOrder": [],
+   "TagDimensions": {
+    "Pro": null,
+    "Con": null
+   },
+   "Photos": [
+    {
+     "Id": "10264853",
+     "Caption": null,
+     "Sizes": {
+      "normal": {
+       "Url": "https://photos-us.bazaarvoice.com/photo/2/cGhvdG86aG9tZWRlcG90/36dc58bb-609e-5833-a963-d8810e2f80c8"
+      },
+      "thumbnail": {
+       "Url": "https://photos-us.bazaarvoice.com/photo/2/cGhvdG86aG9tZWRlcG90/dd69d713-bca6-5468-8b72-35aed76df9dc"
+      }
+     }
+    }
+   ],
+   "Videos": [],
+   "ClientResponses": [],
+   "SyndicationSource": null,
+   "OriginalProductName": "M18 FUEL 18V Lithium-Ion Brushless Cordless Hammer Drill and Impact Driver Combo Kit (2-Tool) with 2 Batteries"
+  },
+  {
+   "Id": "298277933",
+   "Title": null,
+   "ReviewText": "I'm an amateur mechanic, and this tool has been incredibly useful for me. It comes with a practical, well‑organized case that makes everything easy to access. The battery‑powered tools make my small garage projects much simpler and faster to complete. Overall, it's a great addition to my setup",
+   "Rating": 5,
+   "RatingRange": 5,
+   "IsRecommended": null,
+   "IsSyndicated": false,
+   "SubmissionTime": "2026-01-28T15:09:06.000+00:00",
+   "UserNickname": "Anonymous",
+   "UserLocation": null,
+   "AuthorId": "052741D523ADF48B0S",
+   "TotalPositiveFeedbackCount": 1,
+   "TotalNegativeFeedbackCount": 0,
+   "BadgesOrder": [
+    "earlyReviewerIncentive",
+    "verifiedPurchaser"
+   ],
+   "ContextDataValues": {
+    "Age": null,
+    "VerifiedPurchaser": null
+   },
+   "SecondaryRatings": {
+    "Quality": null,
+    "Value": null,
+    "EnergyEfficiency": null,
+    "Features": null,
+    "Appearance": null,
+    "EaseOfInstallation": null,
+    "EaseOfUse": null
+   },
+   "SecondaryRatingsOrder": [],
+   "TagDimensions": {
+    "Pro": null,
+    "Con": null
+   },
+   "Photos": [
+    {
+     "Id": "21467237",
+     "Caption": null,
+     "Sizes": {
+      "normal": {
+       "Url": "https://photos-us.bazaarvoice.com/photo/2/cGhvdG86aG9tZWRlcG90/171394dd-9bb4-5b4b-8073-694dc7e0592f"
+      },
+      "thumbnail": {
+       "Url": "https://photos-us.bazaarvoice.com/photo/2/cGhvdG86aG9tZWRlcG90/5e4dc994-8407-53c3-a8d7-7ad9ef6131fc"
+      }
+     }
+    }
+   ],
+   "Videos": [],
+   "ClientResponses": [],
+   "SyndicationSource": null,
+   "OriginalProductName": "M18 FUEL 18-Volt Lithium-Ion Brushless Cordless Combo Kit 2-Tool with 2 Batteries Charger 4-1/2in. to 5in. Grinder"
+  },
+  {
+   "Id": "290398158",
+   "Title": null,
+   "ReviewText": null,
+   "Rating": 5,
+   "RatingRange": 5,
+   "IsRecommended": null,
+   "IsSyndicated": false,
+   "SubmissionTime": "2025-04-30T13:45:59.000+00:00",
+   "UserNickname": "ALBERTO",
+   "UserLocation": null,
+   "AuthorId": "0527DCCD2240AFBE0S",
+   "TotalPositiveFeedbackCount": 1,
+   "TotalNegativeFeedbackCount": 0,
+   "BadgesOrder": [
+    "verifiedPurchaser"
+   ],
+   "ContextDataValues": {
+    "Age": null,
+    "VerifiedPurchaser": null
+   },
+   "SecondaryRatings": {
+    "Quality": null,
+    "Value": null,
+    "EnergyEfficiency": null,
+    "Features": null,
+    "Appearance": null,
+    "EaseOfInstallation": null,
+    "EaseOfUse": null
+   },
+   "SecondaryRatingsOrder": [],
+   "TagDimensions": {
+    "Pro": null,
+    "Con": null
+   },
+   "Photos": [
+    {
+     "Id": "17634475",
+     "Caption": null,
+     "Sizes": {
+      "normal": {
+       "Url": "https://photos-us.bazaarvoice.com/photo/2/cGhvdG86aG9tZWRlcG90/4f456045-f32a-5e62-8c9a-4b12f377ddbe"
+      },
+      "thumbnail": {
+       "Url": "https://photos-us.bazaarvoice.com/photo/2/cGhvdG86aG9tZWRlcG90/33e88bd0-8506-5c07-9641-2ce225650f42"
+      }
+     }
+    }
+   ],
+   "Videos": [],
+   "ClientResponses": [],
+   "SyndicationSource": null,
+   "OriginalProductName": "M18 FUEL 18V Lithium-Ion Brushless Cordless Hammer Drill and Impact Driver Combo Kit (2-Tool) with 2 Batteries"
+  },
+  {
+   "Id": "283044712",
+   "Title": null,
+   "ReviewText": "The drills hammer feature works great. I was looking for a drill with more torque, my Home Depot store has one one on display for me to try and I have to say that was a great way to sell me on a product. I also love the case that helps me keep my tools organized, safe and secure while traveling from one job to another.",
+   "Rating": 5,
+   "RatingRange": 5,
+   "IsRecommended": null,
+   "IsSyndicated": false,
+   "SubmissionTime": "2024-07-21T01:14:15.000+00:00",
+   "UserNickname": "CINDY",
+   "UserLocation": null,
+   "AuthorId": "0300209C6C273B04DS",
+   "TotalPositiveFeedbackCount": 1,
+   "TotalNegativeFeedbackCount": 0,
+   "BadgesOrder": [
+    "verifiedPurchaser"
+   ],
+   "ContextDataValues": {
+    "Age": null,
+    "VerifiedPurchaser": null
+   },
+   "SecondaryRatings": {
+    "Quality": null,
+    "Value": null,
+    "EnergyEfficiency": null,
+    "Features": null,
+    "Appearance": null,
+    "EaseOfInstallation": null,
+    "EaseOfUse": null
+   },
+   "SecondaryRatingsOrder": [],
+   "TagDimensions": {
+    "Pro": null,
+    "Con": null
+   },
+   "Photos": [
+    {
+     "Id": "14345300",
+     "Caption": null,
+     "Sizes": {
+      "normal": {
+       "Url": "https://photos-us.bazaarvoice.com/photo/2/cGhvdG86aG9tZWRlcG90/4edb1b06-9209-5832-ac59-678e5e806b85"
+      },
+      "thumbnail": {
+       "Url": "https://photos-us.bazaarvoice.com/photo/2/cGhvdG86aG9tZWRlcG90/93a82ce4-288e-510f-8720-4d6e5ca23a37"
+      }
+     }
+    }
+   ],
+   "Videos": [],
+   "ClientResponses": [],
+   "SyndicationSource": null,
+   "OriginalProductName": "M18 FUEL 18V Lithium-Ion Brushless Cordless Hammer Drill and Impact Driver Combo Kit (2-Tool) with 2 Batteries"
+  },
+  {
+   "Id": "278618060",
+   "Title": null,
+   "ReviewText": "This set was an excellent value and choice.  The drill and driver are excellent, the batteries are more than up to the task, a real workhorse for the bulk of the M18 line of tools. Regarding the M18 inflator, it could possibly be the single most useful tool purchased in recent history.  If you are like me, I am always having to air up something. My previous course of action was to drag a small 40 pound compressor, an extension cord for power, and a air hose (don't forget the quick change air chuck!). This inflator makes that process a 5-10 pound, effortless task of airing up various tires.  I am hoping the quality and longevity of the M18 inflator stands the test of time as most of my Milwaukee tools have in the the past!",
+   "Rating": 5,
+   "RatingRange": 5,
+   "IsRecommended": null,
+   "IsSyndicated": false,
+   "SubmissionTime": "2024-02-28T16:48:16.000+00:00",
+   "UserNickname": "RiverMike",
+   "UserLocation": null,
+   "AuthorId": "052760611BC48FD10S",
+   "TotalPositiveFeedbackCount": 1,
+   "TotalNegativeFeedbackCount": 0,
+   "BadgesOrder": [
+    "verifiedPurchaser"
+   ],
+   "ContextDataValues": {
+    "Age": null,
+    "VerifiedPurchaser": null
+   },
+   "SecondaryRatings": {
+    "Quality": null,
+    "Value": null,
+    "EnergyEfficiency": null,
+    "Features": null,
+    "Appearance": null,
+    "EaseOfInstallation": null,
+    "EaseOfUse": null
+   },
+   "SecondaryRatingsOrder": [
+    "CustomerService",
+    "Delivery"
+   ],
+   "TagDimensions": {
+    "Pro": null,
+    "Con": null
+   },
+   "Photos": [],
+   "Videos": [],
+   "ClientResponses": [],
+   "SyndicationSource": null,
+   "OriginalProductName": "M18 FUEL 18-Volt Lithium-Ion Brushless Cordless Hammer Drill and Impact Driver Combo Kit (2-Tool) with Inflator"
+  },
+  {
+   "Id": "276519725",
+   "Title": null,
+   "ReviewText": "This combo special deal got me into the Milwaukee family and I absolutely love the inflator! Hope to continue into the Milwaukee fam. Order got kind of mixed up but the service ppl were great and called me when the rest of my order came in.",
+   "Rating": 5,
+   "RatingRange": 5,
+   "IsRecommended": null,
+   "IsSyndicated": false,
+   "SubmissionTime": "2023-12-20T22:49:47.000+00:00",
+   "UserNickname": "Schmidty",
+   "UserLocation": null,
+   "AuthorId": "04252552C9A0C80A0S",
+   "TotalPositiveFeedbackCount": 1,
+   "TotalNegativeFeedbackCount": 0,
+   "BadgesOrder": [
+    "verifiedPurchaser"
+   ],
+   "ContextDataValues": {
+    "Age": null,
+    "VerifiedPurchaser": null
+   },
+   "SecondaryRatings": {
+    "Quality": null,
+    "Value": null,
+    "EnergyEfficiency": null,
+    "Features": null,
+    "Appearance": null,
+    "EaseOfInstallation": null,
+    "EaseOfUse": null
+   },
+   "SecondaryRatingsOrder": [
+    "CustomerService",
+    "Delivery"
+   ],
+   "TagDimensions": {
+    "Pro": null,
+    "Con": null
+   },
+   "Photos": [],
+   "Videos": [],
+   "ClientResponses": [],
+   "SyndicationSource": null,
+   "OriginalProductName": "M18 FUEL 18-Volt Lithium-Ion Brushless Cordless Hammer Drill and Impact Driver Combo Kit (2-Tool) with Inflator"
+  },
+  {
+   "Id": "276242881",
+   "Title": null,
+   "ReviewText": "We have used these tools for several years at work (electric utility) where they take a beating and keep on working. \r\nI finally bought 5 tools and batteries for home use. Couldn't be happier.  Even with the 5 amp hr batteries they are well balanced and not too heavy.\r\nMy only complaint is the insane and confusing amount of kits and combo kits. The kits have tools you may not want and also may not include one or two you would like. I had to buy mine a-la-cart to get exactly the tools I wanted. That can get expensive. They should offer discounts for say....any five or six tools and be able to build your own custom kit.",
+   "Rating": 5,
+   "RatingRange": 5,
+   "IsRecommended": null,
+   "IsSyndicated": false,
+   "SubmissionTime": "2023-12-13T15:40:12.000+00:00",
+   "UserNickname": "STEVE",
+   "UserLocation": null,
+   "AuthorId": "0527FB651FCF24E60S",
+   "TotalPositiveFeedbackCount": 1,
+   "TotalNegativeFeedbackCount": 0,
+   "BadgesOrder": [
+    "verifiedPurchaser"
+   ],
+   "ContextDataValues": {
+    "Age": null,
+    "VerifiedPurchaser": null
+   },
+   "SecondaryRatings": {
+    "Quality": null,
+    "Value": null,
+    "EnergyEfficiency": null,
+    "Features": null,
+    "Appearance": null,
+    "EaseOfInstallation": null,
+    "EaseOfUse": null
+   },
+   "SecondaryRatingsOrder": [
+    "CustomerService",
+    "Delivery"
+   ],
+   "TagDimensions": {
+    "Pro": null,
+    "Con": null
+   },
+   "Photos": [],
+   "Videos": [],
+   "ClientResponses": [],
+   "SyndicationSource": null,
+   "OriginalProductName": "M18 FUEL 18- V Lithium-Ion Brushless Cordless Hammer Drill and Impact Driver Combo Kit (2-Tool) with (3) 5.0Ah Batteries"
+  },
+  {
+   "Id": "307217515",
+   "Title": null,
+   "ReviewText": "This was my first purchase of Milwaukee tools as I have been using the Dewalt platform since I began woodworking. I wished I would had tried Milwaukee sooner after using these drills. I will be purchasing more Milwaukee products in the future.",
+   "Rating": 5,
+   "RatingRange": 5,
+   "IsRecommended": null,
+   "IsSyndicated": false,
+   "SubmissionTime": "2026-10-07T13:53:49.000+00:00",
+   "UserNickname": "Dennis",
+   "UserLocation": null,
+   "AuthorId": "0423F52C316AF1320S",
+   "TotalPositiveFeedbackCount": 0,
+   "TotalNegativeFeedbackCount": 0,
+   "BadgesOrder": [
+    "verifiedPurchaser"
+   ],
+   "ContextDataValues": {
+    "Age": null,
+    "VerifiedPurchaser": null
+   },
+   "SecondaryRatings": {
+    "Quality": null,
+    "Value": null,
+    "EnergyEfficiency": null,
+    "Features": null,
+    "Appearance": null,
+    "EaseOfInstallation": null,
+    "EaseOfUse": null
+   },
+   "SecondaryRatingsOrder": [],
+   "TagDimensions": {
+    "Pro": null,
+    "Con": null
+   },
+   "Photos": [],
+   "Videos": [],
+   "ClientResponses": [],
+   "SyndicationSource": null,
+   "OriginalProductName": "M18 FUEL 18V Lithium-Ion Brushless Cordless Hammer Drill and Impact Driver Combo Kit (2-Tool) with 2 Batteries"
+  },
+  {
+   "Id": "307029715",
+   "Title": null,
+   "ReviewText": "90 percent of the time the more expensive version of a tool isn't worth the money because you're rarely maximizing the slight improvement from model to model. This one, though, is the other 10 percent. It is not a small difference - there is an incredibly noticeable difference in power and performance, and I would highly recommend this to anyone in the trades or doing any kind of DIY projects.",
+   "Rating": 5,
+   "RatingRange": 5,
+   "IsRecommended": null,
+   "IsSyndicated": false,
+   "SubmissionTime": "2026-09-30T14:36:32.000+00:00",
+   "UserNickname": "HomeDepotCustomer",
+   "UserLocation": null,
+   "AuthorId": "0300EF1F7FD7BDB21S",
+   "TotalPositiveFeedbackCount": 0,
+   "TotalNegativeFeedbackCount": 0,
+   "BadgesOrder": [
+    "earlyReviewerIncentive",
+    "verifiedPurchaser"
+   ],
+   "ContextDataValues": {
+    "Age": null,
+    "VerifiedPurchaser": null
+   },
+   "SecondaryRatings": {
+    "Quality": null,
+    "Value": null,
+    "EnergyEfficiency": null,
+    "Features": null,
+    "Appearance": null,
+    "EaseOfInstallation": null,
+    "EaseOfUse": null
+   },
+   "SecondaryRatingsOrder": [],
+   "TagDimensions": {
+    "Pro": null,
+    "Con": null
+   },
+   "Photos": [],
+   "Videos": [],
+   "ClientResponses": [],
+   "SyndicationSource": null,
+   "OriginalProductName": "M18 FUEL 18- V Lithium-Ion Brushless Cordless Hammer Drill and Impact Driver Combo Kit (2-Tool) with (3) 5.0Ah Batteries"
+  },
+  {
+   "Id": "307026365",
+   "Title": null,
+   "ReviewText": "I love the two drills. The 5.0 batteries give them the power to do all the task I need. It was a great buy especially with the extra battery.",
+   "Rating": 5,
+   "RatingRange": 5,
+   "IsRecommended": null,
+   "IsSyndicated": false,
+   "SubmissionTime": "2026-09-30T14:19:31.000+00:00",
+   "UserNickname": "HomeDepotCustomer",
+   "UserLocation": null,
+   "AuthorId": "051688509A7342390S",
+   "TotalPositiveFeedbackCount": 0,
+   "TotalNegativeFeedbackCount": 0,
+   "BadgesOrder": [
+    "earlyReviewerIncentive",
+    "verifiedPurchaser"
+   ],
+   "ContextDataValues": {
+    "Age": null,
+    "VerifiedPurchaser": null
+   },
+   "SecondaryRatings": {
+    "Quality": null,
+    "Value": null,
+    "EnergyEfficiency": null,
+    "Features": null,
+    "Appearance": null,
+    "EaseOfInstallation": null,
+    "EaseOfUse": null
+   },
+   "SecondaryRatingsOrder": [],
+   "TagDimensions": {
+    "Pro": null,
+    "Con": null
+   },
+   "Photos": [],
+   "Videos": [],
+   "ClientResponses": [],
+   "SyndicationSource": null,
+   "OriginalProductName": "M18 FUEL 18- V Lithium-Ion Brushless Cordless Hammer Drill and Impact Driver Combo Kit (2-Tool) with (3) 5.0Ah Batteries"
+  }
+ ]
+}

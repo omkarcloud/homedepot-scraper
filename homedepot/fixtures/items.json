@@ -1,0 +1,586 @@
+{
+ "products": [
+  {
+   "itemId": "320326787",
+   "identifiers": {
+    "itemId": "320326787",
+    "parentId": "11111111",
+    "productLabel": "M18 FUEL 18V Lithium-Ion Brushless Cordless Hammer Drill and Impact Driver Combo Kit (2-Tool) with 2 Batteries",
+    "brandName": "Milwaukee",
+    "modelNumber": "3697-22",
+    "storeSkuNumber": "1007850144",
+    "canonicalUrl": "/p/Milwaukee-M18-FUEL-18V-Lithium-Ion-Brushless-Cordless-Hammer-Drill-and-Impact-Driver-Combo-Kit-2-Tool-with-2-Batteries-3697-22/320326787",
+    "productType": "MERCHANDISE",
+    "isSuperSku": true,
+    "specialOrderSku": null
+   },
+   "media": {
+    "images": [
+     {
+      "url": "https://images.thdstatic.com/productImages/c83a98b4-2b2a-4537-9a1b-16f4adc8fff6/svn/milwaukee-power-tool-combo-kits-3697-22-64_<SIZE>.jpg",
+      "type": "IMAGE",
+      "subType": "PRIMARY",
+      "sizes": [
+       "65",
+       "100",
+       "145",
+       "300",
+       "400",
+       "600",
+       "1000"
+      ]
+     },
+     {
+      "url": "https://images.thdstatic.com/productImages/5e387616-3e3f-4140-9ce3-e29bd8bbe948/svn/milwaukee-power-tool-combo-kits-3697-22-e4_<SIZE>.jpg",
+      "type": "IMAGE",
+      "subType": "SECONDARY",
+      "sizes": [
+       "65",
+       "100",
+       "145",
+       "300",
+       "400",
+       "600",
+       "1000"
+      ]
+     }
+    ]
+   },
+   "pricing": {
+    "value": 399.0,
+    "original": 399.0,
+    "unitOfMeasure": "each",
+    "specialBuy": null,
+    "message": null,
+    "mapAboveOriginalPrice": null,
+    "alternatePriceDisplay": false,
+    "mapDetail": null,
+    "promotion": {
+     "type": null,
+     "promotionTag": null,
+     "dollarOff": 0.0,
+     "percentageOff": 0.0,
+     "savingsCenter": null,
+     "savingsCenterPromos": "Buy One Get One",
+     "specialBuySavings": null,
+     "specialBuyDollarOff": null,
+     "specialBuyPercentageOff": null,
+     "experienceTag": null,
+     "subExperienceTag": null,
+     "description": null,
+     "dates": null
+    },
+    "alternate": {
+     "bulk": null,
+     "unit": {
+      "caseUnitOfMeasure": null,
+      "unitsOriginalPrice": null,
+      "unitsPerCase": 0.0,
+      "value": null
+     }
+    },
+    "clearance": null,
+    "conditionalPromotions": [
+     {
+      "promotionId": 946149,
+      "promotionTags": [
+       "BOGO"
+      ],
+      "skuItemGroup": "SRC-1",
+      "eligibilityCriteria": [
+       {
+        "itemGroup": "SRC-1",
+        "minThresholdVal": 1.0,
+        "thresholdType": "QUANTITY"
+       },
+       {
+        "itemGroup": "TGT-1",
+        "minThresholdVal": 1.0,
+        "thresholdType": "QUANTITY"
+       }
+      ],
+      "reward": {
+       "tiers": [
+        {
+         "minThresholdVal": 1.0,
+         "thresholdType": "QUANTITY",
+         "rewardVal": 100.0,
+         "rewardType": "PERCNTOFF",
+         "rewardLevel": null,
+         "maxAllowedRewardAmount": null
+        }
+       ]
+      }
+     }
+    ]
+   },
+   "reviews": {
+    "ratingsReviews": {
+     "averageRating": "4.7667",
+     "totalReviews": "4093"
+    }
+   },
+   "details": {
+    "collection": {
+     "collectionId": null,
+     "name": null,
+     "url": null
+    },
+    "highlights": null
+   },
+   "info": {
+    "isSponsored": null,
+    "productDepartment": null,
+    "categoryHierarchy": null,
+    "quantityLimit": 3,
+    "returnable": "90-Day",
+    "totalNumberOfOptions": 36,
+    "isGenericProduct": null,
+    "hidePrice": false,
+    "ecoRebate": false,
+    "hasSubscription": false,
+    "isLiveGoodsProduct": false,
+    "isBuryProduct": null,
+    "productSubType": null,
+    "swatches": []
+   },
+   "badges": [
+    {
+     "name": "top rated",
+     "label": "Top Rated"
+    },
+    {
+     "name": "exclusive",
+     "label": "Exclusive"
+    }
+   ],
+   "availabilityType": {
+    "type": "Shared",
+    "buyable": false,
+    "discontinued": false,
+    "status": false
+   },
+   "fulfillment": {
+    "fulfillmentOptions": [
+     {
+      "type": "pickup",
+      "fulfillable": true,
+      "services": [
+       {
+        "type": "bopis",
+        "hasFreeShipping": false,
+        "freeDeliveryThreshold": null,
+        "deliveryCharge": null,
+        "totalCharge": null,
+        "deliveryTimeline": null,
+        "deliveryMessage": null,
+        "earliestDeliveryDate": null,
+        "deliveryDates": null,
+        "dynamicEta": null,
+        "locations": [
+         {
+          "isAnchor": true,
+          "locationId": "121",
+          "storeName": "Cumberland",
+          "storePhone": "(770)432-9930",
+          "state": "GA",
+          "distance": 0.0,
+          "type": "store",
+          "curbsidePickupFlag": null,
+          "isBuyInStoreCheckNearBy": null,
+          "inventory": {
+           "quantity": 73,
+           "isInStock": true,
+           "isOutOfStock": false,
+           "isLimitedQuantity": false,
+           "isUnavailable": false,
+           "maxAllowedBopisQty": null,
+           "minAllowedBopisQty": null
+          }
+         }
+        ]
+       }
+      ]
+     },
+     {
+      "type": "delivery",
+      "fulfillable": true,
+      "services": [
+       {
+        "type": "sth",
+        "hasFreeShipping": true,
+        "freeDeliveryThreshold": null,
+        "deliveryCharge": null,
+        "totalCharge": null,
+        "deliveryTimeline": null,
+        "deliveryMessage": null,
+        "earliestDeliveryDate": null,
+        "deliveryDates": null,
+        "dynamicEta": null,
+        "locations": [
+         {
+          "isAnchor": true,
+          "locationId": "8119",
+          "storeName": null,
+          "storePhone": null,
+          "state": null,
+          "distance": null,
+          "type": "online",
+          "curbsidePickupFlag": null,
+          "isBuyInStoreCheckNearBy": null,
+          "inventory": {
+           "quantity": 9591,
+           "isInStock": true,
+           "isOutOfStock": false,
+           "isLimitedQuantity": false,
+           "isUnavailable": false,
+           "maxAllowedBopisQty": null,
+           "minAllowedBopisQty": null
+          }
+         }
+        ]
+       },
+       {
+        "type": "express delivery",
+        "hasFreeShipping": false,
+        "freeDeliveryThreshold": null,
+        "deliveryCharge": null,
+        "totalCharge": null,
+        "deliveryTimeline": null,
+        "deliveryMessage": null,
+        "earliestDeliveryDate": null,
+        "deliveryDates": null,
+        "dynamicEta": null,
+        "locations": [
+         {
+          "isAnchor": true,
+          "locationId": "121",
+          "storeName": null,
+          "storePhone": null,
+          "state": null,
+          "distance": null,
+          "type": "store",
+          "curbsidePickupFlag": null,
+          "isBuyInStoreCheckNearBy": null,
+          "inventory": {
+           "quantity": 73,
+           "isInStock": true,
+           "isOutOfStock": false,
+           "isLimitedQuantity": false,
+           "isUnavailable": false,
+           "maxAllowedBopisQty": null,
+           "minAllowedBopisQty": null
+          }
+         }
+        ]
+       }
+      ]
+     }
+    ],
+    "anchorStoreStatus": false,
+    "anchorStoreStatusType": "ACTIVE",
+    "backordered": false,
+    "backorderedShipDate": null,
+    "excludedShipStates": "AK,GU,HI,PR,VI",
+    "bossExcludedShipStates": "AK,GU,HI,PR,VI",
+    "sthExcludedShipState": null,
+    "onlineStoreStatus": false,
+    "onlineStoreStatusType": null,
+    "seasonStatusEligible": null
+   },
+   "taxonomy": {
+    "breadCrumbs": []
+   },
+   "bundleFlag": null
+  },
+  {
+   "itemId": "325403100",
+   "identifiers": {
+    "itemId": "325403100",
+    "parentId": "11111111",
+    "productLabel": "M18 18V Lithium-Ion Brushless Cordless Compact Drill/Impact Combo Kit (2-Tool) w/(2) 2.0 Ah Batteries, Charger & Bag",
+    "brandName": "Milwaukee",
+    "modelNumber": "3692-22CT",
+    "storeSkuNumber": "1009624489",
+    "canonicalUrl": "/p/Milwaukee-M18-18V-Lithium-Ion-Brushless-Cordless-Compact-Drill-Impact-Combo-Kit-2-Tool-w-2-2-0-Ah-Batteries-Charger-Bag-3692-22CT/325403100",
+    "productType": "MERCHANDISE",
+    "isSuperSku": true,
+    "specialOrderSku": null
+   },
+   "media": {
+    "images": [
+     {
+      "url": "https://images.thdstatic.com/productImages/3f33f3a4-1931-4cd4-85cd-e82ace410fd0/svn/milwaukee-power-tool-combo-kits-3692-22ct-64_<SIZE>.jpg",
+      "type": "IMAGE",
+      "subType": "PRIMARY",
+      "sizes": [
+       "65",
+       "100",
+       "145",
+       "300",
+       "400",
+       "600",
+       "1000"
+      ]
+     },
+     {
+      "url": "https://images.thdstatic.com/productImages/e9d9c2d3-dae5-4f58-8c90-a3ecaec0169a/svn/milwaukee-power-tool-combo-kits-3692-22ct-e4_<SIZE>.jpg",
+      "type": "IMAGE",
+      "subType": "SECONDARY",
+      "sizes": [
+       "65",
+       "100",
+       "145",
+       "300",
+       "400",
+       "600",
+       "1000"
+      ]
+     }
+    ]
+   },
+   "pricing": {
+    "value": 249.0,
+    "original": 249.0,
+    "unitOfMeasure": "each",
+    "specialBuy": null,
+    "message": null,
+    "mapAboveOriginalPrice": null,
+    "alternatePriceDisplay": false,
+    "mapDetail": null,
+    "promotion": {
+     "type": null,
+     "promotionTag": null,
+     "dollarOff": 0.0,
+     "percentageOff": 0.0,
+     "savingsCenter": null,
+     "savingsCenterPromos": "Buy One Get One",
+     "specialBuySavings": null,
+     "specialBuyDollarOff": null,
+     "specialBuyPercentageOff": null,
+     "experienceTag": null,
+     "subExperienceTag": null,
+     "description": null,
+     "dates": null
+    },
+    "alternate": {
+     "bulk": null,
+     "unit": {
+      "caseUnitOfMeasure": null,
+      "unitsOriginalPrice": null,
+      "unitsPerCase": 0.0,
+      "value": null
+     }
+    },
+    "clearance": null,
+    "conditionalPromotions": [
+     {
+      "promotionId": 946149,
+      "promotionTags": [
+       "BOGO"
+      ],
+      "skuItemGroup": "SRC-1",
+      "eligibilityCriteria": [
+       {
+        "itemGroup": "SRC-1",
+        "minThresholdVal": 1.0,
+        "thresholdType": "QUANTITY"
+       },
+       {
+        "itemGroup": "TGT-1",
+        "minThresholdVal": 1.0,
+        "thresholdType": "QUANTITY"
+       }
+      ],
+      "reward": {
+       "tiers": [
+        {
+         "minThresholdVal": 1.0,
+         "thresholdType": "QUANTITY",
+         "rewardVal": 100.0,
+         "rewardType": "PERCNTOFF",
+         "rewardLevel": null,
+         "maxAllowedRewardAmount": null
+        }
+       ]
+      }
+     }
+    ]
+   },
+   "reviews": {
+    "ratingsReviews": {
+     "averageRating": "4.655",
+     "totalReviews": "1310"
+    }
+   },
+   "details": {
+    "collection": {
+     "collectionId": null,
+     "name": null,
+     "url": null
+    },
+    "highlights": null
+   },
+   "info": {
+    "isSponsored": null,
+    "productDepartment": null,
+    "categoryHierarchy": null,
+    "quantityLimit": 3,
+    "returnable": "90-Day",
+    "totalNumberOfOptions": 23,
+    "isGenericProduct": null,
+    "hidePrice": false,
+    "ecoRebate": false,
+    "hasSubscription": false,
+    "isLiveGoodsProduct": false,
+    "isBuryProduct": null,
+    "productSubType": null,
+    "swatches": []
+   },
+   "badges": [
+    {
+     "name": "exclusive",
+     "label": "Exclusive"
+    }
+   ],
+   "availabilityType": {
+    "type": "Shared",
+    "buyable": false,
+    "discontinued": false,
+    "status": false
+   },
+   "fulfillment": {
+    "fulfillmentOptions": [
+     {
+      "type": "pickup",
+      "fulfillable": true,
+      "services": [
+       {
+        "type": "bopis",
+        "hasFreeShipping": false,
+        "freeDeliveryThreshold": null,
+        "deliveryCharge": null,
+        "totalCharge": null,
+        "deliveryTimeline": null,
+        "deliveryMessage": null,
+        "earliestDeliveryDate": null,
+        "deliveryDates": null,
+        "dynamicEta": null,
+        "locations": [
+         {
+          "isAnchor": true,
+          "locationId": "121",
+          "storeName": "Cumberland",
+          "storePhone": "(770)432-9930",
+          "state": "GA",
+          "distance": 0.0,
+          "type": "store",
+          "curbsidePickupFlag": null,
+          "isBuyInStoreCheckNearBy": null,
+          "inventory": {
+           "quantity": 54,
+           "isInStock": true,
+           "isOutOfStock": false,
+           "isLimitedQuantity": false,
+           "isUnavailable": false,
+           "maxAllowedBopisQty": null,
+           "minAllowedBopisQty": null
+          }
+         }
+        ]
+       }
+      ]
+     },
+     {
+      "type": "delivery",
+      "fulfillable": true,
+      "services": [
+       {
+        "type": "sth",
+        "hasFreeShipping": true,
+        "freeDeliveryThreshold": null,
+        "deliveryCharge": null,
+        "totalCharge": null,
+        "deliveryTimeline": null,
+        "deliveryMessage": null,
+        "earliestDeliveryDate": null,
+        "deliveryDates": null,
+        "dynamicEta": null,
+        "locations": [
+         {
+          "isAnchor": true,
+          "locationId": "8119",
+          "storeName": null,
+          "storePhone": null,
+          "state": null,
+          "distance": null,
+          "type": "online",
+          "curbsidePickupFlag": null,
+          "isBuyInStoreCheckNearBy": null,
+          "inventory": {
+           "quantity": 2405,
+           "isInStock": true,
+           "isOutOfStock": false,
+           "isLimitedQuantity": false,
+           "isUnavailable": false,
+           "maxAllowedBopisQty": null,
+           "minAllowedBopisQty": null
+          }
+         }
+        ]
+       },
+       {
+        "type": "express delivery",
+        "hasFreeShipping": false,
+        "freeDeliveryThreshold": null,
+        "deliveryCharge": null,
+        "totalCharge": null,
+        "deliveryTimeline": null,
+        "deliveryMessage": null,
+        "earliestDeliveryDate": null,
+        "deliveryDates": null,
+        "dynamicEta": null,
+        "locations": [
+         {
+          "isAnchor": true,
+          "locationId": "121",
+          "storeName": null,
+          "storePhone": null,
+          "state": null,
+          "distance": null,
+          "type": "store",
+          "curbsidePickupFlag": null,
+          "isBuyInStoreCheckNearBy": null,
+          "inventory": {
+           "quantity": 64,
+           "isInStock": true,
+           "isOutOfStock": false,
+           "isLimitedQuantity": false,
+           "isUnavailable": false,
+           "maxAllowedBopisQty": null,
+           "minAllowedBopisQty": null
+          }
+         }
+        ]
+       }
+      ]
+     }
+    ],
+    "anchorStoreStatus": false,
+    "anchorStoreStatusType": "ACTIVE",
+    "backordered": false,
+    "backorderedShipDate": null,
+    "excludedShipStates": "AK,GU,HI,PR,VI",
+    "bossExcludedShipStates": "AK,GU,HI,PR,VI",
+    "sthExcludedShipState": null,
+    "onlineStoreStatus": false,
+    "onlineStoreStatusType": null,
+    "seasonStatusEligible": null
+   },
+   "taxonomy": {
+    "breadCrumbs": []
+   },
+   "bundleFlag": null
+  }
+ ]
+}

@@ -1,0 +1,130 @@
+{
+ "departmentCategories": [
+  {
+   "name": "Appliances",
+   "url": "https://www.homedepot.com/b/Appliances/Special-Values/N-5yc1vZbv1wZ7",
+   "image": {
+    "url": "https://www.homedepot.com/hdus/en_US/DTCCOMNEW/fetch/Global_Assets/SBOTD-Appliances-Savings.jpg"
+   }
+  },
+  {
+   "name": "Bath & Faucets",
+   "url": "https://www.homedepot.com/b/Bath/Special-Values/N-5yc1vZbzb3Z7",
+   "image": {
+    "url": "https://www.homedepot.com/hdus/en_US/DTCCOMNEW/fetch/Global_Assets/SBOTD-Bath-Faucets-Savings.jpg"
+   }
+  },
+  {
+   "name": "Blinds & Window Treatments",
+   "url": "https://www.homedepot.com/b/Window-Treatments/Special-Values/N-5yc1vZar4wZ7",
+   "image": {
+    "url": "https://www.homedepot.com/hdus/en_US/DTCCOMNEW/fetch/Global_Assets/SBOTD-Blinds-WindowTreatments-Savings.jpg"
+   }
+  },
+  {
+   "name": "Building Materials",
+   "url": "https://www.homedepot.com/b/Building-Materials/Special-Values/N-5yc1vZaqnsZ7",
+   "image": {
+    "url": "https://www.homedepot.com/hdus/en_US/DTCCOMNEW/fetch/Global_Assets/SBOTD-BuildingMaterials-Savings.jpg"
+   }
+  },
+  {
+   "name": "Decor & Furniture",
+   "url": "https://www.homedepot.com/b/Decor/Special-Values/N-5yc1vZas6pZ7",
+   "image": {
+    "url": "https://www.homedepot.com/hdus/en_US/DTCCOMNEW/fetch/Global_Assets/SBOTD-Decor-Furniture-Savings.jpg"
+   }
+  },
+  {
+   "name": "Doors & Windows",
+   "url": "https://www.homedepot.com/b/Doors-Windows/Special-Values/N-5yc1vZaqihZ7",
+   "image": {
+    "url": "https://www.homedepot.com/hdus/en_US/DTCCOMNEW/fetch/Global_Assets/SBOTD-Doors-Windows-Savings.jpg"
+   }
+  },
+  {
+   "name": "Electrical",
+   "url": "https://www.homedepot.com/b/Electrical/Special-Values/N-5yc1vZarcdZ7",
+   "image": {
+    "url": "https://www.homedepot.com/hdus/en_US/DTCCOMNEW/fetch/Global_Assets/SBOTD-Electrical-Savings.jpg"
+   }
+  },
+  {
+   "name": "Flooring & Area Rugs",
+   "url": "https://www.homedepot.com/b/Flooring/Special-Values/N-5yc1vZaq7rZ7",
+   "image": {
+    "url": "https://www.homedepot.com/hdus/en_US/DTCCOMNEW/fetch/Global_Assets/SBOTD-Flooring-arearugs-Savings.jpg"
+   }
+  },
+  {
+   "name": "Hardware",
+   "url": "https://www.homedepot.com/b/Hardware/Special-Values/N-5yc1vZc21mZ7",
+   "image": {
+    "url": "https://www.homedepot.com/hdus/en_US/DTCCOMNEW/fetch/Global_Assets/SBOTD-Hardware-Savings.jpg"
+   }
+  },
+  {
+   "name": "Heating & Cooling",
+   "url": "https://www.homedepot.com/b/Heating-Venting-Cooling/Special-Values/N-5yc1vZc4k8Z7",
+   "image": {
+    "url": "https://www.homedepot.com/hdus/en_US/DTCCOMNEW/fetch/Global_Assets/SBOTD-Heating-Cooling-Savings.jpg"
+   }
+  },
+  {
+   "name": "Kitchen",
+   "url": "https://www.homedepot.com/b/Kitchen/Special-Values/N-5yc1vZar4iZ7",
+   "image": {
+    "url": "https://www.homedepot.com/hdus/en_US/DTCCOMNEW/fetch/Global_Assets/SBOTD-Kitchen-Savings.jpg"
+   }
+  },
+  {
+   "name": "Lawn & Garden",
+   "url": "https://www.homedepot.com/b/Outdoors-Garden-Center/Special-Values/N-5yc1vZbx6kZ7",
+   "image": {
+    "url": "https://www.homedepot.com/hdus/en_US/DTCCOMNEW/fetch/Global_Assets/SBOTD-Lawn-garden-Savings.jpg"
+   }
+  },
+  {
+   "name": "Lighting & Ceiling Fans",
+   "url": "https://www.homedepot.com/b/Lighting-Ceiling-Fans/Special-Values/N-5yc1vZbvn5Z7",
+   "image": {
+    "url": "https://www.homedepot.com/hdus/en_US/DTCCOMNEW/fetch/Global_Assets/SBOTD-Lighting-Ceiling-fans-Savings.jpg"
+   }
+  },
+  {
+   "name": "Outdoor Living",
+   "url": "https://www.homedepot.com/b/Outdoors/Special-Values/N-5yc1vZbx82Z7",
+   "image": {
+    "url": "https://www.homedepot.com/hdus/en_US/DTCCOMNEW/fetch/Global_Assets/SBOTD-Outdoor-Living-Savings.jpg"
+   }
+  },
+  {
+   "name": "Paint",
+   "url": "https://www.homedepot.com/b/Paint/Special-Values/N-5yc1vZar2dZ7",
+   "image": {
+    "url": "https://www.homedepot.com/hdus/en_US/DTCCOMNEW/fetch/Global_Assets/SBOTD-Paint-Savings.jpg"
+   }
+  },
+  {
+   "name": "Plumbing",
+   "url": "https://www.homedepot.com/b/Plumbing/Special-Values/N-5yc1vZbqewZ7",
+   "image": {
+    "url": "https://www.homedepot.com/hdus/en_US/DTCCOMNEW/fetch/Global_Assets/SBOTD-Plumbing-Savings.jpg"
+   }
+  },
+  {
+   "name": "Storage & Organization",
+   "url": "https://www.homedepot.com/b/Storage-Organization/Special-Values/N-5yc1vZas7eZ7",
+   "image": {
+    "url": "https://www.homedepot.com/hdus/en_US/DTCCOMNEW/fetch/Global_Assets/SBOTD-Storage-Savings.jpg"
+   }
+  },
+  {
+   "name": "Tools",
+   "url": "https://www.homedepot.com/b/Tools/Special-Values/N-5yc1vZc1xyZ7",
+   "image": {
+    "url": "https://www.homedepot.com/hdus/en_US/DTCCOMNEW/fetch/Global_Assets/SBOTD-Tools-Savings.jpg"
+   }
+  }
+ ]
+}

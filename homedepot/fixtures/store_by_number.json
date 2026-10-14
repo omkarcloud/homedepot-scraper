@@ -1,0 +1,68 @@
+{
+ "stores": [
+  {
+   "storeId": "0121",
+   "name": "Cumberland",
+   "storeType": "retail",
+   "address": {
+    "street": "2450 Cumberland Pkwy",
+    "city": "Atlanta",
+    "state": "GA",
+    "postalCode": "30339",
+    "country": "US"
+   },
+   "coordinates": {
+    "lat": 33.862126,
+    "lng": -84.476161
+   },
+   "distance": "0.00",
+   "phone": "(770)432-9930",
+   "proDeskPhone": "(770)801-6415",
+   "toolRentalPhone": "(770)801-6400",
+   "storeDetailsPageLink": "/l/Cumberland/GA/Atlanta/30339/121",
+   "services": {
+    "loadNGo": true,
+    "propane": true,
+    "toolRental": true,
+    "penske": true,
+    "keyCutting": true,
+    "wiFi": true,
+    "applianceShowroom": false,
+    "expandedFlooringShowroom": true,
+    "largeEquipment": true,
+    "kitchenShowroom": true
+   },
+   "storeHours": {
+    "monday": {
+     "open": "6:00",
+     "close": "22:00"
+    },
+    "tuesday": {
+     "open": "6:00",
+     "close": "22:00"
+    },
+    "wednesday": {
+     "open": "6:00",
+     "close": "22:00"
+    },
+    "thursday": {
+     "open": "6:00",
+     "close": "22:00"
+    },
+    "friday": {
+     "open": "6:00",
+     "close": "22:00"
+    },
+    "saturday": {
+     "open": "6:00",
+     "close": "22:00"
+    },
+    "sunday": {
+     "open": "8:00",
+     "close": "20:00"
+    }
+   }
+  }
+ ],
+ "suggestedAddresses": null
+}

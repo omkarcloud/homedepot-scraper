@@ -1,0 +1,739 @@
+{
+ "itemId": "320326787",
+ "identifiers": {
+  "itemId": "320326787",
+  "parentId": "342940787",
+  "productLabel": "M18 FUEL 18V Lithium-Ion Brushless Cordless Hammer Drill and Impact Driver Combo Kit (2-Tool) with 2 Batteries",
+  "brandName": "Milwaukee",
+  "modelNumber": "3697-22",
+  "storeSkuNumber": "1007850144",
+  "canonicalUrl": "/p/Milwaukee-M18-FUEL-18V-Lithium-Ion-Brushless-Cordless-Hammer-Drill-and-Impact-Driver-Combo-Kit-2-Tool-with-2-Batteries-3697-22/320326787",
+  "productType": "MERCHANDISE",
+  "isSuperSku": true,
+  "specialOrderSku": null,
+  "omsThdSku": "1007850144",
+  "upc": "045242637744",
+  "upcGtin13": "0045242637744",
+  "brandMainPageUrl": "/b/Milwaukee/N-5yc1vZzv",
+  "skuClassification": "normal",
+  "sampleId": null,
+  "toolRentalSkuNumber": null,
+  "rentalCategory": null,
+  "rentalSubCategory": null
+ },
+ "media": {
+  "images": [
+   {
+    "url": "https://images.thdstatic.com/productImages/c83a98b4-2b2a-4537-9a1b-16f4adc8fff6/svn/milwaukee-power-tool-combo-kits-3697-22-64_<SIZE>.jpg",
+    "type": "IMAGE",
+    "subType": "PRIMARY",
+    "sizes": [
+     "65",
+     "100",
+     "145",
+     "300",
+     "400",
+     "600",
+     "1000"
+    ],
+    "altText": null
+   },
+   {
+    "url": "https://images.thdstatic.com/productImages/5e387616-3e3f-4140-9ce3-e29bd8bbe948/svn/milwaukee-power-tool-combo-kits-3697-22-e1_<SIZE>.jpg",
+    "type": "IMAGE_LEFT_VIEW",
+    "subType": null,
+    "sizes": [
+     "65",
+     "100",
+     "145",
+     "300",
+     "400",
+     "600",
+     "1000"
+    ],
+    "altText": null
+   },
+   {
+    "url": "https://images.thdstatic.com/productImages/8afff3c0-171e-42e2-957b-e454bf1d0b60/svn/milwaukee-power-tool-combo-kits-3697-22-a0_<SIZE>.jpg",
+    "type": "IMAGE_TOP_VIEW",
+    "subType": null,
+    "sizes": [
+     "65",
+     "100",
+     "145",
+     "300",
+     "400",
+     "600",
+     "1000"
+    ],
+    "altText": null
+   },
+   {
+    "url": "https://images.thdstatic.com/productImages/26f9f8b4-5439-43c5-b74d-e398e9fdd4b6/svn/milwaukee-power-tool-combo-kits-3697-22-1d_<SIZE>.jpg",
+    "type": "IMAGE_BOTTOM_VIEW",
+    "subType": null,
+    "sizes": [
+     "65",
+     "100",
+     "145",
+     "300",
+     "400",
+     "600",
+     "1000"
+    ],
+    "altText": null
+   },
+   {
+    "url": "https://images.thdstatic.com/productImages/8a643b83-ff61-410c-98c3-67d90d57eb94/svn/milwaukee-power-tool-combo-kits-3697-22-66_<SIZE>.jpg",
+    "type": "IMAGE_BACK_VIEW",
+    "subType": null,
+    "sizes": [
+     "65",
+     "100",
+     "145",
+     "300",
+     "400",
+     "600",
+     "1000"
+    ],
+    "altText": null
+   },
+   {
+    "url": "https://images.thdstatic.com/productImages/954f527b-d090-4ead-9e08-7d1b34cbad7d/svn/milwaukee-power-tool-combo-kits-3697-22-77_<SIZE>.jpg",
+    "type": "IMAGE_OPEN_VIEW",
+    "subType": null,
+    "sizes": [
+     "65",
+     "100",
+     "145",
+     "300",
+     "400",
+     "600",
+     "1000"
+    ],
+    "altText": null
+   },
+   {
+    "url": "https://images.thdstatic.com/productImages/043e3ecc-1804-4c6b-808a-26f525249425/svn/milwaukee-power-tool-combo-kits-3697-22-c3_<SIZE>.jpg",
+    "type": "IMAGE_ALTERNATE_VIEW",
+    "subType": null,
+    "sizes": [
+     "65",
+     "100",
+     "145",
+     "300",
+     "400",
+     "600",
+     "1000"
+    ],
+    "altText": null
+   },
+   {
+    "url": "https://images.thdstatic.com/productImages/4d5f15d4-03ed-4a5c-8072-1780ec9925c0/svn/milwaukee-power-tool-combo-kits-3697-22-4f_<SIZE>.jpg",
+    "type": "IMAGE_ALTERNATE_VIEW_2",
+    "subType": null,
+    "sizes": [
+     "65",
+     "100",
+     "145",
+     "300",
+     "400",
+     "600",
+     "1000"
+    ],
+    "altText": null
+   },
+   {
+    "url": "https://images.thdstatic.com/productImages/072062c0-8e7c-42a8-b3a9-6357fcc71041/svn/milwaukee-power-tool-combo-kits-3697-22-1f_<SIZE>.jpg",
+    "type": "IMAGE_ALTERNATE_VIEW_3",
+    "subType": null,
+    "sizes": [
+     "65",
+     "100",
+     "145",
+     "300",
+     "400",
+     "600",
+     "1000"
+    ],
+    "altText": null
+   },
+   {
+    "url": "https://images.thdstatic.com/productImages/1a3217ff-4da7-401a-bc10-585f81c81c04/svn/milwaukee-power-tool-combo-kits-3697-22-44_<SIZE>.jpg",
+    "type": "IMAGE_ALTERNATE_VIEW_4",
+    "subType": null,
+    "sizes": [
+     "65",
+     "100",
+     "145",
+     "300",
+     "400",
+     "600",
+     "1000"
+    ],
+    "altText": null
+   },
+   {
+    "url": "https://images.thdstatic.com/productImages/68443e4a-4381-41ac-ad9f-25cf772995d7/svn/milwaukee-power-tool-combo-kits-3697-22-fa_<SIZE>.jpg",
+    "type": "IMAGE_ALTERNATE_VIEW_5",
+    "subType": null,
+    "sizes": [
+     "65",
+     "100",
+     "145",
+     "300",
+     "400",
+     "600",
+     "1000"
+    ],
+    "altText": null
+   },
+   {
+    "url": "https://images.thdstatic.com/productImages/8e94c0c3-84fe-464b-8853-3e80af47d763/svn/milwaukee-power-tool-combo-kits-3697-22-76_<SIZE>.jpg",
+    "type": "IMAGE_ALTERNATE_VIEW_6",
+    "subType": null,
+    "sizes": [
+     "65",
+     "100",
+     "145",
+     "300",
+     "400",
+     "600",
+     "1000"
+    ],
+    "altText": null
+   },
+   {
+    "url": "https://images.thdstatic.com/productImages/53650d0a-9387-4588-adff-25e704ce7c7c/svn/milwaukee-power-tool-combo-kits-3697-22-d4_<SIZE>.jpg",
+    "type": "IMAGE_CATALOG_VIEW",
+    "subType": null,
+    "sizes": [
+     "65",
+     "100",
+     "145",
+     "300",
+     "400",
+     "600",
+     "1000"
+    ],
+    "altText": null
+   },
+   {
+    "url": "https://images.thdstatic.com/productImages/46b3958f-5d54-41e1-9aa0-551c93334cad/svn/milwaukee-power-tool-combo-kits-3697-22-31_<SIZE>.jpg",
+    "type": "IMAGE_LIFE_STYLE",
+    "subType": null,
+    "sizes": [
+     "65",
+     "100",
+     "145",
+     "300",
+     "400",
+     "600",
+     "1000"
+    ],
+    "altText": null
+   }
+  ],
+  "video": [
+   {
+    "videoId": "6309017467112",
+    "title": "Milwaukee M18 FUEL Hammer Drill Driver",
+    "type": "BRIGHTCOVE VIDEO",
+    "url": "https://fastly-signed-us-east-1-prod.brightcovecdn.com/media/v1/pmp4/static/clear/1834613806001/1eff5d6b-5372-4321-901e-fd3eafeadb9e/5fd7c759-e16b-4114-87d9-26e0599f5378/main.mp4?fastly_token=NmFmMzNkMzZfOTdmNjcxNWY1MTc3OWMzYzViNThlZTdhZGM3NzY4MTNlMmM4MWFlNTQwOWQ4NTI4MTI2ZDlkMmRlNWViZjI3OF8vL2Zhc3RseS1zaWduZWQtdXMtZWFzdC0xLXByb2QuYnJpZ2h0Y292ZWNkbi5jb20vbWVkaWEvdjEvcG1wNC9zdGF0aWMvY2xlYXIvMTgzNDYxMzgwNjAwMS8xZWZmNWQ2Yi01MzcyLTQzMjEtOTAxZS1mZDNlYWZlYWRiOWUvNWZkN2M3NTktZTE2Yi00MTE0LTg3ZDktMjZlMDU5OWY1Mzc4L21haW4ubXA0&pubid=66036796001",
+    "thumbnail": "https://cf-images.us-east-1.prod.boltdns.net/v1/jit/1834613806001/1eff5d6b-5372-4321-901e-fd3eafeadb9e/main/160x90/57s994ms/match/image.jpg?pubId=66036796001",
+    "videoStill": "https://cf-images.us-east-1.prod.boltdns.net/v1/jit/1834613806001/1eff5d6b-5372-4321-901e-fd3eafeadb9e/main/1280x720/57s994ms/match/image.jpg?pubId=66036796001",
+    "shortDescription": "The MILWAUKEE M18 FUEL ½\" Hammer Drill Driver is the Industry's Most Powerful Hammer Drill, delivering the capability to drill the largest holes at high speed into the densest materials. The cordless drill is the Most Compact solution in its class an",
+    "longDescription": null,
+    "uploadDate": "2022-07-03T06:46:19.938Z",
+    "dateModified": "2022-07-03T06:46:19.956Z",
+    "link": null
+   },
+   {
+    "videoId": "6309576596112",
+    "title": "M18 FUEL Impact Driver",
+    "type": "BRIGHTCOVE VIDEO",
+    "url": "https://fastly-signed-us-east-1-prod.brightcovecdn.com/media/v1/pmp4/static/clear/1834613806001/9badef1f-b1ac-467f-9ea1-58a557e67b01/8af86dec-ed2c-4c1c-963d-b9a732fe412a/main.mp4?fastly_token=NmFmMzNkMjNfZGUyMjg3MWYwMjIxNWU3NjhjOTI2YzYzOTMyNTJhNjIzNDkyN2UxZDViOWUyYjVjNGY4YjVkZGZmMDcyNzI4Y18vL2Zhc3RseS1zaWduZWQtdXMtZWFzdC0xLXByb2QuYnJpZ2h0Y292ZWNkbi5jb20vbWVkaWEvdjEvcG1wNC9zdGF0aWMvY2xlYXIvMTgzNDYxMzgwNjAwMS85YmFkZWYxZi1iMWFjLTQ2N2YtOWVhMS01OGE1NTdlNjdiMDEvOGFmODZkZWMtZWQyYy00YzFjLTk2M2QtYjlhNzMyZmU0MTJhL21haW4ubXA0&pubid=66036796001",
+    "thumbnail": "https://cf-images.us-east-1.prod.boltdns.net/v1/jit/1834613806001/9badef1f-b1ac-467f-9ea1-58a557e67b01/main/160x90/49s525ms/match/image.jpg?pubId=66036796001",
+    "videoStill": "https://cf-images.us-east-1.prod.boltdns.net/v1/jit/1834613806001/9badef1f-b1ac-467f-9ea1-58a557e67b01/main/1280x720/49s525ms/match/image.jpg?pubId=66036796001",
+    "shortDescription": "M18 FUEL 18-Volt Lithium-Ion Brushless Cordless 1/4 in. Hex Impact Driver",
+    "longDescription": null,
+    "uploadDate": "2022-07-15T11:46:33.697Z",
+    "dateModified": "2022-07-15T11:46:33.747Z",
+    "link": null
+   }
+  ],
+  "threeSixty": null,
+  "augmentedRealityLink": null
+ },
+ "pricing": {
+  "value": 399.0,
+  "original": null,
+  "unitOfMeasure": "each",
+  "specialBuy": null,
+  "message": null,
+  "mapAboveOriginalPrice": null,
+  "alternatePriceDisplay": false,
+  "mapDetail": null,
+  "promotion": {
+   "type": null,
+   "promotionTag": null,
+   "dollarOff": null,
+   "percentageOff": null,
+   "savingsCenter": null,
+   "savingsCenterPromos": null,
+   "specialBuySavings": null,
+   "specialBuyDollarOff": null,
+   "specialBuyPercentageOff": null,
+   "experienceTag": null,
+   "subExperienceTag": null,
+   "description": null,
+   "dates": null
+  },
+  "alternate": {
+   "bulk": null,
+   "unit": {
+    "caseUnitOfMeasure": null,
+    "unitsOriginalPrice": null,
+    "unitsPerCase": null,
+    "value": null
+   }
+  },
+  "clearance": null,
+  "conditionalPromotions": [
+   {
+    "promotionId": 946149,
+    "promotionTags": null,
+    "skuItemGroup": null,
+    "eligibilityCriteria": [
+     {
+      "itemGroup": "SRC-1",
+      "minThresholdVal": null,
+      "thresholdType": null
+     },
+     {
+      "itemGroup": "TGT-1",
+      "minThresholdVal": null,
+      "thresholdType": null
+     }
+    ],
+    "reward": {
+     "tiers": [
+      {
+       "minThresholdVal": null,
+       "thresholdType": null,
+       "rewardVal": null,
+       "rewardType": null,
+       "rewardLevel": null,
+       "maxAllowedRewardAmount": null
+      }
+     ]
+    }
+   }
+  ]
+ },
+ "reviews": {
+  "ratingsReviews": {
+   "averageRating": "4.7675",
+   "totalReviews": "4091"
+  }
+ },
+ "details": {
+  "collection": null,
+  "highlights": [
+   "Most powerful compact hammer drill set in its class",
+   "POWERSTATE™ Brushless motor delivers unmatched power",
+   "Increase productivity with the fastest driving impact driver"
+  ],
+  "description": "The MILWAUKEE® M18 FUEL 2-Tool Combo Kit has the Most Powerful Drill, including AutoStop™ Control Mode for enhanced safety and the Fastest Driving Impact Driver. Includes an M18 FUEL 1/2\" Hammer Drill, M18 FUEL 1/4\" Hex Impact Driver, (2) M18 REDLITHIUM™ XC 5.0Ah Battery Pack, with an M18/M12 charger and carrying case. The M18 FUEL™ ½” Drill Driver is the Industry's Most Powerful Drill and Most Compact solution. The POWERSTATE™ Brushless motor delivers the most power under load to complete 2-9/16\" Self-Feed holes in dense materials for increased productivity and capability. At only 6.9” in length, this is the most compact drill in its class. The AutoStop™ Control Mode offers enhanced safety for the user by preventing over-rotation in a bind-up with the best reaction time in the industry. The M18 FUEL™ ¼” Hex Impact Driver is the Most POWERFUL and FASTEST DRIVING impact driver, featuring ULTIMATE TRIGGER CONTROL. The POWERSTATE™ Brushless motor delivers unmatched power for a full range of capabilities to complete the widest variety of applications. Increase productivity on the jobsite with the fastest driving speed without sacrificing power or control. REDLINK PLUS™ intelligence delivers ULTIMATE TRIGGER CONTROL by providing smooth acceleration for small fasteners to prevent stripping of screws or damaging of materials. The M18 FUEL™ 2-Tool Combo kit is part of the M18 system which is fully compatible with over 200+ solutions.",
+  "installation": null
+ },
+ "info": {
+  "isSponsored": null,
+  "productDepartment": "25",
+  "categoryHierarchy": null,
+  "quantityLimit": 3,
+  "returnable": "90-Day",
+  "totalNumberOfOptions": null,
+  "isGenericProduct": null,
+  "hidePrice": false,
+  "ecoRebate": false,
+  "hasSubscription": false,
+  "isLiveGoodsProduct": false,
+  "isBuryProduct": null,
+  "productSubType": null,
+  "swatches": null,
+  "bathRenovation": false,
+  "label": null,
+  "augmentedReality": false,
+  "movingCalculatorEligible": false,
+  "forProfessionalUseOnly": false,
+  "replacementOMSID": null,
+  "hasVisuallySimilar": false,
+  "classNumber": "9",
+  "subClassNumber": "32",
+  "isInStoreReturnMessageEligible": false,
+  "paintBrand": null,
+  "paintFamily": null,
+  "prop65Warning": false,
+  "prop65Message": null,
+  "minimumOrderQuantity": 0,
+  "projectCalculatorEligible": false,
+  "protectionPlanSku": "343105821",
+  "eligibleProtectionPlanSkus": "343105821,315046851",
+  "hasServiceAddOns": false,
+  "sskMin": null,
+  "sskMax": null,
+  "unitOfMeasureCoverage": null,
+  "wasMinPriceRange": null,
+  "wasMaxPriceRange": null,
+  "recommendationFlags": {
+   "packages": true,
+   "frequentlyBoughtTogether": true,
+   "bundles": false,
+   "collections": true
+  },
+  "pipCalculator": null
+ },
+ "badges": [
+  {
+   "name": "top rated",
+   "label": "Top Rated",
+   "endDate": null,
+   "message": "Top Rated in Buy M18 FUEL HD/ID COMBO KIT Get 1 Select Free Power Tool",
+   "creativeImageUrl": null
+  },
+  {
+   "name": "exclusive",
+   "label": "Exclusive",
+   "endDate": null,
+   "message": "Exclusive in Power Tool Combo Kits",
+   "creativeImageUrl": null
+  }
+ ],
+ "availabilityType": {
+  "type": "Shared",
+  "buyable": true,
+  "discontinued": false,
+  "status": false
+ },
+ "fulfillment": {
+  "fulfillmentOptions": [
+   {
+    "type": "pickup",
+    "fulfillable": true,
+    "services": [
+     {
+      "type": "bopis",
+      "hasFreeShipping": false,
+      "freeDeliveryThreshold": null,
+      "deliveryCharge": null,
+      "totalCharge": null,
+      "deliveryTimeline": "today",
+      "deliveryMessage": null,
+      "earliestDeliveryDate": null,
+      "deliveryDates": {
+       "startDate": "2026-10-14",
+       "endDate": "2026-10-14"
+      },
+      "dynamicEta": null,
+      "locations": [
+       {
+        "isAnchor": true,
+        "locationId": "121",
+        "storeName": "Cumberland",
+        "storePhone": "(770)432-9930",
+        "state": "GA",
+        "distance": null,
+        "type": "store",
+        "curbsidePickupFlag": true,
+        "isBuyInStoreCheckNearBy": null,
+        "inventory": {
+         "quantity": 73,
+         "isInStock": true,
+         "isOutOfStock": false,
+         "isLimitedQuantity": false,
+         "isUnavailable": false,
+         "maxAllowedBopisQty": null,
+         "minAllowedBopisQty": null
+        }
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "type": "delivery",
+    "fulfillable": true,
+    "services": [
+     {
+      "type": "express delivery",
+      "hasFreeShipping": true,
+      "freeDeliveryThreshold": null,
+      "deliveryCharge": "0.0",
+      "totalCharge": 0.0,
+      "deliveryTimeline": "today",
+      "deliveryMessage": null,
+      "earliestDeliveryDate": null,
+      "deliveryDates": {
+       "startDate": "2026-10-14",
+       "endDate": "2026-10-14"
+      },
+      "dynamicEta": null,
+      "locations": [
+       {
+        "isAnchor": false,
+        "locationId": "0121",
+        "storeName": null,
+        "storePhone": null,
+        "state": null,
+        "distance": null,
+        "type": "store",
+        "curbsidePickupFlag": null,
+        "isBuyInStoreCheckNearBy": null,
+        "inventory": {
+         "quantity": 73,
+         "isInStock": true,
+         "isOutOfStock": false,
+         "isLimitedQuantity": false,
+         "isUnavailable": false,
+         "maxAllowedBopisQty": null,
+         "minAllowedBopisQty": null
+        }
+       }
+      ]
+     },
+     {
+      "type": "sth",
+      "hasFreeShipping": true,
+      "freeDeliveryThreshold": null,
+      "deliveryCharge": null,
+      "totalCharge": 0.0,
+      "deliveryTimeline": "today",
+      "deliveryMessage": null,
+      "earliestDeliveryDate": null,
+      "deliveryDates": {
+       "startDate": "2026-10-14",
+       "endDate": "2026-10-14"
+      },
+      "dynamicEta": {
+       "hours": "5",
+       "minutes": "42"
+      },
+      "locations": [
+       {
+        "isAnchor": false,
+        "locationId": "8119",
+        "storeName": null,
+        "storePhone": null,
+        "state": "GA",
+        "distance": null,
+        "type": "online",
+        "curbsidePickupFlag": null,
+        "isBuyInStoreCheckNearBy": null,
+        "inventory": {
+         "quantity": 9591,
+         "isInStock": true,
+         "isOutOfStock": false,
+         "isLimitedQuantity": false,
+         "isUnavailable": false,
+         "maxAllowedBopisQty": null,
+         "minAllowedBopisQty": null
+        }
+       }
+      ]
+     }
+    ]
+   }
+  ],
+  "anchorStoreStatus": true,
+  "anchorStoreStatusType": "ACTIVE",
+  "backordered": false,
+  "backorderedShipDate": null,
+  "excludedShipStates": "AK,GU,HI,PR,VI",
+  "bossExcludedShipStates": "AK,GU,HI,PR,VI",
+  "sthExcludedShipState": null,
+  "onlineStoreStatus": true,
+  "onlineStoreStatusType": "ACTIVE",
+  "seasonStatusEligible": null
+ },
+ "taxonomy": {
+  "breadCrumbs": [
+   {
+    "label": "Tools",
+    "url": "/b/Tools/N-5yc1vZc1xy",
+    "browseUrl": null,
+    "dimensionName": "Category",
+    "refinementKey": null
+   },
+   {
+    "label": "Power Tools",
+    "url": "/b/Tools-Power-Tools/N-5yc1vZc298",
+    "browseUrl": null,
+    "dimensionName": "Category",
+    "refinementKey": null
+   },
+   {
+    "label": "Power Tool Combo Kits",
+    "url": "/b/Tools-Power-Tools-Power-Tool-Combo-Kits/N-5yc1vZc2ec",
+    "browseUrl": null,
+    "dimensionName": "Category",
+    "refinementKey": null
+   }
+  ],
+  "brandLinkUrl": "/b/Tools-Power-Tools-Power-Tool-Combo-Kits/Milwaukee/N-5yc1vZc2ecZzv"
+ },
+ "bundleFlag": null,
+ "subscription": null,
+ "bundleItems": null,
+ "specificationGroup": [
+  {
+   "specTitle": "Details",
+   "specifications": [
+    {
+     "specName": "Battery Power Type",
+     "specValue": "Lithium Ion"
+    },
+    {
+     "specName": "Battery Voltage (V)",
+     "specValue": "18V"
+    },
+    {
+     "specName": "Charger Included",
+     "specValue": "Charger Included"
+    },
+    {
+     "specName": "Color Family",
+     "specValue": "Red"
+    },
+    {
+     "specName": "Cordless Tool Type",
+     "specValue": "Combo Kit"
+    },
+    {
+     "specName": "Cordless/Corded",
+     "specValue": "Cordless"
+    },
+    {
+     "specName": "Included",
+     "specValue": "Battery Included,Charger,Tool Case"
+    },
+    {
+     "specName": "Motor Type",
+     "specValue": "Brushless"
+    },
+    {
+     "specName": "Number of Tools (Bonus Tool Not Included)",
+     "specValue": "2"
+    },
+    {
+     "specName": "Number of Total Batteries Included",
+     "specValue": "2"
+    },
+    {
+     "specName": "Power Tool Features",
+     "specValue": "Compact,LED Light,Sub-Compact,Variable Speed"
+    },
+    {
+     "specName": "Returnable",
+     "specValue": "90-Day"
+    },
+    {
+     "specName": "Tools Included",
+     "specValue": "Hammer Driver Drill,Impact Driver"
+    },
+    {
+     "specName": "Tools Product Type",
+     "specValue": "Power Tool"
+    },
+    {
+     "specName": "Voltage (V)",
+     "specValue": "18 V"
+    }
+   ]
+  },
+  {
+   "specTitle": "Warranty / Certifications",
+   "specifications": [
+    {
+     "specName": "Manufacturer Warranty",
+     "specValue": "5 Year (Tool), 3 Year (Batteries)"
+    }
+   ]
+  }
+ ],
+ "keyProductFeatures": {
+  "keyProductFeaturesItems": [
+   {
+    "features": [
+     {
+      "name": "Motor Type",
+      "value": "Brushless",
+      "refinementId": "4295143142",
+      "refinementUrl": "/b/Tools-Power-Tools-Power-Tool-Combo-Kits/Brushless/N-5yc1vZc2ecZ1z17tnq"
+     },
+     {
+      "name": "Number of Tools (Bonus Tool Not Included)",
+      "value": "2",
+      "refinementId": "4296154834",
+      "refinementUrl": "/b/Tools-Power-Tools-Power-Tool-Combo-Kits/2/N-5yc1vZc2ecZ1z1tiaa"
+     },
+     {
+      "name": "Cordless/Corded",
+      "value": "Cordless",
+      "refinementId": "4294965387",
+      "refinementUrl": "/b/Tools-Power-Tools-Power-Tool-Combo-Kits/Cordless/N-5yc1vZc2ecZ1z140i3"
+     },
+     {
+      "name": "Number of Total Batteries Included",
+      "value": "2",
+      "refinementId": "4294029783",
+      "refinementUrl": "/b/Tools-Power-Tools-Power-Tool-Combo-Kits/2/N-5yc1vZc2ecZ1z0jyl3"
+     },
+     {
+      "name": "Battery Voltage (V)",
+      "value": "18V",
+      "refinementId": "4296349262",
+      "refinementUrl": "/b/Tools-Power-Tools-Power-Tool-Combo-Kits/18V/N-5yc1vZc2ecZ1z1xob2"
+     },
+     {
+      "name": "Included",
+      "value": "Battery Included",
+      "refinementId": "4296625995",
+      "refinementUrl": "/b/Tools-Power-Tools-Power-Tool-Combo-Kits/Battery-Included/N-5yc1vZc2ecZ1z23lu3"
+     },
+     {
+      "name": "Included",
+      "value": "Charger",
+      "refinementId": "4296625936",
+      "refinementUrl": "/b/Tools-Power-Tools-Power-Tool-Combo-Kits/Charger/N-5yc1vZc2ecZ1z23lsg"
+     },
+     {
+      "name": "Tools Product Type",
+      "value": "Power Tool",
+      "refinementId": "4295347120",
+      "refinementUrl": "/b/Tools-Power-Tools-Power-Tool-Combo-Kits/Power-Tool/N-5yc1vZc2ecZ1z1c71s"
+     }
+    ]
+   }
+  ]
+ },
+ "sizeAndFitDetail": {
+  "attributeGroups": []
+ },
+ "bundleSpecificationDetails": {
+  "type": null,
+  "experienceType": null,
+  "parents": [
+   {
+    "parentId": "329611105"
+   },
+   {
+    "parentId": "329611073"
+   }
+  ]
+ },
+ "seo": {
+  "seoKeywords": null,
+  "seoDescription": "Offer a great addition to your industrial purpose by selecting this Milwaukee M LithiumIon Brushless Cordless Hammer Drill and Impact Driver Combo Kit with."
+ }
+}

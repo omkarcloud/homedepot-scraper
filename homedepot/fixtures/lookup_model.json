@@ -1,0 +1,1323 @@
+{
+ "id": "1435335414",
+ "searchReport": {
+  "keyword": "3697-22",
+  "totalProducts": 57,
+  "didYouMean": null,
+  "correctedKeyword": null,
+  "searchUrl": "/s/3697-22?NCNI-5",
+  "translatedFrom": null,
+  "sortBy": "bestmatch",
+  "sortOrder": "none",
+  "pageSize": 5,
+  "startIndex": 0
+ },
+ "metadata": {
+  "canonicalUrl": "/b/N-5yc1v/Ntk-elastic/Ntt-3697-22?NCNI-5",
+  "searchRedirect": null,
+  "h1Tag": null,
+  "contentType": "plppage",
+  "categoryID": null,
+  "isStoreDisplay": "false",
+  "productCount": {
+   "inStore": "1"
+  },
+  "stores": {
+   "storeId": "121",
+   "storeName": "Cumberland",
+   "address": {
+    "postalCode": "30339"
+   }
+  }
+ },
+ "taxonomy": {
+  "breadCrumbs": [],
+  "brandLinkUrl": null
+ },
+ "relatedResults": {
+  "relatedKeywords": [
+   {
+    "keyword": "pry bar"
+   },
+   {
+    "keyword": "3693-22cx"
+   },
+   {
+    "keyword": "3692-22ct"
+   },
+   {
+    "keyword": "milwaukee hammer drill"
+   },
+   {
+    "keyword": "2967-21b"
+   },
+   {
+    "keyword": "milwaukee band saw"
+   },
+   {
+    "keyword": "milwaukee 3697-22"
+   },
+   {
+    "keyword": "m18 fuel"
+   }
+  ],
+  "visualNavs": [],
+  "universalSearch": null
+ },
+ "appliedDimensions": [],
+ "dimensions": [
+  {
+   "label": "Review Rating",
+   "dimensionId": "20000072",
+   "isNumericFilter": null,
+   "isColorSwatch": null,
+   "isVisualNav": true,
+   "collapse": false,
+   "refinements": [
+    {
+     "label": "5",
+     "refinementKey": "bwo5q",
+     "recordCount": "7",
+     "selected": null,
+     "url": "/b/Best-Rated/N-5yc1vZbwo5q/Ntk-elastic/Ntt-3697-22?NCNI-5",
+     "imgUrl": null,
+     "nestedRefinements": null
+    },
+    {
+     "label": "4 & Up",
+     "refinementKey": "bwo5o",
+     "recordCount": "57",
+     "selected": null,
+     "url": "/b/Highly-Rated/N-5yc1vZbwo5o/Ntk-elastic/Ntt-3697-22?NCNI-5",
+     "imgUrl": null,
+     "nestedRefinements": null
+    },
+    {
+     "label": "3 & Up",
+     "refinementKey": "bwo5n",
+     "recordCount": "57",
+     "selected": null,
+     "url": "/b/N-5yc1vZbwo5n/Ntk-elastic/Ntt-3697-22?NCNI-5",
+     "imgUrl": null,
+     "nestedRefinements": null
+    },
+    {
+     "label": "2 & Up",
+     "refinementKey": "bwo5m",
+     "recordCount": "57",
+     "selected": null,
+     "url": "/b/N-5yc1vZbwo5m/Ntk-elastic/Ntt-3697-22?NCNI-5",
+     "imgUrl": null,
+     "nestedRefinements": null
+    },
+    {
+     "label": "1 & Up",
+     "refinementKey": "bwo5l",
+     "recordCount": "57",
+     "selected": null,
+     "url": "/b/N-5yc1vZbwo5l/Ntk-elastic/Ntt-3697-22?NCNI-5",
+     "imgUrl": null,
+     "nestedRefinements": null
+    }
+   ]
+  },
+  {
+   "label": "Category",
+   "dimensionId": "2",
+   "isNumericFilter": null,
+   "isColorSwatch": null,
+   "isVisualNav": null,
+   "collapse": false,
+   "refinements": [
+    {
+     "label": "Tools",
+     "refinementKey": "c1xy",
+     "recordCount": "57",
+     "selected": null,
+     "url": "/b/Tools/N-5yc1vZc1xy/Ntk-elastic/Ntt-3697-22?NCNI-5",
+     "imgUrl": null,
+     "nestedRefinements": null
+    },
+    {
+     "label": "Power Tools",
+     "refinementKey": "c298",
+     "recordCount": "57",
+     "selected": null,
+     "url": "/b/Tools-Power-Tools/N-5yc1vZc298/Ntk-elastic/Ntt-3697-22?NCNI-5",
+     "imgUrl": null,
+     "nestedRefinements": null
+    },
+    {
+     "label": "Power Tool Combo Kits",
+     "refinementKey": "c2ec",
+     "recordCount": "57",
+     "selected": null,
+     "url": "/b/Tools-Power-Tools-Power-Tool-Combo-Kits/N-5yc1vZc2ec/Ntk-elastic/Ntt-3697-22?NCNI-5",
+     "imgUrl": null,
+     "nestedRefinements": null
+    }
+   ]
+  },
+  {
+   "label": "New Arrival",
+   "dimensionId": "20000100",
+   "isNumericFilter": null,
+   "isColorSwatch": null,
+   "isVisualNav": null,
+   "collapse": false,
+   "refinements": [
+    {
+     "label": "Recently Added",
+     "refinementKey": "1z179pc",
+     "recordCount": "2",
+     "selected": null,
+     "url": "/b/Recently-Added/N-5yc1vZ1z179pc/Ntk-elastic/Ntt-3697-22?NCNI-5",
+     "imgUrl": null,
+     "nestedRefinements": null
+    }
+   ]
+  },
+  {
+   "label": "Get It Fast",
+   "dimensionId": "20000105",
+   "isNumericFilter": null,
+   "isColorSwatch": null,
+   "isVisualNav": null,
+   "collapse": false,
+   "refinements": [
+    {
+     "label": "Pick Up Today",
+     "refinementKey": "1z175a5",
+     "recordCount": "1",
+     "selected": null,
+     "url": "/b/Pick-Up-Today/N-5yc1vZ1z175a5/Ntk-elastic/Ntt-3697-22?NCNI-5",
+     "imgUrl": null,
+     "nestedRefinements": null
+    },
+    {
+     "label": "Free 1-2 Day Delivery",
+     "refinementKey": "bwo6i",
+     "recordCount": "47",
+     "selected": null,
+     "url": "/b/Free-1-2-Day-Delivery/N-5yc1vZbwo6i/Ntk-elastic/Ntt-3697-22?NCNI-5",
+     "imgUrl": null,
+     "nestedRefinements": null
+    },
+    {
+     "label": "Same-Day Delivery",
+     "refinementKey": "1z175cq",
+     "recordCount": "1",
+     "selected": null,
+     "url": "/b/Same-Day-Delivery/N-5yc1vZ1z175cq/Ntk-elastic/Ntt-3697-22?NCNI-5",
+     "imgUrl": null,
+     "nestedRefinements": null
+    }
+   ]
+  },
+  {
+   "label": "Price",
+   "dimensionId": "5",
+   "isNumericFilter": null,
+   "isColorSwatch": null,
+   "isVisualNav": true,
+   "collapse": false,
+   "refinements": [
+    {
+     "label": "$300 - $400",
+     "refinementKey": "12l7",
+     "recordCount": "4",
+     "selected": null,
+     "url": "/b/N-5yc1vZ12l7/Ntk-elastic/Ntt-3697-22?NCNI-5",
+     "imgUrl": null,
+     "nestedRefinements": null
+    },
+    {
+     "label": "$400 - $500",
+     "refinementKey": "12l8",
+     "recordCount": "10",
+     "selected": null,
+     "url": "/b/N-5yc1vZ12l8/Ntk-elastic/Ntt-3697-22?NCNI-5",
+     "imgUrl": null,
+     "nestedRefinements": null
+    },
+    {
+     "label": "$500 - $600",
+     "refinementKey": "12l9",
+     "recordCount": "17",
+     "selected": null,
+     "url": "/b/N-5yc1vZ12l9/Ntk-elastic/Ntt-3697-22?NCNI-5",
+     "imgUrl": null,
+     "nestedRefinements": null
+    },
+    {
+     "label": "$600 - $700",
+     "refinementKey": "12la",
+     "recordCount": "17",
+     "selected": null,
+     "url": "/b/N-5yc1vZ12la/Ntk-elastic/Ntt-3697-22?NCNI-5",
+     "imgUrl": null,
+     "nestedRefinements": null
+    },
+    {
+     "label": "$700 - $800",
+     "refinementKey": "12lb",
+     "recordCount": "2",
+     "selected": null,
+     "url": "/b/N-5yc1vZ12lb/Ntk-elastic/Ntt-3697-22?NCNI-5",
+     "imgUrl": null,
+     "nestedRefinements": null
+    },
+    {
+     "label": "$800 - $900",
+     "refinementKey": "12lc",
+     "recordCount": "6",
+     "selected": null,
+     "url": "/b/N-5yc1vZ12lc/Ntk-elastic/Ntt-3697-22?NCNI-5",
+     "imgUrl": null,
+     "nestedRefinements": null
+    },
+    {
+     "label": "$900 - $1000",
+     "refinementKey": "12ld",
+     "recordCount": "1",
+     "selected": null,
+     "url": "/b/N-5yc1vZ12ld/Ntk-elastic/Ntt-3697-22?NCNI-5",
+     "imgUrl": null,
+     "nestedRefinements": null
+    },
+    {
+     "label": "Special Values",
+     "refinementKey": "7",
+     "recordCount": "46",
+     "selected": null,
+     "url": "/b/N-5yc1vZ7/Ntk-elastic/Ntt-3697-22?NCNI-5",
+     "imgUrl": null,
+     "nestedRefinements": null
+    }
+   ]
+  }
+ ],
+ "products": [
+  {
+   "itemId": "320326787",
+   "identifiers": {
+    "itemId": "320326787",
+    "parentId": "320326787",
+    "productLabel": "M18 FUEL 18V Lithium-Ion Brushless Cordless Hammer Drill and Impact Driver Combo Kit (2-Tool) with 2 Batteries",
+    "brandName": "Milwaukee",
+    "modelNumber": "3697-22",
+    "storeSkuNumber": "1007850144",
+    "canonicalUrl": "/p/Milwaukee-M18-FUEL-18V-Lithium-Ion-Brushless-Cordless-Hammer-Drill-and-Impact-Driver-Combo-Kit-2-Tool-with-2-Batteries-3697-22/320326787",
+    "productType": "MERCHANDISE",
+    "isSuperSku": false,
+    "specialOrderSku": null
+   },
+   "media": {
+    "images": [
+     {
+      "url": "https://images.thdstatic.com/productImages/c83a98b4-2b2a-4537-9a1b-16f4adc8fff6/svn/milwaukee-power-tool-combo-kits-3697-22-64_<SIZE>.jpg",
+      "type": "IMAGE",
+      "subType": "PRIMARY",
+      "sizes": [
+       "65",
+       "100",
+       "145",
+       "300",
+       "400",
+       "600",
+       "1000"
+      ]
+     },
+     {
+      "url": "https://images.thdstatic.com/productImages/5e387616-3e3f-4140-9ce3-e29bd8bbe948/svn/milwaukee-power-tool-combo-kits-3697-22-e4_<SIZE>.jpg",
+      "type": "IMAGE",
+      "subType": "SECONDARY",
+      "sizes": [
+       "65",
+       "100",
+       "145",
+       "300",
+       "400",
+       "600",
+       "1000"
+      ]
+     }
+    ]
+   },
+   "pricing": {
+    "value": 399.0,
+    "original": 399.0,
+    "unitOfMeasure": "each",
+    "specialBuy": null,
+    "message": null,
+    "mapAboveOriginalPrice": null,
+    "alternatePriceDisplay": false,
+    "mapDetail": null,
+    "promotion": {
+     "type": null,
+     "promotionTag": null,
+     "dollarOff": 0.0,
+     "percentageOff": 0.0,
+     "savingsCenter": null,
+     "savingsCenterPromos": "Buy One Get One",
+     "specialBuySavings": null,
+     "specialBuyDollarOff": null,
+     "specialBuyPercentageOff": null,
+     "experienceTag": null,
+     "subExperienceTag": null,
+     "description": null,
+     "dates": null
+    },
+    "alternate": {
+     "bulk": null,
+     "unit": {
+      "caseUnitOfMeasure": null,
+      "unitsOriginalPrice": null,
+      "unitsPerCase": 0.0,
+      "value": null
+     }
+    },
+    "clearance": null,
+    "conditionalPromotions": [
+     {
+      "promotionId": 946149,
+      "promotionTags": [
+       "BOGO"
+      ],
+      "skuItemGroup": "SRC-1",
+      "eligibilityCriteria": [
+       {
+        "itemGroup": "SRC-1",
+        "minThresholdVal": 1.0,
+        "thresholdType": "QUANTITY"
+       },
+       {
+        "itemGroup": "TGT-1",
+        "minThresholdVal": 1.0,
+        "thresholdType": "QUANTITY"
+       }
+      ],
+      "reward": {
+       "tiers": [
+        {
+         "minThresholdVal": 1.0,
+         "thresholdType": "QUANTITY",
+         "rewardVal": 100.0,
+         "rewardType": "PERCNTOFF",
+         "rewardLevel": null,
+         "maxAllowedRewardAmount": null
+        }
+       ]
+      }
+     }
+    ]
+   },
+   "reviews": {
+    "ratingsReviews": {
+     "averageRating": "4.7667",
+     "totalReviews": "4093"
+    }
+   },
+   "details": {
+    "collection": {
+     "collectionId": null,
+     "name": null,
+     "url": null
+    },
+    "highlights": null
+   },
+   "info": {
+    "isSponsored": null,
+    "productDepartment": "Power Tool Combo Kits",
+    "categoryHierarchy": [
+     "Tools",
+     "Power Tools",
+     "Power Tool Combo Kits"
+    ],
+    "quantityLimit": 3,
+    "returnable": "90-Day",
+    "totalNumberOfOptions": 36,
+    "isGenericProduct": null,
+    "hidePrice": false,
+    "ecoRebate": false,
+    "hasSubscription": false,
+    "isLiveGoodsProduct": false,
+    "isBuryProduct": null,
+    "productSubType": null,
+    "swatches": []
+   },
+   "badges": [
+    {
+     "name": "top rated",
+     "label": "Top Rated"
+    },
+    {
+     "name": "exclusive",
+     "label": "Exclusive"
+    }
+   ],
+   "availabilityType": {
+    "type": "Shared",
+    "buyable": false,
+    "discontinued": false,
+    "status": false
+   },
+   "fulfillment": {
+    "fulfillmentOptions": [
+     {
+      "type": "pickup",
+      "fulfillable": true,
+      "services": [
+       {
+        "type": "bopis",
+        "hasFreeShipping": false,
+        "freeDeliveryThreshold": null,
+        "deliveryCharge": null,
+        "totalCharge": null,
+        "deliveryTimeline": null,
+        "deliveryMessage": null,
+        "earliestDeliveryDate": null,
+        "deliveryDates": null,
+        "dynamicEta": null,
+        "locations": [
+         {
+          "isAnchor": true,
+          "locationId": "121",
+          "storeName": "Cumberland",
+          "storePhone": "(770)432-9930",
+          "state": "GA",
+          "distance": 0.0,
+          "type": "store",
+          "curbsidePickupFlag": null,
+          "isBuyInStoreCheckNearBy": null,
+          "inventory": {
+           "quantity": 73,
+           "isInStock": true,
+           "isOutOfStock": false,
+           "isLimitedQuantity": false,
+           "isUnavailable": false,
+           "maxAllowedBopisQty": null,
+           "minAllowedBopisQty": null
+          }
+         }
+        ]
+       }
+      ]
+     },
+     {
+      "type": "delivery",
+      "fulfillable": true,
+      "services": [
+       {
+        "type": "sth",
+        "hasFreeShipping": true,
+        "freeDeliveryThreshold": null,
+        "deliveryCharge": null,
+        "totalCharge": 0.0,
+        "deliveryTimeline": "today",
+        "deliveryMessage": null,
+        "earliestDeliveryDate": null,
+        "deliveryDates": {
+         "startDate": "2026-10-14",
+         "endDate": "2026-10-14"
+        },
+        "dynamicEta": null,
+        "locations": [
+         {
+          "isAnchor": true,
+          "locationId": "8119",
+          "storeName": null,
+          "storePhone": null,
+          "state": null,
+          "distance": null,
+          "type": "online",
+          "curbsidePickupFlag": null,
+          "isBuyInStoreCheckNearBy": null,
+          "inventory": {
+           "quantity": 9591,
+           "isInStock": true,
+           "isOutOfStock": false,
+           "isLimitedQuantity": false,
+           "isUnavailable": false,
+           "maxAllowedBopisQty": null,
+           "minAllowedBopisQty": null
+          }
+         }
+        ]
+       },
+       {
+        "type": "express delivery",
+        "hasFreeShipping": false,
+        "freeDeliveryThreshold": null,
+        "deliveryCharge": null,
+        "totalCharge": 0.0,
+        "deliveryTimeline": "today",
+        "deliveryMessage": null,
+        "earliestDeliveryDate": null,
+        "deliveryDates": {
+         "startDate": "2026-10-14",
+         "endDate": "2026-10-14"
+        },
+        "dynamicEta": null,
+        "locations": [
+         {
+          "isAnchor": true,
+          "locationId": "121",
+          "storeName": "Cumberland",
+          "storePhone": "(770)432-9930",
+          "state": "GA",
+          "distance": 0.0,
+          "type": "store",
+          "curbsidePickupFlag": null,
+          "isBuyInStoreCheckNearBy": null,
+          "inventory": {
+           "quantity": 73,
+           "isInStock": true,
+           "isOutOfStock": false,
+           "isLimitedQuantity": false,
+           "isUnavailable": false,
+           "maxAllowedBopisQty": null,
+           "minAllowedBopisQty": null
+          }
+         }
+        ]
+       }
+      ]
+     }
+    ],
+    "anchorStoreStatus": false,
+    "anchorStoreStatusType": "ACTIVE",
+    "backordered": false,
+    "backorderedShipDate": null,
+    "excludedShipStates": "AK,GU,HI,PR,VI",
+    "bossExcludedShipStates": "AK,GU,HI,PR,VI",
+    "sthExcludedShipState": null,
+    "onlineStoreStatus": false,
+    "onlineStoreStatusType": null,
+    "seasonStatusEligible": null
+   },
+   "taxonomy": {
+    "breadCrumbs": []
+   },
+   "bundleFlag": null
+  },
+  {
+   "itemId": "337113868",
+   "identifiers": {
+    "itemId": "337113868",
+    "parentId": "337113868",
+    "productLabel": "M18 FUEL 18V Lith-Ion Cordless Hammer Drill & Impact Driver Combo Kit (3-Tool) w/ 2 Batteries & 1/4 in. Impact Driver",
+    "brandName": "Milwaukee",
+    "modelNumber": "3697-22-2953-20",
+    "storeSkuNumber": "1014557411",
+    "canonicalUrl": "/p/Milwaukee-M18-FUEL-18V-Lith-Ion-Cordless-Hammer-Drill-Impact-Driver-Combo-Kit-3-Tool-w-2-Batteries-1-4-in-Impact-Driver-3697-22-2953-20/337113868",
+    "productType": "MERCHANDISE",
+    "isSuperSku": false,
+    "specialOrderSku": null
+   },
+   "media": {
+    "images": [
+     {
+      "url": "https://images.thdstatic.com/productImages/e3936245-94db-4f3a-897e-9acfc2901c63/svn/milwaukee-power-tool-combo-kits-3697-22-2953-20-64_<SIZE>.jpg",
+      "type": "IMAGE",
+      "subType": "PRIMARY",
+      "sizes": [
+       "65",
+       "100",
+       "145",
+       "300",
+       "400",
+       "600",
+       "1000"
+      ]
+     },
+     {
+      "url": "https://images.thdstatic.com/productImages/0c139764-6cda-43cd-a0db-bbcbde7201c6/svn/milwaukee-power-tool-combo-kits-3697-22-2953-20-e4_<SIZE>.jpg",
+      "type": "IMAGE",
+      "subType": "SECONDARY",
+      "sizes": [
+       "65",
+       "100",
+       "145",
+       "300",
+       "400",
+       "600",
+       "1000"
+      ]
+     }
+    ]
+   },
+   "pricing": {
+    "value": 399.0,
+    "original": 569.0,
+    "unitOfMeasure": "each",
+    "specialBuy": null,
+    "message": null,
+    "mapAboveOriginalPrice": null,
+    "alternatePriceDisplay": false,
+    "mapDetail": null,
+    "promotion": {
+     "type": null,
+     "promotionTag": null,
+     "dollarOff": 170.0,
+     "percentageOff": 30.0,
+     "savingsCenter": "Special Buys",
+     "savingsCenterPromos": "Special Buys",
+     "specialBuySavings": null,
+     "specialBuyDollarOff": null,
+     "specialBuyPercentageOff": null,
+     "experienceTag": null,
+     "subExperienceTag": null,
+     "description": null,
+     "dates": null
+    },
+    "alternate": {
+     "bulk": null,
+     "unit": {
+      "caseUnitOfMeasure": null,
+      "unitsOriginalPrice": null,
+      "unitsPerCase": 0.0,
+      "value": null
+     }
+    },
+    "clearance": null,
+    "conditionalPromotions": [
+     {
+      "promotionId": 890916,
+      "promotionTags": [
+       "BOGO"
+      ],
+      "skuItemGroup": "SRC-1",
+      "eligibilityCriteria": [
+       {
+        "itemGroup": "SRC-1",
+        "minThresholdVal": 1.0,
+        "thresholdType": "QUANTITY"
+       },
+       {
+        "itemGroup": "TGT-1",
+        "minThresholdVal": 1.0,
+        "thresholdType": "QUANTITY"
+       }
+      ],
+      "reward": {
+       "tiers": [
+        {
+         "minThresholdVal": 1.0,
+         "thresholdType": "QUANTITY",
+         "rewardVal": 5.0,
+         "rewardType": "PERCNTOFF",
+         "rewardLevel": null,
+         "maxAllowedRewardAmount": null
+        }
+       ]
+      }
+     }
+    ]
+   },
+   "reviews": {
+    "ratingsReviews": {
+     "averageRating": "4.7077",
+     "totalReviews": "3623"
+    }
+   },
+   "details": {
+    "collection": {
+     "collectionId": null,
+     "name": null,
+     "url": null
+    },
+    "highlights": null
+   },
+   "info": {
+    "isSponsored": null,
+    "productDepartment": "Power Tool Combo Kits",
+    "categoryHierarchy": [
+     "Tools",
+     "Power Tools",
+     "Power Tool Combo Kits"
+    ],
+    "quantityLimit": 3,
+    "returnable": "90-Day",
+    "totalNumberOfOptions": 36,
+    "isGenericProduct": null,
+    "hidePrice": false,
+    "ecoRebate": false,
+    "hasSubscription": false,
+    "isLiveGoodsProduct": false,
+    "isBuryProduct": true,
+    "productSubType": null,
+    "swatches": []
+   },
+   "badges": [
+    {
+     "name": "exclusive",
+     "label": "Exclusive"
+    }
+   ],
+   "availabilityType": {
+    "type": "Online",
+    "buyable": false,
+    "discontinued": false,
+    "status": false
+   },
+   "fulfillment": {
+    "fulfillmentOptions": null,
+    "anchorStoreStatus": false,
+    "anchorStoreStatusType": "DELETED",
+    "backordered": false,
+    "backorderedShipDate": null,
+    "excludedShipStates": "AK,GU,HI,PR,VI",
+    "bossExcludedShipStates": "AK,GU,HI,PR,VI",
+    "sthExcludedShipState": null,
+    "onlineStoreStatus": false,
+    "onlineStoreStatusType": null,
+    "seasonStatusEligible": null
+   },
+   "taxonomy": {
+    "breadCrumbs": []
+   },
+   "bundleFlag": null
+  },
+  {
+   "itemId": "342937996",
+   "identifiers": {
+    "itemId": "342937996",
+    "parentId": "342937996",
+    "productLabel": "M18 FUEL 18V Cordless Hammer Drill/Impact Combo Kit (2-Tool) w/5.0Ah Battery & SHOCKWAVE Bit Set (40-Pc)",
+    "brandName": "Milwaukee",
+    "modelNumber": "3697-22-48-11-1850-48-32-4022",
+    "storeSkuNumber": "1015914197",
+    "canonicalUrl": "/p/Milwaukee-M18-FUEL-18V-Cordless-Hammer-Drill-Impact-Combo-Kit-2-Tool-w-5-0Ah-Battery-SHOCKWAVE-Bit-Set-40-Pc-3697-22-48-11-1850-48-32-4022/342937996",
+    "productType": "MERCHANDISE",
+    "isSuperSku": false,
+    "specialOrderSku": null
+   },
+   "media": {
+    "images": [
+     {
+      "url": "https://images.thdstatic.com/productImages/0fed478c-a8aa-4946-b985-da85f6a667c1/svn/milwaukee-power-tool-combo-kits-3697-22-48-11-1850-48-32-4022-64_<SIZE>.jpg",
+      "type": "IMAGE",
+      "subType": "PRIMARY",
+      "sizes": [
+       "65",
+       "100",
+       "145",
+       "300",
+       "400",
+       "600",
+       "1000"
+      ]
+     },
+     {
+      "url": "https://images.thdstatic.com/productImages/4926b4c6-9983-4d8c-9fac-63c4a82f34da/svn/milwaukee-power-tool-combo-kits-3697-22-48-11-1850-48-32-4022-e4_<SIZE>.jpg",
+      "type": "IMAGE",
+      "subType": "SECONDARY",
+      "sizes": [
+       "65",
+       "100",
+       "145",
+       "300",
+       "400",
+       "600",
+       "1000"
+      ]
+     }
+    ]
+   },
+   "pricing": {
+    "value": 418.0,
+    "original": 589.0,
+    "unitOfMeasure": "each",
+    "specialBuy": null,
+    "message": null,
+    "mapAboveOriginalPrice": null,
+    "alternatePriceDisplay": false,
+    "mapDetail": null,
+    "promotion": {
+     "type": null,
+     "promotionTag": null,
+     "dollarOff": 171.0,
+     "percentageOff": 29.0,
+     "savingsCenter": "Special Buys",
+     "savingsCenterPromos": "Special Buys",
+     "specialBuySavings": null,
+     "specialBuyDollarOff": null,
+     "specialBuyPercentageOff": null,
+     "experienceTag": null,
+     "subExperienceTag": null,
+     "description": null,
+     "dates": null
+    },
+    "alternate": {
+     "bulk": null,
+     "unit": {
+      "caseUnitOfMeasure": null,
+      "unitsOriginalPrice": null,
+      "unitsPerCase": 0.0,
+      "value": null
+     }
+    },
+    "clearance": null,
+    "conditionalPromotions": [
+     {
+      "promotionId": null,
+      "promotionTags": null,
+      "skuItemGroup": null,
+      "eligibilityCriteria": null,
+      "reward": null
+     }
+    ]
+   },
+   "reviews": {
+    "ratingsReviews": {
+     "averageRating": "4.7203",
+     "totalReviews": "472"
+    }
+   },
+   "details": {
+    "collection": {
+     "collectionId": null,
+     "name": null,
+     "url": null
+    },
+    "highlights": null
+   },
+   "info": {
+    "isSponsored": null,
+    "productDepartment": "Power Tool Combo Kits",
+    "categoryHierarchy": [
+     "Tools",
+     "Power Tools",
+     "Power Tool Combo Kits"
+    ],
+    "quantityLimit": 3,
+    "returnable": "90-Day",
+    "totalNumberOfOptions": null,
+    "isGenericProduct": null,
+    "hidePrice": false,
+    "ecoRebate": false,
+    "hasSubscription": false,
+    "isLiveGoodsProduct": false,
+    "isBuryProduct": true,
+    "productSubType": null,
+    "swatches": []
+   },
+   "badges": [
+    {
+     "name": "new",
+     "label": "New"
+    },
+    {
+     "name": "exclusive",
+     "label": "Exclusive"
+    }
+   ],
+   "availabilityType": {
+    "type": "Online",
+    "buyable": false,
+    "discontinued": false,
+    "status": false
+   },
+   "fulfillment": {
+    "fulfillmentOptions": null,
+    "anchorStoreStatus": false,
+    "anchorStoreStatusType": "DELETED",
+    "backordered": false,
+    "backorderedShipDate": null,
+    "excludedShipStates": "AK,GU,HI,PR,VI",
+    "bossExcludedShipStates": "AK,GU,HI,PR,VI",
+    "sthExcludedShipState": null,
+    "onlineStoreStatus": false,
+    "onlineStoreStatusType": null,
+    "seasonStatusEligible": null
+   },
+   "taxonomy": {
+    "breadCrumbs": []
+   },
+   "bundleFlag": null
+  },
+  {
+   "itemId": "321632975",
+   "identifiers": {
+    "itemId": "321632975",
+    "parentId": "321632975",
+    "productLabel": "M18 FUEL 18-Volt Lithium-Ion Brushless Cordless Hammer Drill and Impact Driver Combo Kit (2-Tool) with Inflator",
+    "brandName": "Milwaukee",
+    "modelNumber": "3697-22-2848-20",
+    "storeSkuNumber": "1009474154",
+    "canonicalUrl": "/p/Milwaukee-M18-FUEL-18-Volt-Lithium-Ion-Brushless-Cordless-Hammer-Drill-and-Impact-Driver-Combo-Kit-2-Tool-with-Inflator-3697-22-2848-20/321632975",
+    "productType": "MERCHANDISE",
+    "isSuperSku": false,
+    "specialOrderSku": null
+   },
+   "media": {
+    "images": [
+     {
+      "url": "https://images.thdstatic.com/productImages/917ad024-ca1d-4271-ae5f-d9f41d920cde/svn/milwaukee-power-tool-combo-kits-3697-22-2848-20-64_<SIZE>.jpg",
+      "type": "IMAGE",
+      "subType": "PRIMARY",
+      "sizes": [
+       "65",
+       "100",
+       "145",
+       "300",
+       "400",
+       "600",
+       "1000"
+      ]
+     },
+     {
+      "url": "https://images.thdstatic.com/productImages/b9cda6ca-7f05-47d9-a18f-dabac1329dc7/svn/milwaukee-power-tool-combo-kits-3697-22-2848-20-e4_<SIZE>.jpg",
+      "type": "IMAGE",
+      "subType": "SECONDARY",
+      "sizes": [
+       "65",
+       "100",
+       "145",
+       "300",
+       "400",
+       "600",
+       "1000"
+      ]
+     }
+    ]
+   },
+   "pricing": {
+    "value": 578.0,
+    "original": 578.0,
+    "unitOfMeasure": "each",
+    "specialBuy": null,
+    "message": null,
+    "mapAboveOriginalPrice": null,
+    "alternatePriceDisplay": false,
+    "mapDetail": null,
+    "promotion": {
+     "type": null,
+     "promotionTag": null,
+     "dollarOff": 0.0,
+     "percentageOff": 0.0,
+     "savingsCenter": null,
+     "savingsCenterPromos": null,
+     "specialBuySavings": null,
+     "specialBuyDollarOff": null,
+     "specialBuyPercentageOff": null,
+     "experienceTag": null,
+     "subExperienceTag": null,
+     "description": null,
+     "dates": null
+    },
+    "alternate": {
+     "bulk": null,
+     "unit": {
+      "caseUnitOfMeasure": null,
+      "unitsOriginalPrice": null,
+      "unitsPerCase": 0.0,
+      "value": null
+     }
+    },
+    "clearance": null,
+    "conditionalPromotions": [
+     {
+      "promotionId": null,
+      "promotionTags": null,
+      "skuItemGroup": null,
+      "eligibilityCriteria": null,
+      "reward": null
+     }
+    ]
+   },
+   "reviews": {
+    "ratingsReviews": {
+     "averageRating": "4.7173",
+     "totalReviews": "2837"
+    }
+   },
+   "details": {
+    "collection": {
+     "collectionId": null,
+     "name": null,
+     "url": null
+    },
+    "highlights": null
+   },
+   "info": {
+    "isSponsored": null,
+    "productDepartment": "Power Tool Combo Kits",
+    "categoryHierarchy": [
+     "Tools",
+     "Power Tools",
+     "Power Tool Combo Kits"
+    ],
+    "quantityLimit": 5,
+    "returnable": "90-Day",
+    "totalNumberOfOptions": 36,
+    "isGenericProduct": null,
+    "hidePrice": false,
+    "ecoRebate": false,
+    "hasSubscription": false,
+    "isLiveGoodsProduct": false,
+    "isBuryProduct": null,
+    "productSubType": null,
+    "swatches": []
+   },
+   "badges": [
+    {
+     "name": "top rated",
+     "label": "Top Rated"
+    },
+    {
+     "name": "exclusive",
+     "label": "Exclusive"
+    }
+   ],
+   "availabilityType": {
+    "type": "Online",
+    "buyable": false,
+    "discontinued": false,
+    "status": false
+   },
+   "fulfillment": {
+    "fulfillmentOptions": [
+     {
+      "type": "pickup",
+      "fulfillable": true,
+      "services": [
+       {
+        "type": "boss",
+        "hasFreeShipping": false,
+        "freeDeliveryThreshold": null,
+        "deliveryCharge": null,
+        "totalCharge": null,
+        "deliveryTimeline": null,
+        "deliveryMessage": null,
+        "earliestDeliveryDate": null,
+        "deliveryDates": null,
+        "dynamicEta": null,
+        "locations": [
+         {
+          "isAnchor": true,
+          "locationId": "121",
+          "storeName": "Cumberland",
+          "storePhone": "(770)432-9930",
+          "state": "GA",
+          "distance": 0.0,
+          "type": "online",
+          "curbsidePickupFlag": null,
+          "isBuyInStoreCheckNearBy": null,
+          "inventory": {
+           "quantity": 6930,
+           "isInStock": true,
+           "isOutOfStock": false,
+           "isLimitedQuantity": false,
+           "isUnavailable": false,
+           "maxAllowedBopisQty": null,
+           "minAllowedBopisQty": null
+          }
+         }
+        ]
+       }
+      ]
+     },
+     {
+      "type": "delivery",
+      "fulfillable": true,
+      "services": [
+       {
+        "type": "sth",
+        "hasFreeShipping": true,
+        "freeDeliveryThreshold": null,
+        "deliveryCharge": null,
+        "totalCharge": 0.0,
+        "deliveryTimeline": "today",
+        "deliveryMessage": null,
+        "earliestDeliveryDate": null,
+        "deliveryDates": {
+         "startDate": "2026-10-14",
+         "endDate": "2026-10-14"
+        },
+        "dynamicEta": null,
+        "locations": [
+         {
+          "isAnchor": true,
+          "locationId": "8119",
+          "storeName": null,
+          "storePhone": null,
+          "state": null,
+          "distance": null,
+          "type": "online",
+          "curbsidePickupFlag": null,
+          "isBuyInStoreCheckNearBy": null,
+          "inventory": {
+           "quantity": 6930,
+           "isInStock": true,
+           "isOutOfStock": false,
+           "isLimitedQuantity": false,
+           "isUnavailable": false,
+           "maxAllowedBopisQty": null,
+           "minAllowedBopisQty": null
+          }
+         }
+        ]
+       }
+      ]
+     }
+    ],
+    "anchorStoreStatus": false,
+    "anchorStoreStatusType": "DELETED",
+    "backordered": false,
+    "backorderedShipDate": null,
+    "excludedShipStates": "AK,GU,HI,PR,VI",
+    "bossExcludedShipStates": "AK,GU,HI,PR,VI",
+    "sthExcludedShipState": null,
+    "onlineStoreStatus": false,
+    "onlineStoreStatusType": null,
+    "seasonStatusEligible": null
+   },
+   "taxonomy": {
+    "breadCrumbs": []
+   },
+   "bundleFlag": null
+  },
+  {
+   "itemId": "321033670",
+   "identifiers": {
+    "itemId": "321033670",
+    "parentId": "321033670",
+    "productLabel": "M18 FUEL 18-Volt Li-Ion Brushless Cordless Hammer Drill and Impact Driver Combo Kit (2-Tool) with 4 Batteries & Hackzall",
+    "brandName": "Milwaukee",
+    "modelNumber": "3697-22-48-11-1850-2719-20-48-11-1820",
+    "storeSkuNumber": null,
+    "canonicalUrl": "/p/Milwaukee-M18-FUEL-18-Volt-Li-Ion-Brushless-Cordless-Hammer-Drill-and-Impact-Driver-Combo-Kit-2-Tool-with-4-Batteries-Hackzall-3697-22-48-11-1850-2719-20-48-11-1820/321033670",
+    "productType": "MERCHANDISE",
+    "isSuperSku": false,
+    "specialOrderSku": null
+   },
+   "media": {
+    "images": [
+     {
+      "url": "https://images.thdstatic.com/productImages/bc72673a-85b6-416a-8aec-504fc181da14/svn/milwaukee-power-tool-combo-kits-3697-22-48-11-1850-2719-20-48-11-1820-64_<SIZE>.jpg",
+      "type": "IMAGE",
+      "subType": "PRIMARY",
+      "sizes": [
+       "65",
+       "100",
+       "145",
+       "300",
+       "400",
+       "600",
+       "1000"
+      ]
+     }
+    ]
+   },
+   "pricing": {
+    "value": 869.0,
+    "original": 869.0,
+    "unitOfMeasure": "each",
+    "specialBuy": null,
+    "message": null,
+    "mapAboveOriginalPrice": null,
+    "alternatePriceDisplay": false,
+    "mapDetail": null,
+    "promotion": {
+     "type": null,
+     "promotionTag": null,
+     "dollarOff": 0.0,
+     "percentageOff": 0.0,
+     "savingsCenter": null,
+     "savingsCenterPromos": null,
+     "specialBuySavings": null,
+     "specialBuyDollarOff": null,
+     "specialBuyPercentageOff": null,
+     "experienceTag": null,
+     "subExperienceTag": null,
+     "description": null,
+     "dates": null
+    },
+    "alternate": {
+     "bulk": null,
+     "unit": {
+      "caseUnitOfMeasure": null,
+      "unitsOriginalPrice": null,
+      "unitsPerCase": 0.0,
+      "value": null
+     }
+    },
+    "clearance": null,
+    "conditionalPromotions": [
+     {
+      "promotionId": null,
+      "promotionTags": null,
+      "skuItemGroup": null,
+      "eligibilityCriteria": null,
+      "reward": null
+     }
+    ]
+   },
+   "reviews": {
+    "ratingsReviews": {
+     "averageRating": "5.0",
+     "totalReviews": "1"
+    }
+   },
+   "details": {
+    "collection": {
+     "collectionId": null,
+     "name": null,
+     "url": null
+    },
+    "highlights": null
+   },
+   "info": {
+    "isSponsored": null,
+    "productDepartment": "Power Tool Combo Kits",
+    "categoryHierarchy": [
+     "Tools",
+     "Power Tools",
+     "Power Tool Combo Kits"
+    ],
+    "quantityLimit": 5,
+    "returnable": "90-Day",
+    "totalNumberOfOptions": 1,
+    "isGenericProduct": null,
+    "hidePrice": false,
+    "ecoRebate": false,
+    "hasSubscription": false,
+    "isLiveGoodsProduct": false,
+    "isBuryProduct": true,
+    "productSubType": null,
+    "swatches": []
+   },
+   "badges": [
+    {
+     "name": "exclusive",
+     "label": "Exclusive"
+    }
+   ],
+   "availabilityType": {
+    "type": "Online",
+    "buyable": false,
+    "discontinued": false,
+    "status": false
+   },
+   "fulfillment": {
+    "fulfillmentOptions": null,
+    "anchorStoreStatus": false,
+    "anchorStoreStatusType": "DELETED",
+    "backordered": false,
+    "backorderedShipDate": null,
+    "excludedShipStates": "AK,GU,HI,PR,VI",
+    "bossExcludedShipStates": "AK,GU,HI,PR,VI",
+    "sthExcludedShipState": null,
+    "onlineStoreStatus": false,
+    "onlineStoreStatusType": null,
+    "seasonStatusEligible": null
+   },
+   "taxonomy": {
+    "breadCrumbs": []
+   },
+   "bundleFlag": null
+  }
+ ]
+}

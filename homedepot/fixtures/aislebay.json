@@ -1,0 +1,14 @@
+{
+ "storeSkus": [
+  {
+   "storeNumber": "0121",
+   "storeSkuId": "1007850144",
+   "aisleBayInfo": {
+    "aisle": "15",
+    "bay": "008",
+    "invLocDesc": "Aisle 15, Bay 8",
+    "invLocDescFriendly": "Aisle 15 - Bay 8"
+   }
+  }
+ ]
+}

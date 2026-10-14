@@ -1,423 +1,148 @@
-# Home Depot Scraper API
+# 🛠️ Homedepot Scraper
 
-Search Home Depot products, get full product details with pricing, specs, store availability, and delivery options — all via a simple REST API. 25 free requests/month.
+Homedepot Scraper is a **free and open-source** scraper that gets you **unlimited** detailed Home Depot data for free.
 
-## Key Features
+## ✨ What Can I Get?
 
-- Search Home Depot products, get full product details with pricing, specs, availability, and store pickup info — all via 1 API.
-- 25 free queries per month. No credit card required.
+- 📦 **Full details on 1M+ products** — price, promos, specs, images, videos & UPC
+- 🔍 **Search & browse every department** — sort and filter by brand, price, rating & pickup
+- 🏬 **Live stock at the store near you** — quantity, aisle & bay, pickup & delivery
+- ⭐ **Reviews, Q&A & daily deals** — star histograms, brand answers, Special Buys
 
-Here's a sample response for a **product search results page**:
-```json
-{
-  "item_id": "334894519",
-  "name": "Benning 52 in. Indoor Matte Black Downrod Mount Ceiling Fan with Adjustable White Light LED and Remote Control Included",
-  "url": "https://apionline.homedepot.com/p/Hampton-Bay-Benning-52-in-Indoor-Matte-Black-Downrod-Mount-Ceiling-Fan-with-Adjustable-White-Light-LED-and-Remote-Control-Included-85251/334894519",
-  "model_number": "85251",
-  "pricing": {
-    "current_price": 99.0
-  },
-  "avg_rating": 4.5444,
-  "review_count": 169,
-  "brand": "Hampton Bay",
-  "delivery": {
-    "is_free": true
-  },
-  "pickup": {
-    "stock_count": 24,
-    "store": "Bangor"
-  }
-}
-```
-## ▶️ Video Tutorial
-
-Watch the complete API walkthrough:
-
-[![HomeDepot Scraper API Walkthrough](https://raw.githubusercontent.com/omkarcloud/homedepot-scraper/master/homedepot-scraper-youtube-video-preview.png)](https://www.youtube.com/watch?v=AxgN35LwfW4)
-
-## Get API Key
-
-Create an account at [omkar.cloud](https://www.omkar.cloud/auth/sign-up?redirect=/api-key) to get your API key.
-
-It takes just 2 minutes to sign up. You get 25 free requests every month for detailed Home Depot data.
-
-This is genuinely the best Home Depot Scraper API out there. Your search ends here.
-
-
-## Quick Start
-
-```bash
-curl -X GET "https://homedepot-scraper.omkar.cloud/homedepot/search?search_term=Ceiling%20fan" \
-  -H "API-Key: YOUR_API_KEY"
-```
+## 🧰 Example: A Full Home Depot Product
 
 ```json
 {
-  "count": 8536,
-  "per_page": 24,
-  "current_page": 1,
-  "total_pages": 356,
-  "products": [
-    {
-      "item_id": "334894519",
-      "name": "Benning 52 in. Indoor Matte Black Downrod Mount Ceiling Fan with Adjustable White Light LED and Remote Control Included",
-      "model_number": "85251",
-      "pricing": {
-        "current_price": 99.0
-      },
-      "avg_rating": 4.5444,
-      "review_count": 169,
-      "brand": "Hampton Bay",
-      "delivery": {
-        "is_free": true
-      },
-      "pickup": {
-        "stock_count": 24,
-        "store": "Bangor"
-      }
-    }
-  ]
-}
-```
-
-## Quick Start (Python)
-
-```bash
-pip install requests
-```
-
-```python
-import requests
-
-# Search for products
-response = requests.get(
-    "https://homedepot-scraper.omkar.cloud/homedepot/search",
-    params={"search_term": "Ceiling fan"},
-    headers={"API-Key": "YOUR_API_KEY"}
-)
-
-print(response.json())
-```
-
-
-## API Reference
-
-### Find Products
-
-```
-GET https://homedepot-scraper.omkar.cloud/homedepot/search
-```
-
-#### Parameters
-
-| Parameter | Required | Default | Description |
-|-----------|----------|---------|-------------|
-| `search_term` | Yes | — | Search keyword. E.g., `Ceiling fan`, `Power drill`. |
-| `page` | No | `1` | Page number. |
-| `sort_by` | No | `best_match` | `best_match`, `top_sellers`, `price_low_to_high`, `price_high_to_low`, `top_rated` |
-| `min_price` | No | — | Minimum price filter in dollars. |
-| `max_price` | No | — | Maximum price filter in dollars. |
-
-#### Example
-
-```python
-import requests
-
-response = requests.get(
-    "https://homedepot-scraper.omkar.cloud/homedepot/search",
-    params={"search_term": "Ceiling fan", "sort_by": "top_rated", "min_price": 50, "max_price": 300},
-    headers={"API-Key": "YOUR_API_KEY"}
-)
-
-print(response.json())
-```
-
-#### Response
-
-<details>
-<summary>Sample Response (click to expand)</summary>
-
-```json
-{
-  "count": 8536,
-  "per_page": 24,
-  "current_page": 1,
-  "total_pages": 356,
-  "next": "https://homedepot-scraper.omkar.cloud/homedepot/search?search_term=Ceiling+fan&page=2",
-  "previous": null,
-  "products": [
-    {
-      "item_id": "334894519",
-      "name": "Benning 52 in. Indoor Matte Black Downrod Mount Ceiling Fan with Adjustable White Light LED and Remote Control Included",
-      "url": "https://apionline.homedepot.com/p/Hampton-Bay-Benning-52-in-Indoor-Matte-Black-Downrod-Mount-Ceiling-Fan-with-Adjustable-White-Light-LED-and-Remote-Control-Included-85251/334894519",
-      "model_number": "85251",
-      "images": [
-        ["https://images.thdstatic.com/productImages/.../85251-64_65.jpg", "...64_1000.jpg"]
-      ],
-      "pricing": {
-        "current_price": 99.0
-      },
-      "avg_rating": 4.5444,
-      "review_count": 169,
-      "brand": "Hampton Bay",
-      "variants": [
-        {
-          "label": "Matte Black",
-          "url": "https://apionline.homedepot.com/p/.../334894519",
-          "image": "https://images.thdstatic.com/catalog/swatchImages/35/95/..._35.jpg"
-        },
-        {
-          "label": "Brushed Nickel",
-          "url": "https://apionline.homedepot.com/p/.../334894513",
-          "image": "https://images.thdstatic.com/catalog/swatchImages/35/39/..._35.jpg"
-        }
-      ],
-      "delivery": {
-        "is_free": true,
-        "meets_free_threshold": false
-      },
-      "pickup": {
-        "stock_count": 24,
-        "store": "Bangor",
-        "distance": 0
-      }
-    }
-  ]
-}
-```
-
-</details>
-
----
-
-### Product Overview
-
-```
-GET https://homedepot-scraper.omkar.cloud/homedepot/product
-```
-
-#### Parameters
-
-| Parameter | Required | Default | Description |
-|-----------|----------|---------|-------------|
-| `product_id` | Yes | — | Home Depot product ID. E.g., `321244251`. |
-
-#### Example
-
-```python
-import requests
-
-response = requests.get(
-    "https://homedepot-scraper.omkar.cloud/homedepot/product",
-    params={"product_id": "321244251"},
-    headers={"API-Key": "YOUR_API_KEY"}
-)
-
-print(response.json())
-```
-
-#### Response Fields
-
-Returns 30+ fields including pricing, description, highlights, UPC, model number, SKU, brand info, category breadcrumbs, full specifications grouped by category, documents, and real-time store availability with delivery options.
-
-<details>
-<summary>Sample Response (click to expand)</summary>
-
-```json
-{
-  "item_id": "321244251",
-  "name": "Mena 54 in. White Color Changing Integrated LED Indoor/Outdoor Matte Black Ceiling Fan with Light Kit and Remote Control",
-  "description": "Upgrade your indoor or covered outdoor living spaces with the versatile Hampton Bay Mena 54 in. Ceiling Fan...",
-  "url": "https://www.homedepot.com/p/Hampton-Bay-Mena-54-in-White-Color-Changing-Integrated-LED-Indoor-Outdoor-Matte-Black-Ceiling-Fan-with-Light-Kit-and-Remote-Control-99919/321244251",
-  "upc": "082392922191",
-  "model_number": "99919",
-  "sku": "1005919921",
-  "brand": {
-    "name": "Hampton Bay",
-    "url": "https://www.homedepot.com/b/Lighting-Ceiling-Fans-Ceiling-Fans-With-Lights/Hampton-Bay/N-5yc1vZcjnuZp4"
+  "id": "204279858",
+  "name": "20V MAX Cordless 1/2 in. Drill/Driver, (2) 20V 1.3Ah Batteries, Charger and Bag",
+  "link": "https://www.homedepot.com/p/DEWALT-20V-MAX-Cordless-1-2-in-Drill-Driver-2-20V-1-3Ah-Batteries-Charger-and-Bag-DCD771C2/204279858",
+  "brand": "DEWALT",
+  "model_number": "DCD771C2",
+  "upc": "885911325905",
+  "image": "https://images.thdstatic.com/productImages/d00a1384-69ea-4f77-a5c3-c0ac8fd531fa/svn/dewalt-power-drills-dcd771c2-64_1000.jpg",
+  "rating": { "average": 4.62, "count": 11404 },
+  "pricing": { "currency": "USD", "price": 119.0, "is_special_buy": false, "is_clearance": false },
+  "badges": ["Top Rated"],
+  "highlights": ["Includes Drill Driver & Tool Bag", "(2) 20-Volt Batteries 1.3Ah & Charger"],
+  "fulfillment": {
+    "pickup": { "is_available": false, "quantity": 0, "is_ship_to_store_available": true },
+    "delivery": { "is_available": true, "online_quantity": 534 }
   },
-  "avg_rating": 4.2676,
-  "review_count": 1151,
-  "saves_count": 0,
-  "pricing": {
-    "current_price": 169.0
-  },
-  "min_order_qty": 0,
-  "highlights": [
-    "Weather resistant fan for indoor/covered outdoor patios/garages",
-    "Customizable integrated LED light kit - energy-efficient",
-    "Quickfit installs 50% faster compared to traditional fans"
-  ],
-  "breadcrumbs": [
-    {
-      "label": "Lighting",
-      "url": "https://www.homedepot.com/b/Lighting/N-5yc1vZbvn5"
-    },
-    {
-      "label": "Ceiling Fans",
-      "url": "https://www.homedepot.com/b/Lighting-Ceiling-Fans/N-5yc1vZbvlq"
-    },
-    {
-      "label": "Ceiling Fans With Lights",
-      "url": "https://www.homedepot.com/b/Lighting-Ceiling-Fans-Ceiling-Fans-With-Lights/N-5yc1vZcjnu"
-    }
-  ],
   "specifications": [
-    {
-      "group": "Details",
-      "attributes": [
-        {
-          "label": "Actual Color Temperature (K)",
-          "detail": "2700,3000,5000"
-        },
-        {
-          "label": "Blade Color",
-          "detail": "Matte Black"
-        }
-      ]
-    },
-    {
-      "group": "Warranty / Certifications",
-      "attributes": [
-        {
-          "label": "Certifications and Listings",
-          "detail": "FCC Listed,UL Listed"
-        },
-        {
-          "label": "Manufacturer Warranty",
-          "detail": "Lifetime Motor Warranty"
-        }
-      ]
-    },
-    {
-      "group": "Dimensions",
-      "attributes": [
-        {
-          "label": "Assembled Height (in.)",
-          "detail": "16.80 in"
-        },
-        {
-          "label": "Assembled Weight (lbs.)",
-          "detail": "18"
-        }
-      ]
-    }
+    { "group": "Details", "specs": [{ "name": "Battery Voltage (V)", "value": "20V" }, { "name": "Maximum Speed (RPM)", "value": "1500 RPM" }] }
   ],
-  "availability": {
-    "store_stock": 7,
-    "store_name": "Bangor",
-    "options": [
-      {
-        "method": "Ship to Home",
-        "label": "Get it by",
-        "estimated_dates": ["May 14", "May 14"],
-        "cost_note": "Free delivery",
-        "stock": 245
-      },
-      {
-        "method": "Schedule delivery",
-        "label": "As soon as",
-        "estimated_dates": ["Tue, May 12"],
-        "cost_note": "0.0",
-        "stock": 7
-      },
-      {
-        "method": "Store Pickup",
-        "label": "Pickup",
-        "estimated_dates": ["Today"],
-        "cost_note": "FREE",
-        "stock": 7
-      }
-    ]
+  "key_features": [{ "name": "Chuck Size (In.)", "value": "1/2 In." }],
+  "categories": ["Tools", "Power Tools", "Drills", "Power Drills"],
+  "store": { "id": "121", "name": "Cumberland", "city": "Atlanta", "state": "GA" },
+  "return_policy": "90-Day"
+}
+```
+
+*Trimmed for readability.*
+
+## 🚀 Unlimited Free Home Depot Data — Get It in 60 Seconds
+
+1️⃣ Clone and install:
+```bash
+git clone https://github.com/omkarcloud/homedepot-scraper
+cd homedepot-scraper
+python -m pip install -r requirements.txt
+```
+
+2️⃣ Start the API:
+```bash
+python run.py
+```
+
+The first request opens Google Chrome once, for a few seconds, to pass Home Depot's bot check. Every request after that is plain HTTP. You need Google Chrome installed, or use `docker compose up`.
+
+3️⃣ Get your first data:
+```bash
+curl "http://localhost:8000/products/details?product=204279858"
+```
+
+```json
+{
+  "product": {
+    "id": "204279858",
+    "name": "20V MAX Cordless 1/2 in. Drill/Driver, (2) 20V 1.3Ah Batteries, Charger and Bag",
+    "link": "https://www.homedepot.com/p/DEWALT-20V-MAX-Cordless-1-2-in-Drill-Driver-2-20V-1-3Ah-Batteries-Charger-and-Bag-DCD771C2/204279858",
+    "brand": "DEWALT",
+    "model_number": "DCD771C2",
+    "rating": { "average": 4.62, "count": 11404 },
+    "pricing": { "currency": "USD", "price": 119.0 },
+    "fulfillment": {
+      "pickup": { "is_available": false, "quantity": 0, "is_ship_to_store_available": true },
+      "delivery": { "is_available": true, "online_quantity": 534 }
+    },
+    "categories": ["Tools", "Power Tools", "Drills", "Power Drills"],
+    "quantity_limit": 5,
+    "return_policy": "90-Day",
+    "store": { "id": "121", "name": "Cumberland", "city": "Atlanta", "state": "GA", "zip": "30339" }
   }
 }
 ```
 
-</details>
+All 12 endpoints are now live at `http://localhost:8000`.
 
-## Error Handling
+## 📚 Endpoints
+
+12 endpoints cover everything you need.
+
+| Endpoint | Path | Returns |
+|---|---|---|
+| Product Details | `/products/details` | Everything about one product in a single call |
+| Search Products | `/products/search` | 24 products per page; sort and filter by brand, price, rating |
+| Lookup Product | `/products/lookup` | Exact product from a model number, UPC or store SKU |
+| Bulk Products | `/products/bulk` | Up to 25 products with price and stock in one call |
+| Product Availability | `/products/availability` | Stock, aisle and bay at the stores near you |
+| Product Reviews | `/products/reviews` | Reviews with star histogram, photos and brand replies |
+| Product Questions | `/products/questions` | Customer questions with every answer, brand answers included |
+| Departments | `/categories` | All top-level departments with their category codes |
+| Category Products | `/categories/products` | Any category or brand page, with filters and subcategories |
+| Search Stores / Store Details | `/stores/search`, `/stores/details` | Address, hours, phones and services for every store |
+| Daily Deals | `/deals` | Today's Special Buy deals, priced for your store |
+
+## 🔍 Exploring Parameters
+
+The same API is published on RapidAPI, and its playground is the easiest place to try parameters and see raw responses. Once a request looks right, run it locally for **unlimited free** data.
+
+1. [Subscribe to the free plan](https://rapidapi.com/OmkarCloud/api/best-homedepot-scraper-free-1000-calls/pricing) — 1,000 calls/month, no credit card.
+2. [Try the endpoints in the playground](https://rapidapi.com/OmkarCloud/api/best-homedepot-scraper-free-1000-calls/playground) — every param is pre-filled, so you see real data in one click.
+3. Copy the generated code and replace `https://best-homedepot-scraper-free-1000-calls.p.rapidapi.com` with `http://localhost:8000`. It will now run against your local API.
 
 ```python
-response = requests.get(
-    "https://homedepot-scraper.omkar.cloud/homedepot/search",
-    params={"search_term": "Ceiling fan"},
-    headers={"API-Key": "YOUR_API_KEY"}
-)
+import requests
 
-if response.status_code == 200:
-    data = response.json()
-elif response.status_code == 401:
-    # Invalid API key
-    pass
-elif response.status_code == 429:
-    # Rate limit exceeded
-    pass
+# generated by the playground, host swapped for the local API
+response = requests.get(
+    "http://localhost:8000/products/details",
+    params={"product": "204279858"},
+)
+print(response.json())
 ```
 
-## FAQs
+## 💬 Have Questions? We Have Answers.
 
-### What data does the API return?
+You're a developer — we know how hard completing a project can be. So we offer full support: just message us and we'll reply ✅ with a solution within 1 working day.
 
-**Find Products** returns per product:
-- Product name, item ID, model number, URL
-- Pricing (current price, original price, discount amount, discount percentage)
-- Star rating, review count
-- Product images (multiple resolutions)
-- Brand name
-- Color and style variants with swatch images
-- Delivery info (free shipping, threshold status)
-- Store pickup (stock count, store name, distance)
-- Badges (best seller, special offers)
+[![Message Us on WhatsApp about Homedepot Scraper](https://raw.githubusercontent.com/omkarcloud/assets/master/images/whatsapp-us.png)](https://api.whatsapp.com/send?phone=918178804274&text=I%20need%20help%20using%20the%20Homedepot%20Scraper%20API.)
 
-**Product Overview** returns 30+ fields including:
-- Full product description, highlights, feature bullets
-- UPC, model number, SKU
-- Brand name and brand URL
-- Pricing with unit price, bulk pricing, and promotions
-- Category breadcrumbs
-- Full specifications grouped by category (dimensions, warranty, details)
-- Documents (installation guides, manuals)
-- Real-time availability: store stock, ship-to-home, scheduled delivery, and store pickup with dates and stock levels
+[![Ask Us by Email about Homedepot Scraper](https://raw.githubusercontent.com/omkarcloud/assets/master/images/ask-on-email.png)](mailto:happy.to.help@omkar.cloud?subject=Help%20with%20Homedepot%20Scraper%20API&body=I%20need%20help%20using%20the%20Homedepot%20Scraper%20API.)
 
-All in structured JSON. Ready to use in your app.
+## ⚡ Popular Scrapers by Omkar Cloud
 
-### How accurate is the data?
+- [**Google Maps Scraper (3,100+ GitHub Stars)**](https://github.com/omkarcloud/google-maps-scraper) — type "dentists in New York", get every business as a ready-to-call lead list: phones, emails, websites & reviews. Up to 100K free leads/month.
+- [**G2 Scraper**](https://www.omkar.cloud/tools/g2-scraper) — G2 product details, ratings & AI-found contacts
+- [**Website Email Contact Scraper**](https://www.omkar.cloud/tools/website-email-contact-scraper) — emails, phones & socials from any website
+- [**AliExpress Scraper**](https://www.omkar.cloud/tools/aliexpress-scraper) — live product details, SKU variants, stock & shipping
+- [**Booking Scraper**](https://www.omkar.cloud/tools/booking-scraper) — Booking.com hotels: prices, ratings, rooms & amenities
+- [**Etsy Scraper**](https://www.omkar.cloud/tools/etsy-scraper) — Etsy products: prices, discounts, shops & variations
 
-Data is pulled from Home Depot in real time. Every API call fetches live data — not cached or stale results. Prices, availability, ratings, and stock levels reflect what's on Home Depot right now.
+## ⭐ Love It? [Star It ⭐!](https://github.com/omkarcloud/homedepot-scraper)
 
-### How do I find a product's ID?
+Star the repo ⭐ and become my star hero!
 
-The product ID is the number at the end of any Home Depot product URL.
+It's just 1 click, but it means the world to me.
 
-For example, in `homedepot.com/p/Hampton-Bay-.../321244251`, the product ID is `321244251`. You can also get product IDs from the Find Products search results — every result includes the `item_id` field.
-
-### Does the API return real-time store availability?
-
-Yes. The Product Overview endpoint returns live store stock levels, ship-to-home availability with estimated delivery dates, scheduled delivery options, and store pickup status. You get the exact stock count and the nearest store name.
-
-### Can I filter search results by price or sort order?
-
-Yes. The Find Products endpoint supports `min_price`, `max_price`, and `sort_by` parameters.
-
-Sort by `top_sellers`, `price_low_to_high`, `price_high_to_low`, `top_rated`, or `best_match`. Combine with price range filters to narrow results exactly how you need them.
-
-### What kind of specifications does Product Overview return?
-
-Full specs, grouped by category. Dimensions, weight, warranty info, certifications, material details, color, and every other spec listed on the product page. Each specification group contains labeled attributes with their values — the same data you'd see in the "Specifications" tab on Home Depot's site.
-
-## Rate Limits
-
-| Plan | Price | Requests/Month |
-|------|-------|----------------|
-| Free | $0 | 25 |
-| Starter | $16 | 800 |
-| Grow | $48 | 2,400 |
-| Scale | $148 | 7,400 |
-
-## Questions? We have answers.
-
-Reach out anytime. We will solve your query within 1 working day.
-
-[![Contact Us on WhatsApp about Home Depot Scraper](https://raw.githubusercontent.com/omkarcloud/assets/master/images/whatsapp-us.png)](https://api.whatsapp.com/send?phone=918178804274&text=I%20have%20a%20question%20about%20the%20Home%20Depot%20Scraper%20API.)
-
-[![Contact Us on Email about Home Depot Scraper](https://raw.githubusercontent.com/omkarcloud/assets/master/images/ask-on-email.png)](mailto:happy.to.help@omkar.cloud?subject=Home%20Depot%20Scraper%20API%20Question)
+[![Star us on GitHub](https://raw.githubusercontent.com/omkarcloud/google-maps-scraper/master/screenshots/star-us.png)](https://github.com/omkarcloud/homedepot-scraper)

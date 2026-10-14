@@ -1,0 +1,112 @@
+@baseUrl = http://127.0.0.1:6002
+# @baseUrl = https://homedepot-scraper.omkar.cloud
+
+# ========================================
+# PRODUCTS
+# ========================================
+
+### Search (default store #121 Cumberland, Atlanta GA)
+GET {{baseUrl}}/homedepot/products/search?query=milwaukee+drill
+
+### Search — page 2, cheapest first, $100-$300
+GET {{baseUrl}}/homedepot/products/search?query=milwaukee+drill&page=2&sort=price_asc&min_price=100&max_price=300
+
+### Search — brands + 4 stars & up + in stock for pickup today, priced at the store nearest ZIP 78701
+GET {{baseUrl}}/homedepot/products/search?query=drill&brands=DEWALT,Makita&min_rating=4&pickup_today=true&store=78701
+
+### Search — a keyword the site redirects to a category ("hammer" -> Hammers)
+GET {{baseUrl}}/homedepot/products/search?query=hammer&store=6542
+
+### Lookup by model number / UPC / store SKU / internet number
+GET {{baseUrl}}/homedepot/products/lookup?query=3697-22
+
+### Lookup by UPC
+GET {{baseUrl}}/homedepot/products/lookup?query=045242637744
+
+### Product details (by item id)
+GET {{baseUrl}}/homedepot/products/details?product=320326787
+
+### Product details (by link, priced at store #6542)
+GET {{baseUrl}}/homedepot/products/details?product=https://www.homedepot.com/p/Milwaukee-M18-FUEL-18V-Lithium-Ion-Brushless-Cordless-Hammer-Drill-and-Impact-Driver-Combo-Kit-2-Tool-with-2-Batteries-3697-22/320326787&store=6542
+
+### Bulk (up to 25 ids / links)
+GET {{baseUrl}}/homedepot/products/bulk?products=320326787,325403100,325479354
+
+### Availability — stock + aisle / bay at the 3 stores nearest Austin, TX
+GET {{baseUrl}}/homedepot/products/availability?product=320326787&location=Austin,+TX&limit=3
+
+### Availability — stores nearest a ZIP
+GET {{baseUrl}}/homedepot/products/availability?product=320326787&location=30339
+
+### Reviews (10 a page, most helpful first) with the rating histogram
+GET {{baseUrl}}/homedepot/products/reviews?product=320326787
+
+### Reviews — 1-2 star verified purchases, lowest first, page 2
+GET {{baseUrl}}/homedepot/products/reviews?product=320326787&ratings=1,2&verified_only=true&sort=lowest_rating&page=2
+
+### Reviews — with photos, mentioning "battery"
+GET {{baseUrl}}/homedepot/products/reviews?product=320326787&sort=with_photos&search=battery
+
+### Questions & answers (oldest first, 5 a page)
+GET {{baseUrl}}/homedepot/products/questions?product=320326787&sort=oldest&limit=5
+
+### Questions mentioning "warranty"
+GET {{baseUrl}}/homedepot/products/questions?product=320326787&search=warranty
+
+# ========================================
+# CATEGORIES
+# ========================================
+
+### Departments (top-level categories with their browse codes)
+GET {{baseUrl}}/homedepot/categories
+
+### Category products (Drills) with facets and child categories
+GET {{baseUrl}}/homedepot/categories/products?category=N-5yc1vZc27f
+
+### Category products by link, filtered + sorted
+GET {{baseUrl}}/homedepot/categories/products?category=https://www.homedepot.com/b/Tools-Power-Tools-Drills/N-5yc1vZc27f&brands=Milwaukee&min_rating=4&sort=top_rated&page=2
+
+### Brand page (Milwaukee)
+GET {{baseUrl}}/homedepot/categories/products?category=N-5yc1vZzv
+
+# ========================================
+# STORES
+# ========================================
+
+### Stores near a ZIP
+GET {{baseUrl}}/homedepot/stores/search?location=30339
+
+### Stores near a city, with tool rental + propane
+GET {{baseUrl}}/homedepot/stores/search?location=Austin,+TX&limit=3&services=tool_rental,propane
+
+### Stores near coordinates
+GET {{baseUrl}}/homedepot/stores/search?location=40.7128,-74.0060&limit=2
+
+### Store details (by number)
+GET {{baseUrl}}/homedepot/stores/details?store=121
+
+### Store details (nearest to a ZIP)
+GET {{baseUrl}}/homedepot/stores/details?store=78701
+
+# ========================================
+# DEALS
+# ========================================
+
+### Today's Special Buy of the Day deals (priced at the default store)
+GET {{baseUrl}}/homedepot/deals
+
+### Deals priced at a store
+GET {{baseUrl}}/homedepot/deals?store=6542
+
+# ========================================
+# ERRORS
+# ========================================
+
+### 404 unknown product
+GET {{baseUrl}}/homedepot/products/details?product=999999999
+
+### 400 other site
+GET {{baseUrl}}/homedepot/products/details?product=https://www.lowes.com/pd/1
+
+### 400 bad sort
+GET {{baseUrl}}/homedepot/products/search?query=drill&sort=cheapest

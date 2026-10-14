@@ -1,0 +1,320 @@
+{
+ "stores": [
+  {
+   "storeId": "0121",
+   "name": "Cumberland",
+   "storeType": "retail",
+   "address": {
+    "street": "2450 Cumberland Pkwy",
+    "city": "Atlanta",
+    "state": "GA",
+    "postalCode": "30339",
+    "country": "US"
+   },
+   "coordinates": {
+    "lat": 33.862126,
+    "lng": -84.476161
+   },
+   "distance": "1.27",
+   "phone": "(770)432-9930",
+   "proDeskPhone": "(770)801-6415",
+   "toolRentalPhone": "(770)801-6400",
+   "storeDetailsPageLink": "/l/Cumberland/GA/Atlanta/30339/121",
+   "services": {
+    "loadNGo": true,
+    "propane": true,
+    "toolRental": true,
+    "penske": true,
+    "keyCutting": true,
+    "wiFi": true,
+    "applianceShowroom": false,
+    "expandedFlooringShowroom": true,
+    "largeEquipment": true,
+    "kitchenShowroom": true
+   },
+   "storeHours": {
+    "monday": {
+     "open": "6:00",
+     "close": "22:00"
+    },
+    "tuesday": {
+     "open": "6:00",
+     "close": "22:00"
+    },
+    "wednesday": {
+     "open": "6:00",
+     "close": "22:00"
+    },
+    "thursday": {
+     "open": "6:00",
+     "close": "22:00"
+    },
+    "friday": {
+     "open": "6:00",
+     "close": "22:00"
+    },
+    "saturday": {
+     "open": "6:00",
+     "close": "22:00"
+    },
+    "sunday": {
+     "open": "8:00",
+     "close": "20:00"
+    }
+   }
+  },
+  {
+   "storeId": "6986",
+   "name": "Buckhead",
+   "storeType": "retail",
+   "address": {
+    "street": "2525 Piedmont Road Ne",
+    "city": "Atlanta",
+    "state": "GA",
+    "postalCode": "30324",
+    "country": "US"
+   },
+   "coordinates": {
+    "lat": 33.824174,
+    "lng": -84.36521
+   },
+   "distance": "6.82",
+   "phone": "(404)841-5608",
+   "proDeskPhone": "(404)841-2002",
+   "toolRentalPhone": "(404)841-2008",
+   "storeDetailsPageLink": "/l/Buckhead/GA/Atlanta/30324/6986",
+   "services": {
+    "loadNGo": true,
+    "propane": true,
+    "toolRental": true,
+    "penske": true,
+    "keyCutting": true,
+    "wiFi": true,
+    "applianceShowroom": false,
+    "expandedFlooringShowroom": true,
+    "largeEquipment": true,
+    "kitchenShowroom": true
+   },
+   "storeHours": {
+    "monday": {
+     "open": "6:00",
+     "close": "22:00"
+    },
+    "tuesday": {
+     "open": "6:00",
+     "close": "22:00"
+    },
+    "wednesday": {
+     "open": "6:00",
+     "close": "22:00"
+    },
+    "thursday": {
+     "open": "6:00",
+     "close": "22:00"
+    },
+    "friday": {
+     "open": "6:00",
+     "close": "22:00"
+    },
+    "saturday": {
+     "open": "6:00",
+     "close": "22:00"
+    },
+    "sunday": {
+     "open": "8:00",
+     "close": "20:00"
+    }
+   }
+  },
+  {
+   "storeId": "0154",
+   "name": "Sandy Springs",
+   "storeType": "retail",
+   "address": {
+    "street": "6400 Peachtree Dunwoody Rd",
+    "city": "Sandy Springs",
+    "state": "GA",
+    "postalCode": "30328",
+    "country": "US"
+   },
+   "coordinates": {
+    "lat": 33.929648,
+    "lng": -84.355355
+   },
+   "distance": "7.22",
+   "phone": "(770)804-8065",
+   "proDeskPhone": "(770)677-1704",
+   "toolRentalPhone": "(770)677-1710",
+   "storeDetailsPageLink": "/l/Sandy-Springs/GA/Sandy-Springs/30328/154",
+   "services": {
+    "loadNGo": true,
+    "propane": true,
+    "toolRental": true,
+    "penske": true,
+    "keyCutting": true,
+    "wiFi": true,
+    "applianceShowroom": false,
+    "expandedFlooringShowroom": false,
+    "largeEquipment": true,
+    "kitchenShowroom": true
+   },
+   "storeHours": {
+    "monday": {
+     "open": "6:00",
+     "close": "22:00"
+    },
+    "tuesday": {
+     "open": "6:00",
+     "close": "22:00"
+    },
+    "wednesday": {
+     "open": "6:00",
+     "close": "22:00"
+    },
+    "thursday": {
+     "open": "6:00",
+     "close": "22:00"
+    },
+    "friday": {
+     "open": "6:00",
+     "close": "22:00"
+    },
+    "saturday": {
+     "open": "6:00",
+     "close": "22:00"
+    },
+    "sunday": {
+     "open": "8:00",
+     "close": "20:00"
+    }
+   }
+  },
+  {
+   "storeId": "0111",
+   "name": "Merchants Walk",
+   "storeType": "retail",
+   "address": {
+    "street": "4101 Roswell Rd",
+    "city": "Marietta",
+    "state": "GA",
+    "postalCode": "30062",
+    "country": "US"
+   },
+   "coordinates": {
+    "lat": 33.980862,
+    "lng": -84.435155
+   },
+   "distance": "7.31",
+   "phone": "(770)977-9700",
+   "proDeskPhone": "(770)578-5414",
+   "toolRentalPhone": "(770)578-5412",
+   "storeDetailsPageLink": "/l/Merchants-Walk/GA/Marietta/30062/111",
+   "services": {
+    "loadNGo": true,
+    "propane": true,
+    "toolRental": true,
+    "penske": false,
+    "keyCutting": true,
+    "wiFi": true,
+    "applianceShowroom": false,
+    "expandedFlooringShowroom": false,
+    "largeEquipment": true,
+    "kitchenShowroom": true
+   },
+   "storeHours": {
+    "monday": {
+     "open": "6:00",
+     "close": "22:00"
+    },
+    "tuesday": {
+     "open": "6:00",
+     "close": "22:00"
+    },
+    "wednesday": {
+     "open": "6:00",
+     "close": "22:00"
+    },
+    "thursday": {
+     "open": "6:00",
+     "close": "22:00"
+    },
+    "friday": {
+     "open": "6:00",
+     "close": "22:00"
+    },
+    "saturday": {
+     "open": "6:00",
+     "close": "22:00"
+    },
+    "sunday": {
+     "open": "8:00",
+     "close": "20:00"
+    }
+   }
+  },
+  {
+   "storeId": "1749",
+   "name": "Austell",
+   "storeType": "retail",
+   "address": {
+    "street": "1200 East West Connector Sw",
+    "city": "Austell",
+    "state": "GA",
+    "postalCode": "30106",
+    "country": "US"
+   },
+   "coordinates": {
+    "lat": 33.858494,
+    "lng": -84.5905
+   },
+   "distance": "7.33",
+   "phone": "(770)438-9678",
+   "proDeskPhone": "(770)438-3905",
+   "toolRentalPhone": "(770)438-3911",
+   "storeDetailsPageLink": "/l/Austell/GA/Austell/30106/1749",
+   "services": {
+    "loadNGo": true,
+    "propane": true,
+    "toolRental": true,
+    "penske": true,
+    "keyCutting": true,
+    "wiFi": true,
+    "applianceShowroom": false,
+    "expandedFlooringShowroom": false,
+    "largeEquipment": true,
+    "kitchenShowroom": true
+   },
+   "storeHours": {
+    "monday": {
+     "open": "6:00",
+     "close": "22:00"
+    },
+    "tuesday": {
+     "open": "6:00",
+     "close": "22:00"
+    },
+    "wednesday": {
+     "open": "6:00",
+     "close": "22:00"
+    },
+    "thursday": {
+     "open": "6:00",
+     "close": "22:00"
+    },
+    "friday": {
+     "open": "6:00",
+     "close": "22:00"
+    },
+    "saturday": {
+     "open": "6:00",
+     "close": "22:00"
+    },
+    "sunday": {
+     "open": "8:00",
+     "close": "20:00"
+    }
+   }
+  }
+ ],
+ "suggestedAddresses": null
+}

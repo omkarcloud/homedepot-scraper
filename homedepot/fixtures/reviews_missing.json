@@ -1,0 +1,218 @@
+{
+ "TotalResults": 4,
+ "SortBy": {
+  "mosthelpfull": null,
+  "newest": true,
+  "oldest": null,
+  "highestrating": null,
+  "lowestrating": null,
+  "photoreview": null
+ },
+ "Includes": {
+  "Products": {
+   "store": {
+    "Id": "999999999",
+    "FilteredReviewStatistics": {
+     "AverageOverallRating": "1",
+     "TotalReviewCount": 4,
+     "RecommendedCount": 0,
+     "NotRecommendedCount": 4,
+     "RatingDistribution": [
+      {
+       "RatingValue": 5,
+       "Count": 0
+      },
+      {
+       "RatingValue": 4,
+       "Count": 0
+      },
+      {
+       "RatingValue": 3,
+       "Count": 0
+      },
+      {
+       "RatingValue": 2,
+       "Count": 0
+      },
+      {
+       "RatingValue": 1,
+       "Count": 4
+      }
+     ],
+     "SecondaryRatingsAveragesOrder": []
+    }
+   }
+  }
+ },
+ "Results": [
+  {
+   "Id": "281591131",
+   "Title": "never received card, but was charged",
+   "ReviewText": "I ordered an egift card and paid via PayPal.  Card was never emailed, been going back and forth with customer service, they finally told me that I had to call Hawk, who handles their gift cards.  They still haven't resolved the issue.  Do not order electronic gift cards from Home Depot.",
+   "Rating": 1,
+   "RatingRange": 5,
+   "IsRecommended": false,
+   "IsSyndicated": false,
+   "SubmissionTime": "2024-06-06T02:19:47.000+00:00",
+   "UserNickname": "Vesey",
+   "UserLocation": null,
+   "AuthorId": "04210AAC8A615D310S",
+   "TotalPositiveFeedbackCount": 0,
+   "TotalNegativeFeedbackCount": 0,
+   "BadgesOrder": [],
+   "ContextDataValues": {
+    "Age": null,
+    "VerifiedPurchaser": null
+   },
+   "SecondaryRatings": {
+    "Quality": null,
+    "Value": null,
+    "EnergyEfficiency": null,
+    "Features": null,
+    "Appearance": null,
+    "EaseOfInstallation": null,
+    "EaseOfUse": null
+   },
+   "SecondaryRatingsOrder": [],
+   "TagDimensions": {
+    "Pro": null,
+    "Con": null
+   },
+   "Photos": [],
+   "Videos": [],
+   "ClientResponses": [],
+   "SyndicationSource": null,
+   "OriginalProductName": null
+  },
+  {
+   "Id": "276912850",
+   "Title": "never received",
+   "ReviewText": "tracking number doesn't work, was purchased and shipped three weeks ago and have not received anything.",
+   "Rating": 1,
+   "RatingRange": 5,
+   "IsRecommended": false,
+   "IsSyndicated": false,
+   "SubmissionTime": "2024-01-02T10:31:03.000+00:00",
+   "UserNickname": "Crystal",
+   "UserLocation": null,
+   "AuthorId": "03ED0896A341AF900S",
+   "TotalPositiveFeedbackCount": 0,
+   "TotalNegativeFeedbackCount": 0,
+   "BadgesOrder": [],
+   "ContextDataValues": {
+    "Age": null,
+    "VerifiedPurchaser": null
+   },
+   "SecondaryRatings": {
+    "Quality": null,
+    "Value": null,
+    "EnergyEfficiency": null,
+    "Features": null,
+    "Appearance": null,
+    "EaseOfInstallation": null,
+    "EaseOfUse": null
+   },
+   "SecondaryRatingsOrder": [],
+   "TagDimensions": {
+    "Pro": null,
+    "Con": null
+   },
+   "Photos": [],
+   "Videos": [],
+   "ClientResponses": [],
+   "SyndicationSource": null,
+   "OriginalProductName": null
+  },
+  {
+   "Id": "276450435",
+   "Title": "my son didn't get it",
+   "ReviewText": "I've emailed you and telephoned to find out why my son hasn't gotten his birthday gift card. paid for physical card Dec 9. taken from. my bank account Dec 11. his birthday was Dec 15. it's now the 19th and he still has not received it!",
+   "Rating": 1,
+   "RatingRange": 5,
+   "IsRecommended": false,
+   "IsSyndicated": false,
+   "SubmissionTime": "2023-12-19T23:25:15.000+00:00",
+   "UserNickname": "Annie",
+   "UserLocation": null,
+   "AuthorId": "051BE182411A34700S",
+   "TotalPositiveFeedbackCount": 0,
+   "TotalNegativeFeedbackCount": 0,
+   "BadgesOrder": [],
+   "ContextDataValues": {
+    "Age": null,
+    "VerifiedPurchaser": null
+   },
+   "SecondaryRatings": {
+    "Quality": null,
+    "Value": null,
+    "EnergyEfficiency": null,
+    "Features": null,
+    "Appearance": null,
+    "EaseOfInstallation": null,
+    "EaseOfUse": null
+   },
+   "SecondaryRatingsOrder": [],
+   "TagDimensions": {
+    "Pro": null,
+    "Con": null
+   },
+   "Photos": [],
+   "Videos": [],
+   "ClientResponses": [],
+   "SyndicationSource": null,
+   "OriginalProductName": null
+  },
+  {
+   "Id": "275095896",
+   "Title": "Ridiculous Time Frame",
+   "ReviewText": "I ordered this gift card October 17th 2023 it did not process until October 19th, expected delivery said November 1st which would be worst case scenario. here we are November 3rd and Home Depot has no idea where the gift card is and the tracking number cannot verify. Thanks Home Depot for being unable to achieve the most simplest of purchases.",
+   "Rating": 1,
+   "RatingRange": 5,
+   "IsRecommended": false,
+   "IsSyndicated": false,
+   "SubmissionTime": "2023-11-04T06:42:46.000+00:00",
+   "UserNickname": "Jeff2020",
+   "UserLocation": null,
+   "AuthorId": "031422864D91272B0S",
+   "TotalPositiveFeedbackCount": 0,
+   "TotalNegativeFeedbackCount": 0,
+   "BadgesOrder": [],
+   "ContextDataValues": {
+    "Age": null,
+    "VerifiedPurchaser": null
+   },
+   "SecondaryRatings": {
+    "Quality": null,
+    "Value": null,
+    "EnergyEfficiency": null,
+    "Features": null,
+    "Appearance": null,
+    "EaseOfInstallation": null,
+    "EaseOfUse": null
+   },
+   "SecondaryRatingsOrder": [],
+   "TagDimensions": {
+    "Pro": null,
+    "Con": null
+   },
+   "Photos": [
+    {
+     "Id": "11934662",
+     "Caption": "Gift Card Issuses",
+     "Sizes": {
+      "normal": {
+       "Url": "https://photos-us.bazaarvoice.com/photo/2/cGhvdG86aG9tZWRlcG90/92fe974f-7c1f-5797-8f92-bb8e5a3bf937"
+      },
+      "thumbnail": {
+       "Url": "https://photos-us.bazaarvoice.com/photo/2/cGhvdG86aG9tZWRlcG90/5839307f-e21f-5a4c-ae19-863434c6b342"
+      }
+     }
+    }
+   ],
+   "Videos": [],
+   "ClientResponses": [],
+   "SyndicationSource": null,
+   "OriginalProductName": null
+  }
+ ]
+}
