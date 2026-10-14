@@ -29,6 +29,13 @@ RETRY_BACKOFF = 2          # seconds, multiplied by the attempt number
 HOMEDEPOT_IDENTITY_MAX_AGE = 25 * 60     # seconds
 HOMEDEPOT_MINT_ATTEMPTS = 3              # browsers tried per mint
 
+# Browser mode: when Home Depot refuses the plain-HTTP requests even on a
+# fresh identity (common from cloud / datacenter IPs), every call runs as an
+# in-page fetch inside one headed Chrome page for this long, then plain HTTP
+# is tried again. The page is recycled past HOMEDEPOT_BROWSER_MAX_AGE.
+HOMEDEPOT_BROWSER_MODE_TTL = 60 * 60     # seconds
+HOMEDEPOT_BROWSER_MAX_AGE = 30 * 60      # seconds
+
 HOMEDEPOT_DEFAULT_STORE_ID = os.environ.get("HOMEDEPOT_STORE_ID", "121")
 HOMEDEPOT_DEFAULT_ZIP = os.environ.get("HOMEDEPOT_ZIP", "30339")
 

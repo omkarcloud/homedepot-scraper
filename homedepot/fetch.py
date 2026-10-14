@@ -30,6 +30,12 @@ gateway is fronted by Akamai Bot Manager, validated live 2026-10-14:
     headed window + a little pointer movement: ~2 s with mouse moves and a
     scroll on the homepage). The mint blocks images / fonts / media.
 
+  * From a datacenter IP (the GKE pod, validated 2026-10-14) the replay
+    never passes: the sensor rarely validates there, and even cookies that
+    did validate — direct or through sticky residential exits — are 206 over
+    curl_cffi (every chrome124…chrome150 target), while the SAME browser's
+    own in-page fetch of the same call answers 200.
+
 So: one process-wide identity {cookies, user agent, proxy, minted_at},
 minted lazily on the first request (single-flight — threads that waited on
 the mint lock reuse the winner's identity), re-minted when it is older
@@ -38,6 +44,15 @@ than config.HOMEDEPOT_IDENTITY_MAX_AGE or when the gateway refuses it
 mint tries the direct egress first and falls back to sticky residential
 exits (config.homedepot_fallback_proxy) when the homepage itself is
 refused or the sensor never validates.
+
+BROWSER MODE (the headful patchright fallback): when curl is refused even
+on a freshly minted identity (or no identity can be minted), the process
+switches to in-page fetches — every gateway POST runs as fetch() inside ONE
+long-lived headed patchright page parked on homedepot.com — for
+config.HOMEDEPOT_BROWSER_MODE_TTL seconds, then tries curl again. The page
+is recycled when it is refused, wedged, or older than
+config.HOMEDEPOT_BROWSER_MAX_AGE. Page ops are serialized on the driver's
+owner thread, so browser mode trades throughput (~1-2 calls/s) for passing.
 
 Failure taxonomy (scraper_errors, mapped to HTTP by route_glue):
   HomeDepotUpstreamError  transport failure / 5xx / GraphQL errors — retryable
@@ -113,6 +128,9 @@ _state_lock = threading.Lock()
 _mint_lock = threading.Lock()
 _identity = None
 _local = threading.local()
+_browser_lock = threading.Lock()
+_browser = None              # {"driver", "created_at"} — browser mode's page
+_browser_mode_until = 0.0    # monotonic deadline of browser mode (0 = curl)
 
 
 def _proxy_candidates():
@@ -296,64 +314,223 @@ def _graphql_errors(body):
     return []
 
 
+def _value_of(operation, body, root):
+    """A parsed gateway reply -> `data` (or `data[root]`), or the mapped error."""
+    data = body.get("data") if isinstance(body, dict) else None
+    errors = _graphql_errors(body)
+    value = data.get(root) if (root and isinstance(data, dict)) else data
+    if value is None:
+        message = "; ".join(m for m in errors if m) or "empty reply"
+        if any("ValidationError" in (m or "") or "Validation error" in (m or "") for m in errors):
+            raise HomeDepotUpstreamError(f"{operation}: the gateway rejected the document: {message}")
+        if errors and any(_looks_like_not_found(m) for m in errors):
+            raise HomeDepotNotFound(message)
+        if errors and any(_looks_like_bad_input(m) for m in errors):
+            raise HomeDepotBadRequest(message)
+        raise HomeDepotUpstreamError(f"{operation}: {message}")
+    return value
+
+
+def _check_status(operation, status, text):
+    """Map a non-refusal HTTP status; returns normally for a 200."""
+    if status == 403:
+        # A 403 is a rule on the request itself (seen for searchModel
+        # pageSize > 24), never the identity verdict (that is the 206):
+        # fail fast instead of burning a mint per call.
+        dump_debug(f"forbidden_{operation}", text)
+        raise HomeDepotBadRequest(f"the gateway refused this {operation} request (HTTP 403)")
+    if status >= 500:
+        raise HomeDepotUpstreamError(f"{operation}: HTTP {status}")
+    if status != 200:
+        raise HomeDepotUpstreamError(f"{operation}: HTTP {status}: {(text or '')[:200]}")
+
+
+def _parse_json(operation, text):
+    try:
+        import json
+        return json.loads(text)
+    except Exception:
+        dump_debug(f"nonjson_{operation}", text)
+        raise HomeDepotUpstreamError(f"{operation}: non-JSON reply")
+
+
+# ---- browser mode ---------------------------------------------------------------
+
+def _browser_mode_active():
+    return time.monotonic() < _browser_mode_until
+
+
+def _enter_browser_mode(reason):
+    global _browser_mode_until
+    with _state_lock:
+        already = time.monotonic() < _browser_mode_until
+        _browser_mode_until = time.monotonic() + config.HOMEDEPOT_BROWSER_MODE_TTL
+    if not already:
+        print(f"homedepot: {reason} — switching to in-browser fetches for "
+              f"{config.HOMEDEPOT_BROWSER_MODE_TTL // 60} min")
+
+
+def _close_browser(stale=None):
+    """Close the browser-mode page iff it is still `stale` (or any, if None)."""
+    global _browser
+    with _browser_lock:
+        current = _browser
+        if current is None or (stale is not None and current is not stale):
+            return
+        _browser = None
+    try:
+        current["driver"].close()
+    except Exception:
+        pass
+
+
+def _open_browser():
+    """One headed patchright page parked on the homepage (a little pointer
+    activity lets the sensor post); the proxy is the configured one (direct
+    by default)."""
+    from chrome_manager import create_scope
+    from patchright_driver import PatchrightDriver
+
+    proxy = config.homedepot_proxy()
+    print("homedepot: opening the browser-mode page via headed patchright "
+          f"({'exit port ' + str(urlsplit(proxy).port) if proxy else 'direct egress'})...")
+    with create_scope():
+        driver = PatchrightDriver(proxy_url=proxy, headless=False, geoip_timezone=bool(proxy),
+                                  block_resources=MINT_BLOCK_RESOURCES, block_hosts=MINT_BLOCK_HOSTS)
+    try:
+        res = driver.nav(SITE + "/", referer="https://www.google.com/", mode="csr")
+        if res.get("status") not in (None, 200):
+            raise RuntimeError(f"homepage answered HTTP {res.get('status')}")
+        for step in range(3):
+            driver.call(lambda page, s=step: _wiggle(page, s))
+            time.sleep(1)
+    except Exception:
+        driver.close()
+        raise
+    return {"driver": driver, "created_at": time.monotonic()}
+
+
+def _get_browser():
+    global _browser
+    with _browser_lock:
+        current = _browser
+        if current and time.monotonic() - current["created_at"] <= config.HOMEDEPOT_BROWSER_MAX_AGE:
+            return current
+        _browser = None
+    if current:
+        try:
+            current["driver"].close()
+        except Exception:
+            pass
+    with _mint_lock:      # one launch at a time (shares the mint's lock)
+        with _browser_lock:
+            if _browser is not None:
+                return _browser
+        opened = _open_browser()
+        with _browser_lock:
+            _browser = opened
+        return opened
+
+
+def _browser_post(operation, payload):
+    """One gateway POST as an in-page fetch -> (status, text)."""
+    from patchright_driver import _FETCH_JS
+    import json
+    browser = _get_browser()
+    experience, current = EXPERIENCES.get(operation, ("general-merchandise", "/"))
+    args = {
+        "url": f"{GATEWAY}?opname={operation}",
+        "method": "POST",
+        "headers": {"content-type": "application/json", "accept": "*/*", "x-experience-name": experience,
+                    "x-current-url": current, "x-hd-dc": "origin", "x-api-cookies": "{}", "x-debug": "false"},
+        "body": json.dumps(payload),
+        "referrer": SITE + "/",
+        "timeoutMs": TIMEOUT * 1000,
+    }
+    try:
+        res = browser["driver"].call(lambda page: page.evaluate(_FETCH_JS, args), timeout=TIMEOUT + 15) or {}
+    except Exception as e:
+        _close_browser(browser)
+        raise HomeDepotUpstreamError(f"{operation}: in-browser fetch failed: {type(e).__name__}: {e}")
+    if not res.get("ok"):
+        _close_browser(browser)
+        raise HomeDepotUpstreamError(f"{operation}: in-browser fetch failed: {res.get('error')}")
+    return int(res.get("status") or 0), res.get("body") or "", browser
+
+
+def _graphql_browser(operation, payload, root):
+    last = None
+    for attempt in range(1, MAX_ATTEMPTS + 1):
+        try:
+            status, text, browser = _browser_post(operation, payload)
+        except HomeDepotUpstreamError as e:
+            last = e
+            time.sleep(config.RETRY_BACKOFF * attempt)
+            continue
+        if status in (206, 401) or (status != 200 and "Generic Errors" in text):
+            dump_debug(f"browser_refused_{operation}", text)
+            print(f"homedepot: in-browser {operation} refused (HTTP {status}), recycling the page "
+                  f"(attempt {attempt}/{MAX_ATTEMPTS})")
+            _close_browser(browser)
+            last = HomeDepotBlocked(f"Akamai refused the in-browser request (HTTP {status})")
+            continue
+        if status >= 500:
+            last = HomeDepotUpstreamError(f"{operation}: HTTP {status}")
+            time.sleep(config.RETRY_BACKOFF * attempt)
+            continue
+        _check_status(operation, status, text)
+        return _value_of(operation, _parse_json(operation, text), root)
+    raise last or HomeDepotUpstreamError(f"{operation}: no attempt succeeded")
+
+
+# ---- the transport ---------------------------------------------------------------
+
 def graphql(operation, query, variables, *, root=None):
     """POST one operation; return the `data` member (or `data[root]`).
 
-    Retries on a fresh identity when Akamai refuses the current one, and
-    on transport failures. GraphQL errors with no usable data raise
-    HomeDepotUpstreamError (a validation error names the field, so a
-    schema change is visible in the message)."""
+    curl_cffi with the minted identity first; a refusal re-mints, and a
+    refusal on a fresh identity (or a failed mint) switches the process to
+    browser mode (in-page fetches) for a while. GraphQL errors with no
+    usable data raise HomeDepotUpstreamError (a validation error names the
+    field, so a schema change is visible in the message)."""
+    payload = {"operationName": operation, "variables": variables, "query": query}
+    if _browser_mode_active():
+        return _graphql_browser(operation, payload, root)
     last = None
+    refusals = 0
     for attempt in range(1, MAX_ATTEMPTS + 1):
-        identity = _get_identity()
+        try:
+            identity = _get_identity()
+        except HomeDepotBlocked as e:
+            _enter_browser_mode(f"no identity could be minted ({e})")
+            return _graphql_browser(operation, payload, root)
         try:
             resp = _session(identity["proxy"]).post(
                 GATEWAY, params={"opname": operation},
                 headers=_headers(operation, identity), cookies=identity["cookies"],
-                json={"operationName": operation, "variables": variables, "query": query},
-                timeout=TIMEOUT)
+                json=payload, timeout=TIMEOUT)
         except Exception as e:
             last = HomeDepotUpstreamError(f"{operation} request failed: {type(e).__name__}: {e}")
             _drop_session()
             time.sleep(config.RETRY_BACKOFF * attempt)
             continue
-        if resp.status_code == 403:
-            # A 403 is a rule on the request itself (seen for searchModel
-            # pageSize > 24), never the identity verdict (that is the 206):
-            # fail fast instead of burning a mint per call.
-            dump_debug(f"forbidden_{operation}", resp.text)
-            raise HomeDepotBadRequest(f"the gateway refused this {operation} request (HTTP 403)")
-        if _is_refusal(resp):
+        if resp.status_code != 403 and _is_refusal(resp):
             dump_debug(f"refused_{operation}", resp.text)
+            refusals += 1
+            _invalidate(identity)
+            if refusals >= 2:
+                _enter_browser_mode(f"{operation} refused over curl on a fresh identity")
+                return _graphql_browser(operation, payload, root)
             print(f"homedepot: {operation} refused (HTTP {resp.status_code}), re-minting identity "
                   f"(attempt {attempt}/{MAX_ATTEMPTS})")
-            _invalidate(identity)
             last = HomeDepotBlocked(f"Akamai refused the request (HTTP {resp.status_code})")
             continue
         if resp.status_code >= 500:
             last = HomeDepotUpstreamError(f"{operation}: HTTP {resp.status_code}")
             time.sleep(config.RETRY_BACKOFF * attempt)
             continue
-        if resp.status_code != 200:
-            raise HomeDepotUpstreamError(f"{operation}: HTTP {resp.status_code}: {resp.text[:200]}")
-        try:
-            body = resp.json()
-        except Exception:
-            dump_debug(f"nonjson_{operation}", resp.text)
-            raise HomeDepotUpstreamError(f"{operation}: non-JSON reply")
-        data = body.get("data") if isinstance(body, dict) else None
-        errors = _graphql_errors(body)
-        value = data.get(root) if (root and isinstance(data, dict)) else data
-        if value is None:
-            message = "; ".join(m for m in errors if m) or "empty reply"
-            if any("ValidationError" in (m or "") or "Validation error" in (m or "") for m in errors):
-                raise HomeDepotUpstreamError(f"{operation}: the gateway rejected the document: {message}")
-            if errors and any(_looks_like_not_found(m) for m in errors):
-                raise HomeDepotNotFound(message)
-            if errors and any(_looks_like_bad_input(m) for m in errors):
-                raise HomeDepotBadRequest(message)
-            raise HomeDepotUpstreamError(f"{operation}: {message}")
-        return value
+        _check_status(operation, resp.status_code, resp.text)
+        return _value_of(operation, _parse_json(operation, resp.text), root)
     raise last or HomeDepotUpstreamError(f"{operation}: no attempt succeeded")
 
 
