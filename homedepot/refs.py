@@ -5,6 +5,8 @@ pair).
   product    320326787 (the internet number / item id, 9 digits)
              | https://www.homedepot.com/p/Milwaukee-M18-.../320326787
              | https://www.homedepot.com/pep/.../320326787
+             | 1007850144 (the store SKU) on details and availability only:
+               resolved by products._item_for_sku when no item has that id
   products   comma-separated item ids and/or product links (max 25)
   category   N-5yc1vZc27f (the browse code, also carries brand / refinement
              codes such as N-5yc1vZzv or N-5yc1vZc27fZzv)

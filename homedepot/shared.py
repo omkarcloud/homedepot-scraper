@@ -12,6 +12,7 @@ from homedepot import queries as Q
 from homedepot import refs
 from homedepot.fetch import HomeDepotNotFound, graphql
 from scraper_errors import BadRequest, NotFound, UpstreamError
+from scraper_utils import fanout, memo as memo_utils
 
 PAGE_SIZE = 24          # the gateway's cap: a larger pageSize is refused (403)
 MAX_PAGE = 100
@@ -25,36 +26,17 @@ _fanout = ThreadPoolExecutor(max_workers=FANOUT_WORKERS * 2, thread_name_prefix=
 
 
 def memo(key, ttl, build):
-    now = time.time()
-    with _lock:
-        hit = _memo.get(key)
-        if hit and hit[0] > now:
-            return hit[1]
-    value = build()
-    with _lock:
-        _memo[key] = (now + ttl, value)
-    return value
+    return memo_utils.expiring(_memo, _lock, key, ttl, build)
 
 
 def run_parallel(fns):
-    if not fns:
-        return []
-    if len(fns) == 1:
-        return [fns[0]()]
-    futures = [_fanout.submit(fn) for fn in fns[1:]]
-    first = fns[0]()
-    return [first] + [f.result() for f in futures]
+    return fanout.on_pool_caller_first(_fanout, fns)
 
 
 def soft(fn, default=None):
     """Wrap an optional lookup (aisle / bay on a stock check): any upstream
     failure yields `default` instead of failing the endpoint."""
-    def run():
-        try:
-            return fn()
-        except (UpstreamError, BadRequest, NotFound):
-            return default
-    return run
+    return fanout.soft(fn, default, (UpstreamError, BadRequest, NotFound))
 
 
 # ---- stores ----------------------------------------------------------------------

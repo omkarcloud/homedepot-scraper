@@ -18,6 +18,7 @@ from schema_fields import (BaseSchema, ChoiceField, CommaListField, Flag, LimitF
                            PositiveInt, Price, QueryField, RefField, StrippedString)
 from homedepot import refs
 from homedepot import shared
+from scraper_utils.schema import max_length as _max_length
 
 # public sort value -> the gateway's ProductSort
 SORTS = {
@@ -36,15 +37,6 @@ SERVICES = {"tool_rental": "toolRental", "propane": "propane", "key_cutting": "k
             "load_n_go": "loadNGo", "penske_truck_rental": "penske", "appliance_showroom": "applianceShowroom",
             "expanded_flooring_showroom": "expandedFlooringShowroom"}
 STAR_RATINGS = ["1", "2", "3", "4", "5"]
-
-
-def _max_length(n):
-    """validate.Length(max=n) that tolerates the None StrippedString returns
-    for an empty value (marshmallow runs validators on it; len(None) is a 500)."""
-    def check(value):
-        if value is not None and len(value) > n:
-            raise ValidationError(f"Longer than maximum length {n}.")
-    return check
 
 
 # ---- id-or-link fields -----------------------------------------------------------

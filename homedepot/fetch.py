@@ -1,6 +1,7 @@
 """Home Depot transport: every request is an in-page fetch() inside a headed
-patchright Chrome page parked on homedepot.com. No plain-HTTP path, no chrome
-pool (homedepot is in config.POOLLESS_FLAGS) — the pages are this module's own.
+Chrome page parked on homedepot.com — on the browser box (recipes/homedepot.py)
+since 2026-10-22, through browser_client. No plain-HTTP path, no chrome pool
+(homedepot is in config.POOLLESS_FLAGS), no browser in this process.
 
 Every page of homedepot.com is built from ONE endpoint:
 
@@ -23,32 +24,51 @@ gateway is fronted by Akamai Bot Manager. Why a browser, validated live
   * The same browser's own in-page fetch of the same call answers 200 from
     the pod, even when its _abck never validates.
 
-So every gateway POST runs inside a real page: a small pool of
-config.HOMEDEPOT_BROWSER_PAGES headed pages (one Chrome each), opened lazily
-on the homepage (a little pointer activity lets Akamai's sensor post), each
-serving one request at a time. A page is replaced when Akamai refuses it,
-when its fetch fails or wedges, and once it is older than
-config.HOMEDEPOT_BROWSER_MAX_AGE. Akamai also judges the egress IP: the GKE
-pod's own IP was later refused even for in-page fetches with a validated
-_abck, while some residential exits pass. So a new page proves itself with
-one tiny gateway call before it serves traffic; a page that fails is
-dropped and the next egress tried — config.homedepot_proxy() (direct by
-default), then fresh sticky exits from config.homedepot_fallback_proxy().
-A direct egress that fails its probe is skipped for
-config.HOMEDEPOT_DIRECT_SKIP seconds.
+THE SPLIT (Phase 5 of the browser migration, 2026-10-22). The box keeps
+parked, Akamai-validated pages: its warm loads the homepage, gives the sensor
+pointer activity until `_abck` validates, proves the page with a tiny
+storeSearch probe and parks it on /robots.txt; every gateway POST is an
+in-page fetch on such a page (0.3-1 s); a 206/401 refusal fails the lease so
+the next call relaunches. This module keeps the GraphQL layer: the operation
+headers, the retry loop, the error taxonomy and the EGRESS.
+
+THE EGRESS (rewritten 2026-11-12). Akamai judges the egress IP as well as
+the page, so the box is told which egress to use per call:
+
+  * HOME: config.homedepot_proxy() (None = the box's OWN IP). Every call
+    goes here while Akamai accepts it, on config.HOMEDEPOT_BROWSER_SLOTS
+    pages of that one egress (the first keyed by the egress, the others by a
+    session id). A proven page answers in under a second, so callers queue
+    behind the pages instead of opening more.
+  * FALLBACK: fresh sticky exits from config.homedepot_fallback_proxy(),
+    used ONLY while the home egress is being skipped: after the box reports
+    Akamai refusing a fresh home page (its warm-up), for
+    config.HOMEDEPOT_DIRECT_SKIP seconds. A refused exit is replaced.
+
+Until 2026-11-12 the home egress and the fallback exits were offered together
+as interchangeable candidates (1 home page + up to 7 exits). The box opens a
+new browser whenever every open one is busy, so any second concurrent call
+launched a cold browser on a residential exit: 12-25 s per warm-up, and
+Akamai refuses most exits (homepage 403 / probe 206), each refusal moving on
+to the next exit. Measured from the pod that day: 6 concurrent product reads
+took 34 s with 3 refused exits, while the one home page answered in 0.4 s;
+with two home pages 12 concurrent reads finish in under 8 s. The ledger for
+Nov 4-12 had 252 502s on this API, 167 of them the box's 20 s queue timeout
+behind such warm-ups, and single calls that ran for up to 288 s walking
+refused exits. Hence also REQUEST_BUDGET: one request never runs longer.
 
 Failure taxonomy (scraper_errors, mapped to HTTP by route_glue):
-  HomeDepotUpstreamError  page / fetch failure, 5xx, GraphQL errors — retryable
-  HomeDepotBlocked        Akamai refused every page tried              — retryable later
-  HomeDepotBadRequest     the gateway rejected the arguments            — never retried
-  HomeDepotNotFound       entity does not exist                         — never retried
+  HomeDepotUpstreamError  box unavailable, fetch failure, 5xx, GraphQL errors — retryable
+  HomeDepotBlocked        Akamai refused every egress tried                   — retryable later
+  HomeDepotBadRequest     the gateway rejected the arguments                  — never retried
+  HomeDepotNotFound       entity does not exist                               — never retried
 
-Run this file directly for a smoke test:
+Run this file directly for a smoke test against the box (BROWSER_BOX_URLS):
     python homedepot/fetch.py
 """
 import json
+import fastjson
 import os
-import queue
 import sys
 import threading
 import time
@@ -56,29 +76,18 @@ from urllib.parse import urlsplit
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
+import browser_client
 import config
+from browser_client import BoxRefused, BoxUnavailable
 from scraper_errors import BadRequest, Blocked, NotFound, UpstreamError
+from scraper_utils import debug
 
 SITE = "https://www.homedepot.com"
 GATEWAY = "https://apionline.homedepot.com/federation-gateway/graphql"
-TIMEOUT = 45                # seconds per in-page fetch
-MAX_ATTEMPTS = 3            # pages tried per request
-ACQUIRE_TIMEOUT = 120       # seconds a request waits for a free page
-OPEN_ATTEMPTS = 8           # egresses tried to open one page (configured, then fallback exits)
-SENSOR_ROUNDS = 8           # pointer rounds waiting for Akamai to validate a new page's _abck
-SENSOR_INTERVAL = 1.5       # seconds between rounds
-PROBE_ATTEMPTS = 5          # test calls a new page gets before it is judged refused
-PROBE_INTERVAL = 2.5        # seconds between them
-PROBE_QUERY = ("query storeSearch($storeSearchInput: String, $pagesize: String) "
-               "{ storeSearch(storeSearchInput: $storeSearchInput, pagesize: $pagesize) { stores { storeId } } }")
-PAGE_BLOCK_RESOURCES = ("image", "font", "media")
-PAGE_BLOCK_HOSTS = (
-    "collector-pxj770cp7y.px-cloud.net", "c.go-mpulse.net", "*.akstat.io",
-    "www.google-analytics.com", "*.doubleclick.net", "*.googletagmanager.com",
-    "*.adobedc.net", "*.demdex.net", "*.quantummetric.com", "*.forter.com",
-    "*.bazaarvoice.com", "*.qualtrics.com", "*.paypal.com", "*.segment.io",
-    "*.cquotient.com", "*.liveperson.net", "*.lpsnmedia.net",
-)
+MAX_ATTEMPTS = 3            # box calls per request that the gateway answered badly (5xx)
+MAX_REFUSALS = 5            # refusals (a dropped page, a refused exit) one request rides out on top of those
+REQUEST_BUDGET = 75         # seconds one request may take in all: a refused warm-up costs 12-25 s
+MIN_CALL_SECONDS = 20       # no further box call with less of the budget left (a cold page takes 10-15 s)
 
 # x-experience-name / x-current-url the site sends per page type; the gateway
 # does not enforce them, but the pairs below are the ones observed.
@@ -96,15 +105,11 @@ EXPERIENCES = {
 
 
 class HomeDepotUpstreamError(UpstreamError):
-    """Page / fetch failure, 5xx or a GraphQL error — retryable."""
-
-
-class HomeDepotBusy(HomeDepotUpstreamError):
-    """Every page stayed busy for ACQUIRE_TIMEOUT — asking again only queues."""
+    """Box unavailable, fetch failure, 5xx or a GraphQL error — retryable."""
 
 
 class HomeDepotBlocked(HomeDepotUpstreamError, Blocked):
-    """Akamai refused every page tried (206 / 401) — retryable later."""
+    """Akamai refused every egress tried (206 / 401) — retryable later."""
 
 
 class HomeDepotBadRequest(BadRequest):
@@ -116,177 +121,103 @@ class HomeDepotNotFound(NotFound):
 
 
 def dump_debug(name, text):
-    dbg = os.environ.get("HOMEDEPOT_DEBUG_DIR", "")
-    if dbg and text:
-        try:
-            os.makedirs(dbg, exist_ok=True)
-            with open(os.path.join(dbg, name + ".txt"), "w", encoding="utf-8") as f:
-                f.write(text)
-        except OSError:
-            pass
+    debug.dump("HOMEDEPOT_DEBUG_DIR", name, text, encoding="utf-8")
 
 
-# ---- pages ----------------------------------------------------------------------
-# A slot is one page (one headed Chrome). Free slots wait in a queue, so a
-# request holds a page for exactly one fetch and concurrent requests spread
-# over the pool; slots are created lazily up to HOMEDEPOT_BROWSER_PAGES.
-_free = queue.Queue()
-_slots_lock = threading.Lock()
-_slot_count = 0
-_direct_skip_until = 0.0     # monotonic: skip the configured egress after it failed a probe
+# ---- the egress ---------------------------------------------------------------------
+# HOME pages while Akamai accepts the home egress, FALLBACK exits while it is
+# being skipped (see the module docstring). The box keys a parked page by the
+# session id when one is sent, else by the proxy URL ("direct" for None), so
+# the same candidates on every call reuse the same proven pages.
+_UNSET = object()
+_lock = threading.Lock()
+_home = _UNSET               # the home egress, held so a configured exit stays one sticky URL
+_home_skip_until = 0.0       # monotonic: Akamai refused the home egress, use the fallback exits until then
+PAGE_ONLY = ("page dropped", "in-page fetch failed")   # refusals of one page (recipes/homedepot.py fetch_one)
 
 
-def _proxy_candidates():
-    """Egresses a page open tries in order: the configured one (direct by
-    default) unless it recently failed its probe, then fresh fallback exits."""
-    out = []
-    if time.monotonic() >= _direct_skip_until:
-        out.append(config.homedepot_proxy())
-    for _ in range(OPEN_ATTEMPTS - len(out)):
-        fallback = config.homedepot_fallback_proxy()
-        if fallback:
-            out.append(fallback)
-    return out or [config.homedepot_proxy()]
+def _slots():
+    return max(1, int(config.HOMEDEPOT_BROWSER_SLOTS or 1))
 
 
-def _wiggle(page, step):
-    """A little pointer + scroll activity for Akamai's sensor."""
-    page.mouse.move(180 + step * 23, 260 + step * 7)
-    page.mouse.move(420 + step * 5, 340 + step * 11, steps=10)
-    page.mouse.wheel(0, 260)
+def _home_egress():
+    global _home
+    with _lock:
+        if _home is _UNSET:
+            _home = config.homedepot_proxy()
+        return _home
 
 
-def _open_page_once(proxy):
-    from chrome_manager import create_scope
-    from patchright_driver import PatchrightDriver
-
-    label = f"exit port {urlsplit(proxy).port}" if proxy else "direct egress"
-    print(f"homedepot: opening a page via headed patchright ({label})...")
-    with create_scope():
-        driver = PatchrightDriver(proxy_url=proxy, headless=False, geoip_timezone=bool(proxy),
-                                  block_resources=PAGE_BLOCK_RESOURCES, block_hosts=PAGE_BLOCK_HOSTS)
-    try:
-        res = driver.nav(SITE + "/", referer="https://www.google.com/", mode="csr")
-        status = res.get("status")
-        if status not in (None, 200):
-            raise RuntimeError(f"homepage answered HTTP {status} ({res.get('challenge_title') or 'no title'})")
-        # Let Akamai's sensor validate the page (_abck carries "~0~"), then
-        # prove the page with one tiny gateway call: Akamai judges the
-        # egress IP too, and a page on a flagged IP is refused even with a
-        # validated _abck (the GKE pod's own IP, 2026-10-14).
-        for step in range(SENSOR_ROUNDS):
-            driver.call(lambda page, s=step: _wiggle(page, s))
-            time.sleep(SENSOR_INTERVAL)
-            abck = next((c["value"] for c in driver.cookies()
-                         if c.get("name") == "_abck" and "homedepot.com" in (c.get("domain") or "")), "")
-            if "~0~" in abck:
-                break
-        # Akamai starts accepting a page a few seconds AFTER _abck validates
-        # (the Windows VPS: refused at validation, 200 from ~6 s later), so
-        # the probe gets a few tries with pointer activity in between.
-        probe = 0
-        for attempt in range(PROBE_ATTEMPTS):
-            probe, _ = _fetch_on(driver, "storeSearch", {"operationName": "storeSearch", "query": PROBE_QUERY,
-                                                         "variables": {"storeSearchInput": "30339", "pagesize": "1"}})
-            if probe == 200:
-                break
-            driver.call(lambda page, s=attempt: _wiggle(page, SENSOR_ROUNDS + s))
-            time.sleep(PROBE_INTERVAL)
-        if probe != 200:
-            raise RuntimeError(f"probe call refused (HTTP {probe}) — Akamai rejects this egress")
-    except Exception:
-        driver.close()
-        raise
-    print(f"homedepot: page ready ({label})")
-    return driver
+def _home_candidates():
+    """The home pages, [(proxy, session)]: the first keyed by the egress
+    itself (the page every pod has always used), the rest by a session id.
+    The session id of a configured exit names that exit (its port, as the
+    box's own key does): the box keys such a page by the session alone, so a
+    plain "page-2" kept serving on the OLD exit after the home exit was
+    replaced, for as long as that browser lived."""
+    home = _home_egress()
+    tag = f"p{urlsplit(home).port}-" if home else ""
+    return [(home, None)] + [(home, f"{tag}page-{i}") for i in range(2, _slots() + 1)]
 
 
-def _open_page():
-    global _direct_skip_until
-    last = None
-    configured = config.homedepot_proxy()
-    for proxy in _proxy_candidates():
-        try:
-            return _open_page_once(proxy)
-        except Exception as e:
-            last = e
-            print(f"homedepot: page open failed ({type(e).__name__}: {e})")
-            if proxy == configured and configured is None:
-                # The direct egress is flagged: go straight to the exits
-                # for a while instead of re-proving it on every open.
-                _direct_skip_until = time.monotonic() + config.HOMEDEPOT_DIRECT_SKIP
-    raise HomeDepotBlocked(f"could not open a homedepot.com page: {last}")
+def _on_home():
+    """Home unless Akamai refused it recently and there are exits to use instead."""
+    return time.monotonic() >= _home_skip_until or not config.HOMEDEPOT_FALLBACK_PROXY_COUNTRY
 
 
-def _close(slot):
-    driver, slot["driver"] = slot["driver"], None
-    if driver is not None:
-        try:
-            driver.close()
-        except Exception:
-            pass
+def _skip_home(refused):
+    """Akamai refused the home egress `refused`: the fallback exits serve for
+    HOMEDEPOT_DIRECT_SKIP seconds, then home is proven again on a fresh page.
+    A configured exit is replaced by a new one for that. A refusal of an exit
+    that was replaced meanwhile (two calls failing on one exit, the second
+    reporting late) says nothing about the new one: it is left alone."""
+    global _home, _home_skip_until
+    with _lock:
+        if _home is not _UNSET and _home != refused:
+            return
+        if _home is not None:
+            _home = _UNSET
+        _home_skip_until = time.monotonic() + config.HOMEDEPOT_DIRECT_SKIP
 
 
-def _release(slot):
-    _free.put(slot)
+def _egress_label(proxy):
+    return f"exit port {urlsplit(proxy).port}" if proxy else "direct egress"
 
 
-def _acquire():
-    """A free slot with an open, fresh page (opening one if needed)."""
-    global _slot_count
-    try:
-        slot = _free.get_nowait()
-    except queue.Empty:
-        slot = None
-        with _slots_lock:
-            if _slot_count < max(int(config.HOMEDEPOT_BROWSER_PAGES), 1):
-                _slot_count += 1
-                slot = {"driver": None, "opened_at": 0.0}
-        if slot is None:
-            try:
-                slot = _free.get(timeout=ACQUIRE_TIMEOUT)
-            except queue.Empty:
-                raise HomeDepotBusy("every homedepot.com page is busy, retry later")
-    if slot["driver"] is not None and time.monotonic() - slot["opened_at"] > config.HOMEDEPOT_BROWSER_MAX_AGE:
-        _close(slot)
-    if slot["driver"] is None:
-        try:
-            slot["driver"] = _open_page()
-            slot["opened_at"] = time.monotonic()
-        except Exception:
-            _release(slot)
-            raise
-    return slot
-
-
-def warm():
-    """Open one page ahead of the first request (optional, e.g. a smoke test)."""
-    _release(_acquire())
+# The share only (no burst): the box opens a browser whenever every open one
+# is busy, and a new exit is a cold, often refused warm-up; two proven exits
+# serve a queue faster than a third being opened.
+_FALLBACK = browser_client.ExitPool("homedepot", lambda: config.homedepot_fallback_proxy(), size=_slots)
 
 
 # ---- one call ----------------------------------------------------------------------
 
-def _fetch(slot, operation, payload):
-    """One gateway POST as an in-page fetch -> (status, body text)."""
-    return _fetch_on(slot["driver"], operation, payload)
-
-
-def _fetch_on(driver, operation, payload):
-    from patchright_driver import _FETCH_JS
+def _headers_for(operation):
     experience, current = EXPERIENCES.get(operation, ("general-merchandise", "/"))
-    args = {
-        "url": f"{GATEWAY}?opname={operation}",
-        "method": "POST",
-        "headers": {"content-type": "application/json", "accept": "*/*", "x-experience-name": experience,
-                    "x-current-url": current, "x-hd-dc": "origin", "x-api-cookies": "{}", "x-debug": "false"},
-        "body": json.dumps(payload),
-        "referrer": SITE + "/",
-        "timeoutMs": TIMEOUT * 1000,
-    }
-    res = driver.call(lambda page: page.evaluate(_FETCH_JS, args), timeout=TIMEOUT + 15) or {}
-    if not res.get("ok"):
-        raise RuntimeError(res.get("error") or "fetch failed")
-    return int(res.get("status") or 0), res.get("body") or ""
+    return {"content-type": "application/json", "accept": "*/*", "x-experience-name": experience,
+            "x-current-url": current, "x-hd-dc": "origin", "x-api-cookies": "{}", "x-debug": "false"}
+
+
+def _fetch_box(operation, payload, timeout):
+    """One gateway POST as an in-page fetch on one of the box's parked pages
+    (the box picks among the home pages, or among the fallback exits while
+    home is skipped) -> (on the home egress?, the egress used, status, body
+    text). Raises BoxRefused / BoxUnavailable carrying `.on_home` and
+    `.proxy`, the egress it happened on."""
+    on_home = _on_home()
+    call = dict(url=f"{GATEWAY}?opname={operation}", method="POST", headers=_headers_for(operation),
+                body=json.dumps(payload), timeout=timeout)
+    try:
+        if on_home:
+            candidates = _home_candidates()
+            index, res = browser_client.fetch_any("homedepot", candidates, **call)
+            proxy = candidates[index][0]
+        else:
+            proxy, res = _FALLBACK.fetch_any("homedepot", **call)
+    except (BoxRefused, BoxUnavailable) as e:
+        e.on_home = on_home
+        raise
+    return on_home, proxy, int(res.get("status") or 0), res.get("body") or ""
 
 
 def _graphql_errors(body):
@@ -330,48 +261,79 @@ def _is_refusal(status, text):
 
 
 def graphql(operation, query, variables, *, root=None):
-    """POST one operation through a homedepot.com page; return the `data`
-    member (or `data[root]`).
+    """POST one operation through one of the box's parked homedepot.com
+    pages; return the `data` member (or `data[root]`).
 
-    A refused or failed page is replaced and the call retried on the next
-    one. GraphQL errors with no usable data raise HomeDepotUpstreamError (a
-    validation error names the field, so a schema change is visible in the
-    message)."""
+    A refusal is ridden out, within MAX_REFUSALS and REQUEST_BUDGET seconds:
+    a page Akamai dropped mid-call is replaced by the box on the same egress
+    (a parked page goes stale; the fresh page's warm-up is what judges the
+    egress), a refused home egress hands over to the fallback exits, a
+    refused exit is replaced. A box that is down or busy is an upstream
+    error at once. GraphQL errors with no usable data raise
+    HomeDepotUpstreamError (a validation error names the field, so a schema
+    change is visible in the message)."""
     payload = {"operationName": operation, "variables": variables, "query": query}
+    deadline = time.monotonic() + REQUEST_BUDGET
     last = None
-    for attempt in range(1, MAX_ATTEMPTS + 1):
-        slot = _acquire()
+    attempts = refusals = home_drops = 0
+    while attempts < MAX_ATTEMPTS and refusals < MAX_REFUSALS:
+        remaining = deadline - time.monotonic()
+        if (attempts or refusals) and remaining < MIN_CALL_SECONDS:
+            break
         try:
-            status, text = _fetch(slot, operation, payload)
-        except Exception as e:
-            # A failed or wedged fetch: the page is suspect, replace it.
-            _close(slot)
-            _release(slot)
-            last = HomeDepotUpstreamError(f"{operation}: in-page fetch failed: {type(e).__name__}: {e}")
-            time.sleep(config.RETRY_BACKOFF * attempt)
+            on_home, proxy, status, text = _fetch_box(operation, payload, max(MIN_CALL_SECONDS, int(remaining)))
+        except BoxRefused as e:
+            if e.candidate is None:
+                # the box refused before any browser was reached (a bad
+                # request, an unknown variant): no egress is to blame
+                raise HomeDepotUpstreamError(f"{operation}: browser box refused the request: {e}")
+            refusals += 1
+            last = HomeDepotBlocked(f"Akamai refused the request: {e}")
+            page_only = any(mark in str(e) for mark in PAGE_ONLY)
+            if not e.on_home:
+                print(f"homedepot: {operation} refused via {_egress_label(e.proxy)} ({e}); replacing that exit")
+                _FALLBACK.rotate(e.proxy)
+            elif page_only and ("in-page fetch failed" in str(e) or home_drops < _slots()):
+                # one page's trouble (a wedged Chrome, a parked page gone
+                # stale): the box closed it and opens a fresh one on the same
+                # egress, whose warm-up is the verdict on the egress. More
+                # drops than there are parked pages means fresh pages are
+                # dropped too: that is the egress.
+                home_drops += "page dropped" in str(e)
+                print(f"homedepot: {operation} lost its page on {_egress_label(e.proxy)} ({e}); retrying on a fresh one")
+            else:
+                print(f"homedepot: {operation} refused on {_egress_label(e.proxy)} ({e}); "
+                      f"fallback exits for {config.HOMEDEPOT_DIRECT_SKIP}s")
+                _skip_home(e.proxy)
             continue
+        except BoxUnavailable as e:
+            raise HomeDepotUpstreamError(f"{operation}: browser box unavailable: {e}")
         if _is_refusal(status, text):
+            # the recipe raises on these itself; a verdict that still got
+            # through left its page parked, so the egress moves on
             dump_debug(f"refused_{operation}", text)
-            print(f"homedepot: {operation} refused (HTTP {status}), replacing the page "
-                  f"(attempt {attempt}/{MAX_ATTEMPTS})")
-            _close(slot)
-            _release(slot)
+            print(f"homedepot: {operation} refused (HTTP {status}) via {_egress_label(proxy)}, moving the egress on")
+            refusals += 1
             last = HomeDepotBlocked(f"Akamai refused the request (HTTP {status})")
+            if on_home:
+                _skip_home(proxy)
+            else:
+                _FALLBACK.rotate(proxy)
             continue
-        _release(slot)
         if status == 403:
             # A 403 is a rule on the request itself (seen for searchModel
             # pageSize > 24), never the page's verdict (that is the 206).
             dump_debug(f"forbidden_{operation}", text)
             raise HomeDepotBadRequest(f"the gateway refused this {operation} request (HTTP 403)")
         if status >= 500:
+            attempts += 1
             last = HomeDepotUpstreamError(f"{operation}: HTTP {status}")
-            time.sleep(config.RETRY_BACKOFF * attempt)
+            time.sleep(config.RETRY_BACKOFF * attempts)
             continue
         if status != 200:
             raise HomeDepotUpstreamError(f"{operation}: HTTP {status}: {text[:200]}")
         try:
-            body = json.loads(text)
+            body = fastjson.loads(text)
         except Exception:
             dump_debug(f"nonjson_{operation}", text)
             raise HomeDepotUpstreamError(f"{operation}: non-JSON reply")
@@ -380,8 +342,8 @@ def graphql(operation, query, variables, *, root=None):
 
 
 if __name__ == "__main__":
-    # Smoke test: open one page, then run a store lookup, a search and a
-    # product read through it.
+    # Smoke test against the box: a store lookup, a search and a product
+    # read through its parked page.
     from homedepot import queries as Q
     started = time.monotonic()
     stores = graphql("storeSearch", Q.STORE_SEARCH,

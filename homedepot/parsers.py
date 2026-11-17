@@ -44,6 +44,9 @@ import re
 from datetime import datetime, timezone
 
 from homedepot import refs
+from scraper_utils.values import as_dict as _dict, bool_or_none, num as to_float, to_int
+from scraper_utils.text import squashed as text
+from scraper_utils.dates import iso_utc
 
 CURRENCY = "USD"
 
@@ -66,38 +69,7 @@ _SNAKE_RE = re.compile(r"(?<=[a-z0-9])(?=[A-Z])")
 
 
 # ---- value helpers ------------------------------------------------------------
-# (kept local so the package stands alone, like the other site packages)
-
-def to_int(value):
-    if isinstance(value, bool):
-        return None
-    try:
-        return int(value) if value not in (None, "") else None
-    except (TypeError, ValueError):
-        try:
-            return int(float(value))
-        except (TypeError, ValueError):
-            return None
-
-
-def to_float(value):
-    if isinstance(value, bool):
-        return None
-    try:
-        return float(value) if value not in (None, "") else None
-    except (TypeError, ValueError):
-        return None
-
-
-def text(value):
-    if not isinstance(value, str):
-        return None
-    value = " ".join(value.split())
-    return value or None
-
-
-def bool_or_none(value):
-    return value if isinstance(value, bool) else None
+# (the generic ones come from scraper_utils; the rest are the site's own)
 
 
 def money(value):
@@ -118,21 +90,6 @@ def snake(value):
     out = _SNAKE_RE.sub("_", value.strip())
     out = re.sub(r"[^A-Za-z0-9]+", "_", out).strip("_").lower()
     return out or None
-
-
-def iso_utc(value):
-    """'2026-10-13T09:40:29.000+00:00' / '2022-07-03T06:46:19.938Z' ->
-    '2026-10-13T09:40:29Z'."""
-    if not isinstance(value, str) or not value.strip():
-        return None
-    raw = value.strip().replace("Z", "+00:00")
-    try:
-        parsed = datetime.fromisoformat(raw)
-    except ValueError:
-        return None
-    if parsed.tzinfo is None:
-        parsed = parsed.replace(tzinfo=timezone.utc)
-    return parsed.astimezone(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
 
 
 def iso_date(value):
@@ -158,10 +115,6 @@ def split_csv(value):
 
 def listed(value):
     return [v for v in value if v is not None] if isinstance(value, list) else []
-
-
-def _dict(value):
-    return value if isinstance(value, dict) else {}
 
 
 # ---- product cards ----------------------------------------------------------------

@@ -8,6 +8,7 @@ from homedepot import queries as Q
 from homedepot import refs
 from homedepot import shared
 from homedepot.fetch import HomeDepotNotFound, graphql
+from scraper_errors import BadRequest, NotFound, UpstreamError
 
 REVIEW_PAGE_SIZE = 10     # the gateway serves 10 reviews per page whatever pagesize says
 
@@ -52,14 +53,40 @@ def lookup(query, store=None):
 
 # ---- one product / batches -------------------------------------------------------------
 
-def details(product, store=None):
-    located, summary = _store(store)
-    variables = {"itemId": product, "storeId": located["id"],
+def _item_for_sku(store, ref):
+    """The item id behind a store SKU (1007850144, the number on the shelf
+    tag), or None. `details` and `availability` read by item id (the internet
+    number); a customer who keys their products by the SKU got "not found"
+    for items that exist (2026-11-11). Asked only after the gateway did not
+    know `ref` as an item id, so an item id costs no extra call. A search
+    the gateway rejects resolves nothing: the caller's own "not found" stands
+    (not a 400 about a search the customer never asked for)."""
+    try:
+        parsed = P.search_page(shared.search_model(store, keyword=ref, page=1))
+    except (BadRequest, NotFound):
+        return None
+    return next((p["id"] for p in parsed["products"] if p.get("id") and (p.get("store_sku") or "") == ref), None)
+
+
+def _read_product(located, item_id):
+    variables = {"itemId": item_id, "storeId": located["id"],
                  "zipCode": shared.store_context(located)["zipCode"]}
     raw = graphql("productClientOnlyProduct", Q.PRODUCT, variables, root="product")
     parsed = P.product_details(raw)
     if not parsed.get("id"):
-        raise HomeDepotNotFound(f"product '{product}' not found")
+        raise HomeDepotNotFound(f"product '{item_id}' not found")
+    return parsed
+
+
+def details(product, store=None):
+    located, summary = _store(store)
+    try:
+        parsed = _read_product(located, product)
+    except HomeDepotNotFound:
+        item_id = _item_for_sku(located, product)
+        if not item_id:
+            raise
+        parsed = _read_product(located, item_id)
     parsed["store"] = summary
     return {"product": parsed}
 
@@ -79,6 +106,28 @@ def _stock_at(store, item_id):
     return cards[0] if cards else None
 
 
+def _stock_at_each(stores, item_id):
+    """The item's card at each store, None where a store does not list it or
+    its read failed. One store failing must not fail the endpoint; EVERY
+    store failing is an upstream failure, not "product not found" (until
+    2026-11-12 it was answered as a 404, e.g. while Akamai refused the
+    egress). A store read the gateway answers "not found" / rejects is a
+    store that does not list the item (as shared.soft had it), never the
+    endpoint's own error: the SKU lookup still has to run after it."""
+    def read(store):
+        try:
+            return _stock_at(store, item_id)
+        except UpstreamError as e:
+            return e
+        except (BadRequest, NotFound):
+            return None
+    results = shared.run_parallel([lambda s=s: read(s) for s in stores])
+    failures = [r for r in results if isinstance(r, UpstreamError)]
+    if failures and len(failures) == len(results):
+        raise failures[0]
+    return [None if isinstance(r, UpstreamError) else r for r in results]
+
+
 def availability(product, location=None, limit=5):
     """Stock of one product at the stores nearest `location` (default: the
     configured store's ZIP), with the aisle / bay in each store."""
@@ -90,9 +139,14 @@ def availability(product, location=None, limit=5):
     stores = found["stores"][:limit]
     if not stores:
         raise HomeDepotNotFound("no Home Depot store near that location")
-    cards = shared.run_parallel([shared.soft(lambda s=s: _stock_at(s, product)) for s in stores])
+    cards = _stock_at_each(stores, product)
     if all(c is None for c in cards):
-        raise HomeDepotNotFound(f"product '{product}' not found")
+        item_id = _item_for_sku(stores[0], product)      # a store SKU instead of the item id
+        if not item_id:
+            raise HomeDepotNotFound(f"product '{product}' not found")
+        cards = _stock_at_each(stores, item_id)
+        if all(c is None for c in cards):
+            raise HomeDepotNotFound(f"product '{product}' not found")
     sku = next((c.get("store_sku") for c in cards if c and c.get("store_sku")), None)
     aisles = shared.run_parallel([shared.soft(lambda s=s: shared.aisle_bays(s, [sku]), default={}) for s in stores]) \
         if sku else [{} for _ in stores]

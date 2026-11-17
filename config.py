@@ -63,3 +63,29 @@ def resolve_timezone(proxy, timezone=None, geoip_timezone=None, label="driver"):
         pass
     print(f"{label}: exit geo lookup failed; keeping timezone={timezone}")
     return timezone
+
+
+# ---- added by the sync: defaults for a direct run ----
+HOMEDEPOT_BROWSER_SLOTS = 1
+HOMEDEPOT_FALLBACK_PROXY_COUNTRY = None
+def burst_slots(share):
+    return share
+
+
+def exit_geo(proxy, timeout=12):
+    """Geo of a proxy's exit IP, looked up THROUGH the proxy (ip-api.com, free
+    tier, keyed per exit IP so the quota is never shared). Returns the dict
+    {countryCode, regionName, city, timezone, query} or None on any failure —
+    callers keep their configured/system timezone then."""
+    try:
+        import requests
+        r = requests.get(
+            "http://ip-api.com/json/?fields=status,countryCode,regionName,city,timezone,query",
+            proxies={"http": proxy, "https": proxy}, timeout=timeout)
+        d = r.json()
+        if d.get("status") == "success" and d.get("timezone"):
+            return d
+    except Exception:
+        pass
+    return None
+

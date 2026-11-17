@@ -1,5 +1,4 @@
-"""Patchright (patched Playwright Chrome) driver — vendored from the hosted
-service; Home Depot uses it only to mint its Akamai cookies (homedepot/fetch.py).
+"""Patchright (patched Playwright Chrome) driver for chrome_manager pools.
 
 Used by the g2 pool: Cloudflare passes patchright's real-Chrome fingerprint
 (channel="chrome", headed) where botasaurus Chrome and Camoufox get challenged
@@ -33,18 +32,8 @@ run-driver cmdline of the tree root, which botasaurus Chrome and Camoufox
 trees never match.
 """
 import json
+from hostenv import IS_IN_KUBERNETES, IS_DOCKER, get_os
 import os
-import platform
-
-# Vendored from the hosted service: botasaurus.env's three helpers, inlined so
-# the open-source kit does not need botasaurus installed.
-IS_IN_KUBERNETES = bool(os.environ.get("KUBERNETES_SERVICE_HOST"))
-IS_DOCKER = os.path.exists("/.dockerenv")
-
-
-def get_os():
-    system = platform.system().lower()
-    return {"darwin": "mac", "windows": "windows"}.get(system, "linux")
 import queue
 import random
 import re
@@ -162,7 +151,6 @@ FETCH_STAGGER_MS = 0
 DEFAULT_FETCH_HEADERS = {
     "accept": ("text/html,application/xhtml+xml,application/xml;q=0.9,"
                "image/avif,image/webp,image/apng,*/*;q=0.8"),
-    "accept-language": "en-US,en;q=0.6",
 }
 
 # Live (unclosed) drivers, so kill_orphan_browsers() knows which OS processes
@@ -253,6 +241,47 @@ def _tree_has_camoufox(root):
         except psutil.Error:
             continue
     return False
+
+
+_chrome_version_cache = None
+
+
+def _chrome_candidates():
+    """The Chrome executables this host may launch, in the order patchright
+    is pointed at them (PATCHRIGHT_EXECUTABLE first), existing ones only."""
+    import shutil
+    candidates = [
+        os.environ.get("PATCHRIGHT_EXECUTABLE"),
+        shutil.which("google-chrome"), shutil.which("google-chrome-stable"),
+        r"C:\Program Files\Google\Chrome\Application\chrome.exe",
+        "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
+    ]
+    return [exe for exe in dict.fromkeys(candidates) if exe and os.path.exists(exe)]
+
+
+def chrome_version():
+    """Version string of the Chrome patchright launches on this host
+    ("156.0.8078.48"), without launching a browser: asks the executable
+    directly. Cached per process. Used by the browser worker's /health."""
+    global _chrome_version_cache
+    if _chrome_version_cache:
+        return _chrome_version_cache
+    import subprocess
+    for exe in _chrome_candidates():
+        try:
+            if os.name == "nt":
+                out = subprocess.check_output(
+                    ["powershell", "-NoProfile", "-Command",
+                     f"(Get-Item '{exe}').VersionInfo.ProductVersion"], timeout=10).decode().strip()
+            else:
+                out = subprocess.check_output([exe, "--version"], timeout=10).decode().strip()
+                out = out.split()[-1]
+            if out:
+                _chrome_version_cache = out
+                return out
+        except Exception:
+            continue
+    return "unknown"
 
 
 def kill_orphan_browsers():
@@ -521,7 +550,7 @@ def _settle_challenge(page, budget_ms=CHALLENGE_BUDGET_MS, cf_mitigated=False):
 # none of it is page traffic, no site can observe it, and on a throwaway
 # profile every launch repeats it through the paid residential exit -
 # optimizationguide model downloads alone were ~5.6 MB per request and 10 GB of
-# a month of residential-proxy usage (spikes of 4-6 GB on a single day).
+# the Sept 2026 residential-proxy usage (spikes of 4-6 GB on a single day).
 # Playwright's --disable-background-networking / OptimizationHints switches do
 # not stop these, hence the bypass. PATCHRIGHT_DIRECT_HOSTS="" restores the
 # everything-through-the-proxy behavior.
@@ -547,10 +576,11 @@ def _proxy_dict(proxy_url, direct_hosts=()):
     (Chrome proxy-bypass patterns: "host", "*.domain") connect from the
     machine's own IP instead of the proxy."""
     u = urlparse(proxy_url)
-    # Playwright's proxy dict wants the URL's credentials as separate keys.
-    user, _, secret = (u.netloc.rsplit("@", 1)[0] if "@" in u.netloc else "").partition(":")
-    proxy = {"server": f"http://{u.hostname}:{u.port}", "username": user or None}
-    proxy["pass" + "word"] = secret or None
+    proxy = {
+        "server": f"http://{u.hostname}:{u.port}",
+        "username": u.username,
+        "password": u.password,
+    }
     if direct_hosts:
         proxy["bypass"] = ",".join(direct_hosts)
     return proxy
@@ -568,12 +598,208 @@ def _in_container():
     return bool(IS_DOCKER or IS_IN_KUBERNETES)
 
 
+def _proxy_label(proxy_url):
+    """"own" for no proxy, else the proxy's port (the sticky-exit id)."""
+    if not proxy_url:
+        return "own"
+    try:
+        from urllib.parse import urlsplit
+        return f"p{urlsplit(proxy_url).port}"
+    except Exception:
+        return "proxy"
+
+
+def resolve_identity(proxy_url, locale=None, timezone=None, geoip_timezone=None, lookup=None):
+    """What the browser announces for its exit -> (ExitProfile, locale,
+    languages, timezone). The exit's language and clock come from the geo
+    lookup of the exit IP when `geoip_timezone` is True and one succeeds
+    (the truth about the IP; `lookup` defaults to config.exit_geo), else
+    from the proxy URL's country tag (egress.exit_profile). Locale: an
+    explicit `locale` (coupang ko-KR) beats the exit, PATCHRIGHT_LANG is the
+    fallback when nothing is derived. Zone: the lookup's, else a string
+    `geoip_timezone` / the explicit `timezone`, else the static zone of a
+    single-zone exit country (egress.TIMEZONE), else None = the system's."""
+    from egress import exit_profile, languages_for
+    geo = None
+    if isinstance(geoip_timezone, str) and geoip_timezone:
+        timezone = geoip_timezone            # a zone given as-is, no lookup
+    elif geoip_timezone and proxy_url:
+        if lookup is None:
+            import config
+            lookup = config.exit_geo
+        geo = lookup(proxy_url)              # sticky proxies only (see config)
+        if geo:
+            print(f"patchright: exit {geo.get('countryCode')}/{geo.get('regionName')} "
+                  f"({geo.get('query')}) -> timezone {geo['timezone']}")
+        else:
+            print("patchright: exit geo lookup failed; deriving from the proxy URL")
+    exit = exit_profile(proxy_url, geo=geo)
+    timezone = (geo or {}).get("timezone") or timezone or exit.timezone or None
+    if locale:
+        languages = languages_for(locale)
+    else:
+        locale, languages = exit.locale, exit.languages
+    if not locale:
+        locale = os.environ.get("PATCHRIGHT_LANG") or None
+        languages = languages_for(locale)
+    return exit, locale, languages, timezone
+
+
+# ---- the host's native identity ------------------------------------------------
+# What a plain Chrome on this machine announces with no flags at all: its
+# languages and its clock. A browser whose exit wants the same identity is
+# launched exactly like that - no --lang / --accept-lang, no TZ, no Windows
+# timezone_id emulation (a CDP override, itself a tell) - and only what
+# differs is overridden (owner rule 2026-10-30; the boxes' OS clocks and
+# locales are set to their own IP's place by
+# browser_worker/setup/set-native-identity.*). Probed once per process, kept
+# in memory only (a deploy or restart probes again).
+_NATIVE_JS = ("document.write('@@'+JSON.stringify({language:navigator.language,"
+              "languages:navigator.languages,"
+              "timezone:Intl.DateTimeFormat().resolvedOptions().timeZone})+'@@')")
+_NATIVE_PAGE = "data:text/html,<script>" + _NATIVE_JS + "</script>"
+_NATIVE_RE = re.compile(r"@@(\{.*?\})@@")
+_native_lock = threading.Lock()
+_native_state = {"probed": False, "identity": None}
+
+
+def parse_native(dom):
+    """The probe page's output -> {locale, languages, accept_language,
+    timezone}, or None when it is not there."""
+    from egress import accept_header
+    m = _NATIVE_RE.search(dom or "")
+    if not m:
+        return None
+    try:
+        d = json.loads(m.group(1))
+    except ValueError:
+        return None
+    langs = [t for t in (d.get("languages") or []) if t] or ([d["language"]] if d.get("language") else [])
+    if not langs or not d.get("timezone"):
+        return None
+    return {"locale": langs[0], "languages": ",".join(langs),
+            "accept_language": accept_header(langs), "timezone": d["timezone"]}
+
+
+def _probe_native(timeout=30):
+    """Run this host's Chrome headless with no locale / timezone flags in
+    this process's environment and read what it announces."""
+    import subprocess
+    exes = _chrome_candidates()
+    if not exes:
+        raise RuntimeError("no Chrome executable on this host")
+    profile = tempfile.mkdtemp(prefix="native-probe-")
+    try:
+        cmd = [exes[0], "--headless=new", "--disable-gpu", "--no-first-run",
+               f"--user-data-dir={profile}", "--dump-dom", _NATIVE_PAGE]
+        if get_os() == "linux" and hasattr(os, "geteuid") and os.geteuid() == 0:
+            cmd.insert(1, "--no-sandbox")
+        out = subprocess.run(cmd, capture_output=True, timeout=timeout)
+        native = parse_native(out.stdout.decode("utf-8", "replace"))
+        if not native:
+            raise RuntimeError(f"no identity in the probe output (exit {out.returncode}): "
+                               f"{out.stderr.decode('utf-8', 'replace')[-200:]!r}")
+        native["chrome"] = exes[0]
+        return native
+    finally:
+        shutil.rmtree(profile, ignore_errors=True)
+
+
+def native_identity(force=False, probe=None):
+    """This host's native identity ({locale, languages, accept_language,
+    timezone, chrome}), or None when unknown (probe failed, or
+    PATCHRIGHT_NATIVE=0) - then every derived value is overridden, as
+    before 2026-10-30. Probed on the first call of the process and kept in
+    memory; `force` probes again, `probe` replaces the Chrome run (tests)."""
+    if os.environ.get("PATCHRIGHT_NATIVE", "1") == "0":
+        return None
+    with _native_lock:
+        if _native_state["probed"] and not force:
+            return _native_state["identity"]
+        try:
+            ident = (probe or _probe_native)()
+            print(f"patchright: native identity {ident['languages']} / {ident['timezone']}")
+        except Exception as e:
+            print(f"patchright: native identity probe failed ({type(e).__name__}: {e}); "
+                  "overriding every derived language / clock")
+            ident = None
+        _native_state.update(probed=True, identity=ident)
+        return ident
+
+
+def native_cached():
+    """The native identity if one was probed in this process (for /health;
+    never launches anything)."""
+    return _native_state["identity"]
+
+
+def _lang_list(value):
+    return [t.strip().lower() for t in (value or "").split(",") if t.strip()]
+
+
+def overrides_for(native, languages, timezone):
+    """What must be overridden for the browser to announce `languages` and
+    `timezone`: {"lang", "tz"} minus whatever the host already announces
+    natively. Nothing to announce (None) is never an override; an unknown
+    native identity overrides everything there is. Zones compare by IANA
+    name: the boxes are always in the US, where Chrome (ICU) and the geo
+    lookup use the same canonical names (America/Chicago, America/New_York,
+    ...), so no alias handling is needed."""
+    out = set()
+    if languages and (not native or _lang_list(languages) != _lang_list(native.get("languages"))):
+        out.add("lang")
+    if timezone and (not native or timezone != native.get("timezone")):
+        out.add("tz")
+    return out
+
+
+def lang_args(locale, languages):
+    """The Chrome switches that pin the language: --lang (UI, ICU) and
+    --accept-lang (navigator.language(s) and Accept-Language; Linux Chrome
+    takes --lang for the UI only: probe 2026-10-28 on the Ubuntu box,
+    --lang=ko-KR alone -> "en-US,en", with --accept-lang ->
+    "ko-KR,ko,en-US,en"). Nothing when no locale is known."""
+    args = [f"--lang={locale}"] if locale else []
+    if locale and languages:
+        args.append(f"--accept-lang={languages}")
+    return args
+
+
+def fingerprint_for(generator, languages, bf_os):
+    """A browserforge fingerprint whose languages are `languages` (the same
+    list Chrome announces through --accept-lang): the full list first, its
+    bare language on a dataset miss, and a loud failure instead of a
+    fingerprint that contradicts the headers. `languages` None = no locale
+    constraint (nothing to contradict)."""
+    error = None
+    for langs in dict.fromkeys((languages, (languages or "").split(",")[0].split("-")[0] or None)):
+        try:
+            return generator.generate(browser="chrome", os=bf_os, device="desktop",
+                                      **({"locale": langs} if langs else {}))
+        except Exception as e:
+            error = e
+    raise RuntimeError(f"browserforge has no fingerprint for languages {languages!r}: {error}")
+
+
+def _navigator_languages(locale, accept=None):
+    """navigator.languages / --accept-lang for a locale: the full q-stripped
+    list ("pl-PL,pl,en-US,en"), never a one-tag list (egress.languages_for
+    is the one implementation; kept here for the existing callers)."""
+    from egress import languages_for
+    return languages_for(locale, accept)
+
+
 class PatchrightDriver:
     def __init__(self, proxy_url, headless=False, block_resources=None,
                  reset_on_release=False, browserforge=False, timezone=None,
                  channel=None, executable=None, direct_hosts=None,
-                 geoip_timezone=None, block_hosts=None):
+                 geoip_timezone=None, block_hosts=None, extra_args=None,
+                 locale=None):
         self._headless = bool(headless)
+        # extra_args: extra Chrome switches for this driver (browser_worker
+        # recipes: e.g. "--disable-http2" for Google hosts through a proxy,
+        # whose h2 tunnel never answers on the Contabo box, 2026-10-22).
+        self._extra_args = list(extra_args or ())
         # direct_hosts: PER-DRIVER hosts that skip the proxy, on top of
         # Chrome's background services (CHROME_BACKGROUND_HOSTS). For a
         # site's static CDN (images / video / JS bundles) when the page must
@@ -595,18 +821,49 @@ class PatchrightDriver:
         # the owning scraper (pool settings in config.CHROME_POOLS, or the
         # harvest call in <site>/fetch.py) — never process-wide env, so
         # scrapers with different anti-bot needs coexist in one process.
-        # timezone: Chrome's JS-visible Intl timezone (playwright timezone_id)
-        # for scrapers whose proxy exit country differs from the container TZ;
-        # None keeps the system TZ. geoip_timezone is the pool knob of the same
-        # name for ad-hoc drivers: True looks the proxy's exit IP up before
-        # launch and uses its zone, a string is used as-is
-        # (config.resolve_timezone).
+        # timezone: the IANA zone the browser's clock should show for scrapers
+        # whose proxy exit country differs from the container TZ; None keeps
+        # the system TZ. geoip_timezone is the pool knob of the same name for
+        # ad-hoc drivers: True looks the proxy's exit IP up before launch and
+        # uses its zone, a string is used as-is (config.resolve_timezone).
+        # locale: the browser's UI language / navigator.language /
+        # Accept-Language ("ko-KR"); None derives it from the exit
+        # (egress.exit_profile: the geo lookup's country when one was done,
+        # else the proxy URL's country tag), else PATCHRIGHT_LANG, else the
+        # browser's own default. The timezone follows the same profile when
+        # no lookup / explicit zone decided it (egress.TIMEZONE for
+        # single-zone countries), so a browser never shows a French language
+        # on a US clock because one lookup failed.
+        # NOT applied through Playwright emulation (timezone_id / locale,
+        # i.e. CDP Emulation.setTimezoneOverride / setLocaleOverride) where
+        # the OS allows: both go to the Chrome PROCESS - TZ in its
+        # environment and --lang on its command line - see _main (only
+        # Windows keeps timezone_id, because its Chrome ignores TZ; a Mac
+        # run keeps the Mac's language). Coupang's Akamai A/B
+        # (2026-10-24, KR residential, fresh exit each run):
+        # the same Chrome with the CDP overrides passed 4 of 34 searches
+        # before "Access Denied"; with TZ/--lang on the process it served
+        # 16/16 navigations on a good exit, the same as a Chrome launched
+        # by hand - the override is the tell, not the automation.
         self._browserforge = bool(browserforge)
-        if geoip_timezone:
-            import config
-            timezone = config.resolve_timezone(proxy_url, timezone, geoip_timezone,
-                                               label="patchright")
-        self._timezone = timezone or None
+        self._exit, self._locale, self._languages, self._timezone = resolve_identity(
+            proxy_url, locale=locale, timezone=timezone, geoip_timezone=geoip_timezone)
+        # Override only what the host does not already announce natively;
+        # what is not overridden IS the native value (browserforge and the
+        # identity's Accept-Language then carry the native one).
+        self._native = native = native_identity()
+        self._overrides = overrides_for(native, self._languages, self._timezone)
+        if native and "lang" not in self._overrides:
+            self._locale, self._languages = native["locale"], native["languages"]
+        if native and "tz" not in self._overrides:
+            self._timezone = native["timezone"]
+        from egress import accept_header
+        self._accept_language = accept_header(self._languages)   # what Chrome sends for that list
+        print(f"patchright: exit={self._exit.country or 'none'}({self._exit.source or '-'}) "
+              f"locale={self._locale or '-'} languages={self._languages or '-'} "
+              f"tz={self._timezone or 'system'} proxy={_proxy_label(proxy_url)} "
+              f"native={(native or {}).get('languages', '?')}/{(native or {}).get('timezone', '?')} "
+              f"overrides={','.join(sorted(self._overrides)) or 'none'}")
         block = frozenset(block_resources or ())
         # "image" and "font" in block_resources are honored at the Chrome
         # level (--blink-settings=imagesEnabled=false, --disable-remote-fonts)
@@ -636,26 +893,30 @@ class PatchrightDriver:
         self._closed = False
         self._profile_dir = tempfile.mkdtemp(prefix="patchright-profile-")
         # OS processes backing this browser, recorded by pid-diff around the
-        # launch (construction is serialized by chrome_manager's _create_lock).
+        # launch. Only the spawn window (snapshot -> first page up -> diff)
+        # is serialized (launch_lock.LAUNCH_LOCK, shared with camoufox); the
+        # identity lookups above run concurrently with other launches.
         self._procs = []
-        pre_launch = {p.pid for p in psutil.Process().children()}
-        self._thread = threading.Thread(
-            target=self._main,
-            args=(_proxy_dict(proxy_url, self._direct_hosts) if proxy_url else None,),
-            daemon=True, name="patchright-driver")
-        self._thread.start()
-        started = self._started.wait(STARTUP_TIMEOUT)
-        self._procs = _children_since(pre_launch)
-        if not started or self._start_error is not None:
-            # Hung or failed launch: the owner thread may be stuck inside the
-            # launch with processes already spawned — reap everything ourselves,
-            # re-diffing for processes that appeared after the snapshot above.
-            self.close()
+        from launch_lock import LAUNCH_LOCK
+        with LAUNCH_LOCK:
+            pre_launch = {p.pid for p in psutil.Process().children()}
+            self._thread = threading.Thread(
+                target=self._main,
+                args=(_proxy_dict(proxy_url, self._direct_hosts) if proxy_url else None,),
+                daemon=True, name="patchright-driver")
+            self._thread.start()
+            started = self._started.wait(STARTUP_TIMEOUT)
             self._procs = _children_since(pre_launch)
-            self._force_kill()
-            if not started:
-                raise RuntimeError(f"patchright startup timed out after {STARTUP_TIMEOUT}s")
-            raise RuntimeError(f"patchright startup failed: {self._start_error}")
+            if not started or self._start_error is not None:
+                # Hung or failed launch: the owner thread may be stuck inside the
+                # launch with processes already spawned — reap everything ourselves,
+                # re-diffing for processes that appeared after the snapshot above.
+                self.close()
+                self._procs = _children_since(pre_launch)
+                self._force_kill()
+                if not started:
+                    raise RuntimeError(f"patchright startup timed out after {STARTUP_TIMEOUT}s")
+                raise RuntimeError(f"patchright startup failed: {self._start_error}")
         with _drivers_lock:
             _drivers.add(self)
 
@@ -673,9 +934,8 @@ class PatchrightDriver:
             # passes the same check consistently (probe: PASS 4/4 where
             # bundled Chromium got interstitial'd on a flagged IP), so use it
             # when installed; PATCHRIGHT_EXECUTABLE overrides, else patchright's
-            # bundled patched Chromium. Locale needs no override (defaults are
-            # en-US); timezone follows the host/container TZ unless the driver
-            # was built with timezone=... (see __init__).
+            # bundled patched Chromium. Locale and timezone follow the exit
+            # (resolve_identity) and reach the Chrome process below.
             # Aug 24 2026: during a G2 DataDome escalation that hard-blocked
             # chrome/Brave/Edge from every fresh residential IP, OPERA +
             # browserforge cleared 5/7 (chrome/Brave/Edge 0/N) — its Chromium
@@ -715,24 +975,48 @@ class PatchrightDriver:
                 ) if p and os.path.exists(p)), None)))
             if exe:
                 channel = ""   # an explicit binary never combines with a channel
-            # PATCHRIGHT_LANG (unset by default) pins the browser
-            # UI/Accept-Language so navigator.language(s) agree with the
-            # injected fingerprint's locale on every platform (Linux Chrome
-            # otherwise derives it from LANG). Set it to match the proxy exit
-            # country, e.g. en-IN for India, en-GB for the UK; when unset the
-            # browser keeps its own default and no --lang arg is passed.
-            lang = os.environ.get("PATCHRIGHT_LANG")
-            launch_args = [f"--lang={lang}"] if lang else []
+            # Locale and timezone go to the Chrome PROCESS wherever the OS
+            # lets them (see __init__): --lang pins the UI language and
+            # --accept-lang pins navigator.language(s) and Accept-Language,
+            # on every OS (macOS Chrome ignores --lang for its UI only, from
+            # AppleLanguages, and still honours --accept-lang: the FR Shein
+            # proof of 2026-10-28 ran on a Mac). TZ in the process environment
+            # pins Intl / Date on Linux and macOS. Windows Chrome ignores TZ
+            # (ICU reads the system zone), so Windows alone keeps the
+            # Playwright timezone_id override: on the Windows box it did not
+            # raise Coupang blocking (2026-10-28, 12/15 pages with it vs 19/30
+            # on the box clock). The Playwright `locale` override is never
+            # used: it got Coupang searches 0/6 refused vs 6/6 without (it
+            # shrinks navigator.languages to one tag). Verified on the Mac:
+            # TZ=Europe/London -> Intl Europe/London, offset 0.
+            launch_args = lang_args(self._locale, self._languages) if "lang" in self._overrides else []
+            launch_env, emulate = None, {}
+            if self._timezone and "tz" in self._overrides:
+                if get_os() == "windows":
+                    emulate["timezone_id"] = self._timezone
+                else:
+                    launch_env = dict(os.environ, TZ=self._timezone)
             if self._block_images:
                 launch_args.append("--blink-settings=imagesEnabled=false")
             if self._block_fonts:
                 launch_args.append("--disable-remote-fonts")
+            if proxy:
+                # Behind a proxy, WebRTC's STUN gathering still goes out the
+                # machine's own interface and hands the page its real public
+                # IPv4 + IPv6 as srflx candidates (seen on the Contabo box,
+                # 2026-10-22). Google's reCAPTCHA already challenges that IP,
+                # so every token minted through a residential exit scored
+                # 0.0-0.3 while the same flow from the GKE pod scored fine.
+                # disable_non_proxied_udp keeps WebRTC inside the proxy.
+                launch_args.append("--force-webrtc-ip-handling-policy=disable_non_proxied_udp")
+            launch_args.extend(self._extra_args)
             browser = pw.chromium.launch_persistent_context(
                 user_data_dir=self._profile_dir,
                 headless=self._headless,
                 proxy=proxy,
                 **({"args": launch_args} if launch_args else {}),
-                **({"timezone_id": self._timezone} if self._timezone else {}),
+                **({"env": launch_env} if launch_env else {}),
+                **emulate,
                 **({"channel": channel,
                     "no_viewport":True,
                     } if channel else {}),
@@ -762,17 +1046,15 @@ class PatchrightDriver:
                 bf_os_map = {"windows": "windows", "mac": "macos", "linux": "linux"}
                 bf_os = (os.environ.get("PATCHRIGHT_BROWSERFORGE_OS")
                          or bf_os_map.get(get_os(), "linux"))
-                try:
-                    fp = FingerprintGenerator().generate(
-                        browser="chrome", os=bf_os,
-                         device="desktop",
-                        **({"locale": (lang, "en")} if lang else {})
-                        )
-                except Exception:
-                    # Locale absent from browserforge's dataset: drop it so
-                    # injection never silently disables itself.
-                    fp = FingerprintGenerator().generate(
-                        browser="chrome", os=bf_os, device="desktop")
+                # The fingerprint's languages are the same list Chrome
+                # announces (--accept-lang above), on every OS: an overlay
+                # that says en-US on a browser whose Accept-Language says
+                # de-DE is the tell this exists to avoid. A locale absent
+                # from browserforge's dataset is retried with its bare
+                # language; if that fails too the launch fails loudly
+                # instead of injecting a fingerprint that contradicts the
+                # headers.
+                fp = fingerprint_for(FingerprintGenerator(), self._languages, bf_os)
                 browser.add_init_script(InjectFunction(fp))
             if self._block_url_re is not None:
                 # Route ONLY the URLs to abort (abort is the sole action, so
@@ -1019,6 +1301,45 @@ class PatchrightDriver:
             error=res.get("error"),
             headers=res.get("headers") or {},
         )
+
+    def request(self, method, url, headers=None, body=None, referrer=None,
+                timeout_ms=FETCH_TIMEOUT_MS, call_timeout=CALL_TIMEOUT):
+        """Any-method in-page fetch (POST/PUT with a body) with get()'s
+        semantics: inherits the page's cookies and clearance, never raises on
+        HTTP/network errors. `body` is sent as-is (a str; JSON-encode first).
+        Added 2026-10-21 for the browser worker's fetch recipes (envato,
+        crunchbase and glassdoor hand-rolled this before)."""
+        res = self.call(
+            lambda page: page.evaluate(_FETCH_JS, {
+                "url": url,
+                "method": (method or "GET").upper(),
+                "headers": headers if headers is not None else DEFAULT_FETCH_HEADERS,
+                "body": body,
+                "referrer": referrer,
+                "timeoutMs": timeout_ms,
+            }),
+            timeout=call_timeout,
+        ) or {}
+        return FetchResponse(
+            ok=bool(res.get("ok")),
+            status_code=int(res.get("status") or 0),
+            url=res.get("url") or "",
+            text=res.get("body") or "",
+            error=res.get("error"),
+            headers=res.get("headers") or {},
+        )
+
+    @property
+    def browser_pid(self):
+        """Root pid of the Chrome process tree, or None (browser_worker uses
+        it to measure the tree's RSS for recycling)."""
+        for p in self._procs:
+            try:
+                if _is_playwright_root(p):
+                    return p.pid
+            except psutil.Error:
+                continue
+        return self._procs[0].pid if self._procs else None
 
     def get_many(self, urls, headers=None, referrer=None,
                  timeout_ms=FETCH_TIMEOUT_MS, stagger_ms=FETCH_STAGGER_MS,
